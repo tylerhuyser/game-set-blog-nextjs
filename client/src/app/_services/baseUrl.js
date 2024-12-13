@@ -1,1 +1,0 @@
-export const baseUrl = `https://www.gamesetblog.com/wp-json/wp/v2/`
