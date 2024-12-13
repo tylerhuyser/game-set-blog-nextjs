@@ -1,0 +1,44 @@
+.footer-container {
+
+  width: calc(100vw - 50px);
+  height: calc(75px - 20px);
+  z-index: 5;
+
+  padding: 10px 25px;
+  background-color: #F39C12;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-family: helvetica;
+  font-size: 16px;
+}
+
+@media only screen and (min-width: 375px) {
+
+}
+
+@media only screen and (min-width: 481px) {
+
+}
+
+@media only screen and (min-width: 768px) {
+
+}
+
+@media only screen and (min-width: 1024px) {
+.footer-container {
+  height: calc(100px - 20px);
+  font-size: 20px;
+}
+}
+
+@media only screen and (min-width: 1200px) {
+
+}
+
+@media only screen and (min-width: 1600px) {
+
+}

@@ -11,7 +11,6 @@ export const getPost = async (ID) => {
 
 export const getPostBySlug = async (slug) => {
   const data = api(`posts?slug=${slug}&_embed`)
-  console.log(data)
   return data[0]
 }
 

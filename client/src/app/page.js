@@ -1,5 +1,6 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+// import styles from "./page.module.css";
+import './page.css'
 
 import { getPosts } from "./_services/posts";
 import { getTags } from "./_services/tags";
@@ -15,13 +16,13 @@ export default async function Home() {
 
   const [posts, tags, categories, users] = await Promise.all([postsData, tagsData, categoriesData, usersData])
 
-  console.log(posts)
-  console.log(tags)
-  console.log(categories)
-  console.log(users)
+  // console.log(posts)
+  // console.log(tags)
+  // console.log(categories)
+  // console.log(users)
 
   return (
-    <div className={styles.page}>
+    <div className="home-container">
 
     </div>
   );
