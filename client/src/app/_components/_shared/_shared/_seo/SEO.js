@@ -1,4 +1,4 @@
-import OGImage from "../../../_assets/metadataImage.png"
+import OGImage from "../../../../_assets/metadataImage.png"
 
 const defaultData = {
   title: "Game, Set, Blog",

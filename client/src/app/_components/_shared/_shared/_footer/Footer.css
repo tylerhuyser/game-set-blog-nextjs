@@ -1,6 +1,7 @@
 .footer-container {
 
   width: calc(100vw - 50px);
+  /* width: 100%; */
   height: calc(75px - 20px);
   z-index: 5;
 
