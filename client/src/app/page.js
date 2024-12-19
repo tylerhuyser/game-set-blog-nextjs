@@ -23,7 +23,7 @@ export default async function Home() {
   })
 
   return (
-    <div className="home-container" style={styles}>
+    <div className="home-container">
 
       <div className='featured-post-cards-container'>
       
