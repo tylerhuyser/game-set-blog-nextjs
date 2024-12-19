@@ -3,8 +3,6 @@ import { getPosts } from "./_services/posts";
 import FeaturedPostCard from "./_components/_postCards/FeaturedPostCard";
 import Posts from "./_components/_posts/Posts";
 
-import styles from "./page.module.css";
-import "./globals.css"
 import "./home.css"
 
 export default async function Home() {
