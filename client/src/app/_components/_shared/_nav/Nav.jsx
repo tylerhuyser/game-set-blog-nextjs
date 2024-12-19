@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
-// import { loaderDelay } from '../../utils';
-import { useScrollDirection } from '../../../../_hooks';
-import useWindowSize from '../../../../_utils/useWindowSize'
+import { useScrollDirection } from '../../../_hooks'
+import useWindowSize from '../../../_hooks/useWindowSize'
 
 import NavLinks from './NavLinks';
 import NavMenuIcons from './NavMenuIcons';
@@ -12,17 +11,31 @@ import IconLogo from '../_logos/IconLogo';
 
 import './Nav.css'
 
-export default function Nav(props) {
+export default function Nav() {
 
   // Mobile Navigation Menu Visibility State & Functions:
 
   const [navVisibility, setNavVisibility] = useState(false)
-  const [iconVisibility, setIconVisibility] = useState(false)
 
-  function toggleVisibility (navVisibility, iconVisibility) {
+  function toggleVisibility (navVisibility) {
+    const layoutContainer = document.getElementsByClassName('layout-container')
+    if (!navVisibility) {
+      layoutContainer[0].style.position = 'fixed'
+    } else {
+      layoutContainer[0].style.removeProperty('position')
+    }
     setNavVisibility(!navVisibility)
-    setIconVisibility(!iconVisibility)
   }
+
+  let windowSize = useWindowSize()
+
+  useEffect(() => {
+    if (windowSize.width >= 1024) {
+      setNavVisibility(false)
+      const layoutContainer = document.getElementsByClassName('layout-container')
+      layoutContainer[0].style.removeProperty('position')
+    }
+  }, [windowSize])
 
   // Scroll Direction State and Effect:
 
@@ -34,19 +47,16 @@ export default function Nav(props) {
   };
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      // setIsMounted(true);
-    }, 100);
-
+    const handleScroll = () => {
+      setScrolledToTop(window.scrollY < 50);
+    };
+  
     window.addEventListener('scroll', handleScroll);
-
+  
     return () => {
-      clearTimeout(timeout);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  let windowSize = useWindowSize()
   
 return (
   <>
@@ -90,13 +100,13 @@ return (
         
     </Link>
 
-    <NavLinks context="desktop" iconVisibility={iconVisibility} onLinkClick={null} navVisibility={null} />
+    <NavLinks context="desktop" onLinkClick={null} navVisibility={null} />
       
-    <NavMenuIcons onClick={() => toggleVisibility(navVisibility, iconVisibility)} />
+    <NavMenuIcons onClick={() => toggleVisibility(navVisibility)} navVisibility={navVisibility} />
 
   </div>
     
-  <NavLinks context="mobile" navVisibility={navVisibility} onLinkClick={() => toggleVisibility(navVisibility, iconVisibility)} />
+  <NavLinks context="mobile" onLinkClick={() => toggleVisibility(navVisibility)} navVisibility={navVisibility} />
     
   </>
 )}

@@ -1,23 +1,26 @@
 import { api } from "./api-config"
 
-export const getPosts = async (page) => {
-  const data = api(`posts?_embedpage=${page}&per_page=5`)
-  return data
+export const getPosts = async (props) => {
+  const response = await api(`posts?_embed&page=${props.page}&per_page=${props.perPage}`)
+  return response
 }
 
 export const getPost = async (ID) => {
-  api(`posts/${ID}?_embed`)
+  const data = await api(`posts/${ID}?_embed`)
+  return data
 }
 
 export const getPostBySlug = async (slug) => {
-  const data = api(`posts?slug=${slug}&_embed`)
-  return data[0]
+  const response = await api(`posts?slug=${slug}&_embed`)
+  return response.data[0]
 }
 
-export const getPostsByCategory = async (categoryID, page) => {
-  api(`posts?categories=${categoryID}&_embed&page=${page}&per_page=5`)
+export const getPostsByCategory = async (props) => {
+  const response = await api(`posts?categories=${props.id}&_embed&page=${props.page}&per_page=${props.perPage}`)
+  return response
 }
 
-export const getPostsByTag = async (tagID, page) => {
-  api(`posts?tags=${tagID}&_embed&page=${page}&per_page=5`)
+export const getPostsByTag = async (props) => {
+  const response = await api(`posts?tags=${props.id}&_embed&page=${props.page}&per_page=${props.perPage}`)
+  return response
 }

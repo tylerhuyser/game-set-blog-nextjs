@@ -63,7 +63,7 @@
   height: calc(100vh - 75px - 20px);
   overflow: hidden;
 
-  background-image: linear-gradient(rgba(54, 123, 214, 0.9), rgba(54, 123, 214, 0.25));
+  background-image: linear-gradient(rgba(54, 123, 214, 0.9), rgba(54, 123, 214, 0.25)), url('https://i.imgur.com/AxblwEN.png');
   background-size: contain;
   background-repeat: repeat;
   background-position: center center;

@@ -1,34 +1,23 @@
-// import React, { useState, useEffect } from 'react'
+import Nav from "./_components/_shared/_nav/Nav";
+import Footer from "./_components/_shared/_footer/Footer";
+import { SEO } from "./_components/_shared/_seo/SEO";
 
-import Nav from "./_components/_shared/_shared/_nav/Nav";
-import Footer from "./_components/_shared/_shared/_footer/Footer";
-import { SEO } from "./_components/_shared/_shared/_seo/SEO";
-import IconLogo from "./_components/_shared/_shared/_logos/IconLogo";
-
-// import useWindowSize from '../../utils/useWindowSize';
-
+import "./globals.css"
 import "./layout.css"
+
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
 
 export const metadata = SEO
 
 export default function RootLayout({ children }) {
-
-  // const [menuVisibility, setMenuVisibility] = useState(false)
-  
-  // let windowSize = useWindowSize()
-
-  // useEffect(() => {
-  //   if (windowSize.width > 758) {
-  //     setMenuVisibility(false)
-  //   }
-  // }, [windowSize])
 
   return (
     <html lang="en" data-arp="">
       <body>
         <div className="layout-container">
 
-          {/* <Nav menuVisibility={menuVisibility} setMenuVisibility={setMenuVisibility} /> */}
           <Nav />
 
           <main className="main-container">

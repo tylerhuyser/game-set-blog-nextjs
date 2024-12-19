@@ -14,7 +14,7 @@
   justify-content: center;
   align-items: center;
 
-  background-image: url('../../background-image-assets//Icons-Background-White-Transparent-1000X875.png'), linear-gradient(rgba(243, 156, 18, 1), rgba(243, 156, 18, 1));
+  background-image: url('../../../../_assets/Icons-Background-White-Transparent-1000X875.png'), linear-gradient(rgba(243, 156, 18, 1), rgba(243, 156, 18, 1));
 
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box; /* Firefox, other Gecko */

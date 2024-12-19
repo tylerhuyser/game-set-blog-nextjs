@@ -1,4 +1,4 @@
-import OGImage from "../../../../_assets/metadataImage.png"
+import OGImage from "../../../_assets/metadataImage.png"
 
 const defaultData = {
   title: "Game, Set, Blog",
@@ -11,7 +11,7 @@ const defaultData = {
 export const SEO = {
   title: {
     default: defaultData.title,
-    template: `%s | ${defaultData.title}`
+    // template: `%s | ${defaultData.title}`
   },
   description: defaultData.description,
 

@@ -17,7 +17,18 @@ export const api = async (endpoint, options = {}) => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    return await response.json();
+
+    if (endpoint.includes("posts?")) {
+      // As Headers are not included in Fetch Response, below returns Data, Total Pages, and Total Posts for getPosts, getPostsByCategories, and getPostsbyTag data fetching functions.
+      return {
+        data: await response.json(),
+        totalPosts: response.headers.get('x-wp-total'),
+        totalPages: response.headers.get('x-wp-totalpages')
+      }
+    } else {
+      // Returns Data for all other data fetching functions.
+      return await response.json();
+    }
 
   } catch (error) {
 
