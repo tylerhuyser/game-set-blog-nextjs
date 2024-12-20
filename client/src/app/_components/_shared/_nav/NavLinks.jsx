@@ -5,7 +5,7 @@ export default function NavLinks({context, onLinkClick, navVisibility}) {
   const links = [
     { name: 'HOME', path: '/', external: false },
     { name: 'ABOUT', path: '/about', external: false },
-    { name: 'RANKINGS', path: 'https://www.rankings.gamesetblog.com/', external: true },
+    { name: 'RANKINGS', path: 'https://rankings.gamesetblog.com/', external: true },
   ];
   
     return (

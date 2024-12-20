@@ -1,4 +1,4 @@
-const baseUrl = `https://www.gamesetblog.com/wp-json/wp/v2/`
+const baseUrl = `https://www.admin.gamesetblog.com/wp-json/wp/v2/`
 
 export const api = async (endpoint, options = {}) => {
   const url = `${baseUrl}${endpoint}`
