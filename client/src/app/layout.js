@@ -1,6 +1,7 @@
 import Nav from "./_components/_shared/_nav/Nav";
 import Footer from "./_components/_shared/_footer/Footer";
 import { SEO } from "./_components/_shared/_seo/SEO";
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
 import "./globals.css"
 import "./layout.css"
@@ -15,6 +16,8 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en" data-arp="">
+      <GoogleAnalytics gaID="GTM-TLX3ZGT2" />
+      <GoogleTagManager gtmId="GTM-TLX3ZGT2" />
       <body>
         <div className="layout-container">
 
