@@ -18,6 +18,3 @@ https://www.gamesetblog.com/* https://gamesetblog.com/:splat 301
 
 # Route all other requests except specific paths to index.html
 /* /index.html 200
-  Condition: !Path, ^/wp-admin/*
-  Condition: !Path, ^/wp-json/*
-  Condition: !Path, ^/wp-login/*
