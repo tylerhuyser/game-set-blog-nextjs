@@ -5,6 +5,15 @@ http://www.gamesetblog.com/* https://gamesetblog.com/:splat 301
 # Redirect www to non-www
 https://www.gamesetblog.com/* https://gamesetblog.com/:splat 301
 
+# Redirect /posts/:id/:slug to /posts/:slug
+/posts/:id/:slug /posts/:slug 301
+
+# Redirect /:id/:slug to /posts/:slug
+/:id/:slug /posts/:slug 301
+
+# Redirect /:year/:month/:date/:slug to /posts/:slug
+/:year/:month/:date/:slug /posts/:slug 301
+
 # Route all requests to Next.js
 /* /.netlify/functions/next 200
 
