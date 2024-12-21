@@ -9,7 +9,7 @@ node_bundler = "esbuild"
 clear_cache = true
 command = "npm run build"
 functions = "netlify/functions"
-publish = "client/.next"
+publish = ".next"
 
 [[redirects]]
   from = "/*"
