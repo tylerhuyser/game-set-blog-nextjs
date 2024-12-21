@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Enable static export
   reactStrictMode: true,
+  swcMinify: true,
+  experimental: {
+    appDir: true, // Only include this if you're using the app directory
+  },
 };
 
 export default nextConfig;

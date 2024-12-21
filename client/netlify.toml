@@ -1,4 +1,2 @@
-[build]
-base = "client"
-command = "npm run build"
-publish = "client/out"
+[functions]
+directory = ".netlify/functions"

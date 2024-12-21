@@ -13,6 +13,9 @@ https://www.gamesetblog.com/* https://gamesetblog.com/:splat 301
 # Redirect /:year/:month/:date/:slug to /posts/:slug
 /:year(\\d{4})/:month(\\d{2})/:date(\\d{2})/:slug /posts/:slug 301
 
+# Route all requests to Next.js
+/* /.netlify/functions/next 200
+
 # Route all other requests except specific paths to index.html
 /* /index.html 200
   Condition: !Path, ^/wp-admin/*
