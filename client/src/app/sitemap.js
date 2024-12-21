@@ -13,9 +13,9 @@ export default async function sitemap() {
 
     let posts = []
 
-    for(var i = 0; i < postsData.length; i++) {
+    for(var i = 0; i < postsData.data.length; i++) {
       posts.push({
-        url: `https://gamesetblog.com/${postsData[i].slug}`,
+        url: `https://gamesetblog.com/posts/${postsData.data[i].slug}`,
         lastModified: new Date(),
         changeFrequency: "weekly",
         priority: 1,
