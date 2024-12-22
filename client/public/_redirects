@@ -1,2 +1,9 @@
+# Redirect HTTP to HTTPS
+http://gamesetblog.com/* https://gamesetblog.com/:splat 301
+http://www.gamesetblog.com/* https://gamesetblog.com/:splat 301
+
+# Redirect www to non-www
+https://www.gamesetblog.com/* https://gamesetblog.com/:splat 301
+
 # Route all other requests except specific paths to index.html
 /* /index.html 200
