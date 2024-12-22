@@ -55,6 +55,8 @@ export default async function PostDetail({ params }) {
   const postMonth = new Date(postData.date).getMonth() + 1;
   const postYear = new Date(postData.date).getFullYear();
 
+  console.log(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")).replaceAll('gamesetblog.com/wp-content/', 'admin.gamesetblog.com/wp-content/'))
+
   
   return (
     <div className="post-container">
@@ -64,7 +66,7 @@ export default async function PostDetail({ params }) {
       <div className="post-image-container" id='post-hero-image-container'>
 
         {/* <img className="post-image" id="post-hero-image" src={postData["_embedded"]["wp:featuredmedia"][0].source_url} atl="post-hero-image" /> */}
-        {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<img"), postData.content.rendered.toString().indexOf('<div class="wp-block-cover__inner-container')))}
+        {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<img"), postData.content.rendered.toString().indexOf('<div class="wp-block-cover__inner-container')).replace('gamesetblog.com/wp-content/', 'admin.gamesetblog.com/wp-content/'))}
 
       </div>
 
@@ -74,7 +76,7 @@ export default async function PostDetail({ params }) {
 
         <p className="post-date">{`${postMonth}.${postDate}.${postYear}`}</p>
 
-        <div className="post-content-container">{parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")))}</div>
+        <div className="post-content-container">{parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")).replace('gamesetblog.com/wp-content/', 'admin.gamesetblog.com/wp-content/'))}</div>
 
       </div>
 
