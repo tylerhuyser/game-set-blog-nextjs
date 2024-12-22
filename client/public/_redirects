@@ -1,2 +1,5 @@
+# Route all requests to Next.js
+/* /.netlify/functions/next 200
+
 # Route all other requests except specific paths to index.html
 /* /index.html 200
