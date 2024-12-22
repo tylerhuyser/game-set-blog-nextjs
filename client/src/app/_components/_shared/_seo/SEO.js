@@ -1,10 +1,7 @@
-import OGImage from "../../../_assets/metadataImage.png"
-
 const defaultData = {
   title: "Game, Set, Blog",
   description: "GameSetBlog.com - Tennis news, analysis, and opinion delivered with deadpan humor and a touch of sass. Grand Slams, ATP, and WTA forehands, backhands, overheads, tweeners, and dropshots.",
   siteUrl: "https://gamesetblog.com/",
-  image: OGImage,
 }
 
 
@@ -28,8 +25,8 @@ export const SEO = {
 
   openGraph: {
     title: defaultData.title,
+    images: ['/_assets/metedataImage.png'],
     description: defaultData.description,
-    images: defaultData.image,
     url: defaultData.siteUrl,
     type: "website",
   },
@@ -39,6 +36,6 @@ export const SEO = {
     title: defaultData.title,
     description: defaultData.description,
     creator: "@GameSet_Blog",
-    images: [`${defaultData.siteUrl}metadataImage.png`]
+    images: ['/_assets/metedataImage.png']
   }
 }
