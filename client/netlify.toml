@@ -3,12 +3,10 @@ package = "@netlify/plugin-nextjs"
 
 [functions]
 directory = ".netlify/functions"
-node_bundler = "esbuild"
 
 [build]
 clear_cache = true
 command = "npm run build"
-functions = "netlify/functions"
 publish = ".next"
 
 [[redirects]]
