@@ -14,7 +14,7 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/:year(\\d{4})/:month(\\d{2})/:date(\\d{2})/:slug', // Match dates
+        source: '/:year(\\d{4})/:month(\\d{1,2})/:date(\\d{1,2})/:slug', // Match dates
         destination: '/posts/:slug',
         permanent: true,
       },
