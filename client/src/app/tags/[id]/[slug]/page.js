@@ -1,4 +1,7 @@
+'use server'
+
 import { getPostsByTag } from "@/app/_services/posts";
+import { notFound } from 'next/navigation'
 
 import Posts from "@/app/_components/_posts/Posts";
 
@@ -37,6 +40,11 @@ export default async function PostsByTag({ params }) {
     page: 1,
     perPage: 5
   })
+
+
+	if (!posts) {
+		return notFound()
+	}
 
   return (
 

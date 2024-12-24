@@ -6,6 +6,7 @@ import Tags from '@/app/_components/_tags.jsx/Tags';
 import Comments from '@/app/_components/_comments/Comments';
 
 import { getPostBySlug } from "@/app/_services/posts"; 
+import { notFound } from 'next/navigation'
 
 import "./page.css"
 
@@ -50,6 +51,10 @@ export default async function PostDetail({ params }) {
   const { slug } = await params
 
   const postData = await getPostBySlug(slug)
+
+  if (!postData) {
+		return notFound()
+	}
 
   const postDate = new Date(postData.date).getDate();
   const postMonth = new Date(postData.date).getMonth() + 1;

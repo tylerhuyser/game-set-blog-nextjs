@@ -1,6 +1,7 @@
 'use server'
 
 import { getPostsByCategory } from '@/app/_services/posts'
+import { notFound } from 'next/navigation'
 
 import Posts from '@/app/_components/_posts/Posts'
 
@@ -39,6 +40,11 @@ export default async function PostsByCategory({ params }) {
     page: 1,
     perPage: 5
   })
+
+  if (!posts) {
+		return notFound()
+	}
+
 
   return (
    
