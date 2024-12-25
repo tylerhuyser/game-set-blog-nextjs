@@ -5,7 +5,17 @@ import { faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons"
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
 
 export const metadata = {
-  title: 'About | Game, Set, Blog'
+  title: 'About | Game, Set, Blog',
+  alternates: {
+    canonical: `about`,
+  },
+  openGraph: {
+    title: 'About | Game, Set, Blog',
+    url: `https://gamesetblog.com/about`,
+  },
+  twitter: {
+    title: 'About | Game, Set, Blog',
+  }
 }
 
 export default function About() {
