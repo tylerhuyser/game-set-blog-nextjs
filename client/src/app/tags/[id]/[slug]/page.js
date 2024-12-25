@@ -52,13 +52,13 @@ export default async function PostsByTag({ params }) {
 
       {posts.data.length === 0 ?
           
-          <p className="posts-by-tag-title">{`There are 0 posts tagged with ${slug.split("-").join(" ")}.`}</p>
+          <h1 className="posts-by-tag-title">{`There are 0 posts tagged with ${slug.split("-").join(" ")}.`}</h1>
 
         :
       
         <>
           
-          <p className="posts-by-tag-title">{`Posts tagged with: ${slug.split("-").map((word) => {return word[0].toUpperCase() + word.substring(1)}).join(" ")}`}</p>
+          <h1 className="posts-by-tag-title">{`Posts tagged with: ${slug.split("-").map((word) => {return word[0].toUpperCase() + word.substring(1)}).join(" ")}`}</h1>
 
           <Posts postsData={posts.data} totalPages={posts.totalPages} mode={"Posts by Tag"} sourceID={id} />
 

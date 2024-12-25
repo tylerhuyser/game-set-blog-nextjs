@@ -77,7 +77,7 @@ export default async function PostDetail({ params }) {
 
       <div className="post-hero-content-container">
 
-        <p className="post-title">{parse(postData.title.rendered)}</p>
+        <h1 className="post-title">{parse(postData.title.rendered)}</h1>
 
         <p className="post-date">{`${postMonth}.${postDate}.${postYear}`}</p>
 

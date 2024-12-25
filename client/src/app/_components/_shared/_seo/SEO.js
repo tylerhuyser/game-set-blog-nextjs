@@ -1,6 +1,6 @@
 const defaultData = {
   title: "Game, Set, Blog",
-  description: "GameSetBlog.com - Tennis news, analysis, and opinion delivered with deadpan humor and a touch of sass. Grand Slams, ATP, and WTA forehands, backhands, overheads, tweeners, and dropshots.",
+  description: "GameSetBlog.com - Tennis news, analysis, and opinion delivered with deadpan humor and a touch of sass.",
   siteUrl: "https://gamesetblog.com/",
 }
 
@@ -15,7 +15,7 @@ export const SEO = {
   generator: "Next.js",
   applicationName: defaultData.title,
   referrer: 'origin-when-cross-origin',
-  keywords: ['tennis', 'atp', 'wta', 'itf', 'grand slam', 'australian open', 'french open', 'roland garros', 'wimbledon', 'us open'],
+  keywords: ['tennis', 'atp', 'wta', 'itf', 'grand slam', 'australian open', 'french open', 'roland garros', 'wimbledon', 'us open', 'forehand', 'backhand', 'overhead', 'dropshot', 'ace', 'tweener'],
   authors: { name: 'Tyler Huyser' },
 
   metadataBase: new URL(defaultData.siteUrl),

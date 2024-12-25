@@ -52,13 +52,13 @@ export default async function PostsByCategory({ params }) {
 
           {posts.data.length === 0 ?
               
-              <p className="posts-by-category-title">{`There are 0 posts categorized as ${slug.split("-").join(" ")}.`}</p>
+              <h1 className="posts-by-category-title">{`There are 0 posts categorized as ${slug.split("-").join(" ")}.`}</h1>
 
             :
           
             <>
               
-              <p className="posts-by-category-title">{`Posts categorized as: ${slug.split("-").map((word) => {return word[0].toUpperCase() + word.substring(1)}).join(" ")}.`}</p>
+              <h1 className="posts-by-category-title">{`Posts categorized as: ${slug.split("-").map((word) => {return word[0].toUpperCase() + word.substring(1)}).join(" ")}.`}</h1>
 
               <Posts postsData={posts.data} totalPages={posts.totalPages} mode={"Posts by Category"} sourceID={id} />
 
