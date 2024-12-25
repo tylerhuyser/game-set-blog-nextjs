@@ -31,12 +31,12 @@ export async function generateMetadata({ params }) {
     description: metaData.description,
     keywords: tags,
     alternates: {
-      canonical: slug,
+      canonical: `posts/${slug}`,
     },
     openGraph: {
       title: metaData.title,
       description: metaData.description,
-      url: `https://gamesetblog.com/${slug}`,
+      url: `https://gamesetblog.com/posts/${slug}`,
       type: "article"
     },
     twitter: {

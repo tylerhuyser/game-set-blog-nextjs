@@ -19,11 +19,11 @@ export async function generateMetadata({ params }) {
     title: metaData.title,
     description: metaData.description,
     alternates: {
-      canonical: `${id}/${slug}`,
+      canonical: `categories/${id}/${slug}`,
     },
     openGraph: {
       title: metaData.title,
-      url: `https://gamesetblog.com/${slug}`,
+      url: `https://gamesetblog.com/categories/${id}/${slug}`,
     },
     twitter: {
       title: metaData.title,
