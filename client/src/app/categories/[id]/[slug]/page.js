@@ -17,13 +17,13 @@ export async function generateMetadata({ params }) {
 
   return {
     title: metaData.title,
-    description: metaData.description,
     alternates: {
       canonical: `categories/${id}/${slug}`,
     },
     openGraph: {
       title: metaData.title,
       url: `https://gamesetblog.com/categories/${id}/${slug}`,
+      type: "website"
     },
     twitter: {
       title: metaData.title,
@@ -58,7 +58,7 @@ export default async function PostsByCategory({ params }) {
           
             <>
               
-              <h1 className="posts-by-category-title">{`Posts categorized as: ${slug.split("-").map((word) => {return word[0].toUpperCase() + word.substring(1)}).join(" ")}.`}</h1>
+              <h1 className="posts-by-category-title">{`There are ${posts.data.length} total posts categorized as: ${slug.split("-").map((word) => {return word[0].toUpperCase() + word.substring(1)}).join(" ")}.`}</h1>
 
               <Posts postsData={posts.data} totalPages={posts.totalPages} mode={"Posts by Category"} sourceID={id} />
 

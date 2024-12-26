@@ -17,13 +17,13 @@ export async function generateMetadata({ params }) {
 
   return {
     title: metaData.title,
-    description: metaData.description,
     alternates: {
       canonical: `tags/${id}/${slug}`,
     },
     openGraph: {
       title: metaData.title,
       url: `https://gamesetblog.com/tags/${id}/${slug}`,
+      type: "website"
     },
     twitter: {
       title: metaData.title,
@@ -58,7 +58,7 @@ export default async function PostsByTag({ params }) {
       
         <>
           
-          <h1 className="posts-by-tag-title">{`Posts tagged with: ${slug.split("-").map((word) => {return word[0].toUpperCase() + word.substring(1)}).join(" ")}`}</h1>
+          <h1 className="posts-by-tag-title">{`There are ${posts.data.length} total posts tagged with: ${slug.split("-").map((word) => {return word[0].toUpperCase() + word.substring(1)}).join(" ")}`}</h1>
 
           <Posts postsData={posts.data} totalPages={posts.totalPages} mode={"Posts by Tag"} sourceID={id} />
 
