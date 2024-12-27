@@ -7,7 +7,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
 export const metadata = {
   title: 'About | Game, Set, Blog',
   alternates: {
-    canonical: `about/`,
+    canonical: `about`,
   },
   openGraph: {
     title: 'About | Game, Set, Blog',
