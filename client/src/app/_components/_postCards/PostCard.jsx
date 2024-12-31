@@ -16,7 +16,7 @@ export default function PostCard ({ postData }) {
 
       <div className='post-card-image-container'>
 
-        <img className="post-card-image" src={postData["_embedded"]["wp:featuredmedia"][0].source_url} alt={`post-card-image-${id}`} />
+        <img className="post-card-image" src={postData["_embedded"]["wp:featuredmedia"][0].source_url} alt={`post-card-image-${postData.id}`} />
               
       </div>
 
