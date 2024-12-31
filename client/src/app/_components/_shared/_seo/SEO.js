@@ -6,7 +6,7 @@ const defaultData = {
 
 
 export const SEO = {
-  metadataBase: new URL(defaultData.siteUrl),
+  metadataBase: new URL('https://gamesetblog.com'),
   title: {
     default: defaultData.title,
     // template: `%s | ${defaultData.title}`
