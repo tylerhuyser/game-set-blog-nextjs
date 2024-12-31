@@ -20,6 +20,7 @@ export async function generateMetadata({ params }) {
     alternates: {
       canonical: `categories/${id}/${slug}`,
     },
+    robots: "noindex",
     openGraph: {
       title: metaData.title,
       url: `https://gamesetblog.com/categories/${id}/${slug}`,
