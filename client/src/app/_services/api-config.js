@@ -18,7 +18,7 @@ export const api = async (endpoint, options = {}) => {
     }
 
 
-    if (endpoint.includes("posts?") || endpoint.includes("per_page=100")) {
+    if (endpoint.includes("posts?")) {
       // As Headers are not included in Fetch Response, below returns Data, Total Pages, and Total Posts for getPosts, getPostsByCategories, and getPostsbyTag data fetching functions.
       return {
         data: await response.json(),
