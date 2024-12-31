@@ -31,7 +31,7 @@ export async function generateMetadata({ params }) {
     description: metaData.description,
     keywords: tags,
     alternates: {
-      canonical: `posts/${slug}`,
+      canonical: `/posts/${slug}`,
     },
     openGraph: {
       title: metaData.title,
@@ -60,7 +60,7 @@ export default async function PostDetail({ params }) {
   const postMonth = new Date(postData.date).getMonth() + 1;
   const postYear = new Date(postData.date).getFullYear();
 
-  console.log(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")).replaceAll('gamesetblog.com/wp-content/', 'admin.gamesetblog.com/wp-content/'))
+  // console.log(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")).replaceAll('gamesetblog.com/wp-content/', 'admin.gamesetblog.com/wp-content/'))
 
   
   return (

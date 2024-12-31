@@ -1,11 +1,12 @@
 const defaultData = {
   title: "Game, Set, Blog",
   description: "GameSetBlog.com - Tennis news, analysis, and opinion delivered with deadpan humor and a touch of sass.",
-  siteUrl: "https://gamesetblog.com/",
+  siteUrl: "https://gamesetblog.com",
 }
 
 
 export const SEO = {
+  metadataBase: new URL(defaultData.siteUrl),
   title: {
     default: defaultData.title,
     // template: `%s | ${defaultData.title}`
@@ -18,7 +19,6 @@ export const SEO = {
   keywords: ['tennis', 'atp', 'wta', 'itf', 'grand slam', 'australian open', 'french open', 'roland garros', 'wimbledon', 'us open', 'forehand', 'backhand', 'overhead', 'dropshot', 'ace', 'tweener'],
   authors: { name: 'Tyler Huyser' },
 
-  metadataBase: new URL(defaultData.siteUrl),
   alternates: {
     canonical: '/',
   },

@@ -18,7 +18,7 @@ export async function generateMetadata({ params }) {
   return {
     title: metaData.title,
     alternates: {
-      canonical: `categories/${id}/${slug}`,
+      canonical: `/categories/${id}/${slug}`,
     },
     robots: "noindex",
     openGraph: {
