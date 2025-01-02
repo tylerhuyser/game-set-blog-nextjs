@@ -18,7 +18,7 @@ export default async function PageNotFound() {
     perPage: 5
   })
 
-  console.log(posts)
+  // console.log(posts)
    
   return(
     <div className="page-not-found-container">

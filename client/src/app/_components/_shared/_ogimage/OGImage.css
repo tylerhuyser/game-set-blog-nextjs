@@ -1,0 +1,45 @@
+.opengraph-image-container {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(256, 256, 256, 1);
+  background-image: url('./_assets/Icons-Background-White-Transparent-1000X875.png'), linear-gradient(rgba(243, 156, 18, 1), rgba(243, 156, 18, 1));
+  background-size: 240%;
+  background-repeat: repeat;
+  background-position: center center;
+}
+
+.og-content-container {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 50px;
+  background-color: white;
+}
+
+.og-titles-container {
+  display: flex; 
+  flex-direction: row;
+  align-items: center;
+}
+
+.og-title {
+  display: flex;
+  font-size: 40px;
+}
+
+#site-title {
+
+}
+
+#page-title {
+ font-size: 30px;
+}
