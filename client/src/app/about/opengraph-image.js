@@ -14,12 +14,27 @@ export const contentType = 'image/png'
 
 export default async function Image() {
 
+  const isDev = process.env.NODE_ENV === 'development';
+  const baseUrl = isDev
+    ? 'http://localhost:3000'
+    : 'https://gamesetblog.com';
+  
+  console.log(`${baseUrl}/assets/fonts/bogart-semibold.otf`)
+
+  const font = await fetch(
+    `${baseUrl}/assets/fonts/bogart-semibold.otf`
+  ).then((res) => res.arrayBuffer())
+
   return new ImageResponse(
     (
-      <OGImage pageTitle={"About"} />
+      <OGImage pageTitle={"About"} baseUrl={baseUrl} />
     ),
     {
       ...size,
+      fonts: [{
+        name: "bogart-semibold",
+        data: font,
+      }]
     }
   )
 }
