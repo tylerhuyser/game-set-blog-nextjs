@@ -9,7 +9,7 @@ export default function OGImage({ pageTitle, baseUrl }) {
 
       width: "100%",
       height: "100%",
-      padding: "50px",
+      padding: "50px 75px",
 
       backgroundColor: "rgba(255,255,255,1)",
       backgroundImage: `url('${baseUrl}/assets/Icons-Background-Orange-Transparent-1000X875.png')`,
