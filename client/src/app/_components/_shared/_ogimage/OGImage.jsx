@@ -9,7 +9,7 @@ export default function OGImage({ pageTitle, baseUrl }) {
 
       width: "100%",
       height: "100%",
-      padding: "50px 75px",
+      padding: "75px 100px",
 
       backgroundColor: "rgba(255,255,255,1)",
       backgroundImage: `url('${baseUrl}/assets/Icons-Background-Orange-Transparent-1000X875.png')`,
@@ -27,7 +27,7 @@ export default function OGImage({ pageTitle, baseUrl }) {
         
         height: "100%",
         width: "100%",
-        padding: "75px",
+        padding: "25px",
         
         backgroundColor: "rgba(243, 156, 18, 1)",
         backgroundImage: `url('${baseUrl}/assets/Icons-Background-White-Transparent-1000X875.png'), linear-gradient(rgba(243, 156, 18, 0.5), rgba(243, 156, 18, 0.5))`,
