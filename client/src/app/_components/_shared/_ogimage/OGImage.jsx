@@ -94,7 +94,7 @@ export default function OGImage({ pageTitle, baseUrl }) {
                 borderTop: "10px solid white",
                 
                 fontFamily: "helvetica",
-                fontSize: "80px",
+                fontSize: "40px",
                 color: "white",
               }}>{pageTitle}</p>
 

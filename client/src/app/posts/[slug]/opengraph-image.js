@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og'
-import OGImage from '../_components/_shared/_ogimage/OGImage'
+import OGImage from "../../_components/_shared/_ogimage/OGImage"
  
 export const runtime = 'edge'
  
@@ -12,7 +12,13 @@ export const size = {
 
 export const contentType = 'image/png'
 
-export default async function Image() {
+export default async function Image({ params }) {
+
+  const { slug } = params
+
+  let title = ""
+
+  title = slug.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
 
   const isDev = process.env.NODE_ENV === 'development';
   const baseUrl = isDev
@@ -23,9 +29,10 @@ export default async function Image() {
     `${baseUrl}/assets/fonts/bogart-semibold.otf`
   ).then((res) => res.arrayBuffer())
 
+
   return new ImageResponse(
     (
-      <OGImage pageTitle={"About"} baseUrl={baseUrl} />
+      <OGImage pageTitle={title} baseUrl={baseUrl} />
     ),
     {
       ...size,
