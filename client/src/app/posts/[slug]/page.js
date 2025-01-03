@@ -71,7 +71,7 @@ export default async function PostDetail({ params }) {
       <div className="post-image-container" id='post-hero-image-container'>
 
         {/* <img className="post-image" id="post-hero-image" src={postData["_embedded"]["wp:featuredmedia"][0].source_url} atl="post-hero-image" /> */}
-        {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<img"), postData.content.rendered.toString().indexOf('<div class="wp-block-cover__inner-container')))}
+        {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<img"), postData.content.rendered.toString().indexOf('<div class="wp-block-cover__inner-container')).replace("http://", "https://"))}
 
       </div>
 
@@ -81,7 +81,7 @@ export default async function PostDetail({ params }) {
 
         <p className="post-date">{`${postMonth}.${postDate}.${postYear}`}</p>
 
-        <div className="post-content-container">{parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")))}</div>
+        <div className="post-content-container">{parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")).replace("http://", "https://"))}</div>
 
       </div>
 
