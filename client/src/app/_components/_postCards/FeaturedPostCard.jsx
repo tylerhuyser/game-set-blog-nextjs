@@ -26,7 +26,7 @@ export default function FeaturedPostCard({ postData }) {
 
               <div className='featured-post-card-excerpt-container'>
 
-                <div className="featured-post-card-excerpt">{parse(postData.excerpt.rendered.slice(0, 250).slice(0, postData.excerpt.rendered.slice(0, 250).lastIndexOf(".")).trim("Continue reading").concat("", "."))}</div>
+                <div className="featured-post-card-excerpt">{parse(postData.content.rendered.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, '').slice(0, 300).trim().concat("..."))}</div>
 
               <p className="featured-post-card-link">Read More.</p>
 
