@@ -37,5 +37,9 @@ export const SEO = {
     description: defaultData.description,
     creator: "@GameSet_Blog",
     // images: ['/_assets/metedataImage.png']
+  },
+
+  verification: {
+    google: "UWdDiArrGivUbpWkJwWyFiGgMSkGbPiUXXYmB-DqkWE"
   }
 }
