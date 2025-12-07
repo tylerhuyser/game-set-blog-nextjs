@@ -14,7 +14,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
-    "@netlify/plugin-nextjs": "^5.9.2",
+    "@netlify/plugin-nextjs": "^5.15.1",
     "@next/third-parties": "^16.0.7",
     "animejs": "^3.2.2",
     "eslint": "^9",
