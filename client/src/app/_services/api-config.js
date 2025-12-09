@@ -1,14 +1,22 @@
 const baseUrl = `https://www.admin.gamesetblog.com/wp-json/wp/v2/`
 
-export const api = async (endpoint, options = {}) => {
+export const api = async (endpoint, options = {}, cacheOptions = {}) => {
   const url = `${baseUrl}${endpoint}`
+
   const defaultOptions = {
     headers: {
       'Content-Type': 'application/json',
     }
   }
 
-  const mergedOptions = {...defaultOptions, ...options}
+  const mergedOptions = { ...defaultOptions, ...options }
+  
+  if (cacheOptions.tags || cacheOptions.revalidate) {
+    mergedOptions.next = {
+      tags: cacheOptions.tags || [],
+      revalidate: cacheOptions.revalidate || 3600
+    }
+  }
 
   try {
     const response = await fetch(url, mergedOptions);

@@ -1,11 +1,32 @@
 'use server'
 
+import Posts from '@/app/_components/_posts/Posts'
+
+import { getCategories } from '@/app/_services/categories'
 import { getPostsByCategory } from '@/app/_services/posts'
 import { notFound } from 'next/navigation'
 
-import Posts from '@/app/_components/_posts/Posts'
-
 import "./PostsByCategory.css"
+
+export const revalidate = 3600 // Pages are considered stale after 1 hour -- revalidate upon first page visit after 1 hour.
+export const dynamicParams = true;
+
+export async function generateStaticParams({params}) {
+  try {
+    const categories = getCategories()
+
+    console.log(`Generating Static Params for ${categories.length} categories.`)
+
+    return categories.map((category) => ({
+      id: category.id,
+      slug: category.slug,
+    }));
+  
+  } catch (error) {
+    console.error('Error in generateStaticParams:', error);
+    return [];
+  }
+}
 
 export async function generateMetadata({ params }) {
   

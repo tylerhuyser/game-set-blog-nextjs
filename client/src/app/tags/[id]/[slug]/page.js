@@ -1,11 +1,32 @@
 'use server'
 
+import Posts from "@/app/_components/_posts/Posts";
+
+import { getTags } from "@/app/_services/tags";
 import { getPostsByTag } from "@/app/_services/posts";
 import { notFound } from 'next/navigation'
 
-import Posts from "@/app/_components/_posts/Posts";
-
 import "./PostsByTag.css"
+
+export const revalidate = 3600 // Pages are considered stale after 1 hour -- revalidate upon first page visit after 1 hour.
+export const dynamicParams = true;
+
+export async function generateStaticParams({params}) {
+  try {
+    const tags = getTags()
+
+    console.log(`Generating Static Params for ${tags.length} tags.`)
+
+    return tags.map((tag) => ({
+      id: tag.id,
+      slug: tag.slug,
+    }));
+  
+  } catch (error) {
+    console.error('Error in generateStaticParams:', error);
+    return [];
+  }
+}
 
 export async function generateMetadata({ params }) {
   

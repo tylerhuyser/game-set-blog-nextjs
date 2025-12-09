@@ -5,10 +5,32 @@ import Categories from '@/app/_components/_categories/Categories';
 import Tags from '@/app/_components/_tags.jsx/Tags';
 import Comments from '@/app/_components/_comments/Comments';
 
-import { getPostBySlug } from "@/app/_services/posts"; 
+import { getPosts, getPostBySlug } from "@/app/_services/posts"; 
 import { notFound } from 'next/navigation'
 
 import "./page.css"
+
+export const revalidate = 3600 // Pages are considered stale after 1 hour -- revalidate upon first page visit after 1 hour.
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  try {
+    const posts = getPosts({
+      page: 1,
+      perPage: 100
+    })
+
+    console.log(`Generating Static Params for ${posts.length} posts.`)
+
+    return posts.map((post) => ({
+      slug: post.slug,
+    }));
+  
+  } catch (error) {
+    console.error('Error in generateStaticParams:', error);
+    return [];
+  }
+}
 
 export async function generateMetadata({ params }) {
   
@@ -16,13 +38,31 @@ export async function generateMetadata({ params }) {
 
   const postData = await getPostBySlug(slug)
 
+  if (!postData) {
+    return {
+      title: 'Post Not Found | Game, Set, Blog',
+    };
+  }
+
   const metaData = {
     title: parse(postData.title.rendered).slice(0, 60).trim(),
-    description: postData.excerpt.rendered.replace(/<[^>]*>?/gm, '').replace('&#038;', "&").replace('&#8216;', "'").replace('&#8217;', "'").replace('&#8220;', "'").replace('&#8221;', "'").replace("\n", "").slice(0,120).trim(),
+    description: postData.excerpt.rendered
+      .replace(/<[^>]*>?/gm, '')
+      .replace('&#038;', "&")
+      .replace('&#8216;', "'")
+      .replace('&#8217;', "'")
+      .replace('&#8220;', "'")
+      .replace('&#8221;', "'")
+      .replace("\n", "")
+      .slice(0, 120)
+      .trim(),
+    featuredImage: postData._embedded?.['wp:featuredmedia']?.[0]?.source_url,
+    published: postData.date,
+    modified: postData.modified
   }
 
   const tags = []
-  postData["_embedded"]["wp:term"][1].map((tag) => {
+    postData["_embedded"]["wp:term"][1].map((tag) => {
     tags.push(tag.name)
   })
 
@@ -37,11 +77,16 @@ export async function generateMetadata({ params }) {
       title: metaData.title,
       description: metaData.description,
       url: `https://gamesetblog.com/posts/${slug}`,
-      type: "article"
+      images: metaData.featuredImage ? [featuredImage] : [],
+      type: "article",
+      publishedTime: metaData.date,
+      modifiedTime: metaData.modified,
     },
     twitter: {
+      card: 'summary_large_image',
       title: metaData.title,
       description: metaData.description,
+      images: featuredImage ? [featuredImage] : [],
     }
   }
 }
