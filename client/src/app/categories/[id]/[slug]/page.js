@@ -1,11 +1,13 @@
+'use server'
+
+import Posts from "@/app/_components/_posts/Posts";
+
 import { getCategories } from '@/app/_services/categories'
 import { getPostsByCategory } from '@/app/_services/posts'
+import { revalidate, dynamicParams } from '@/app/utils/revalidation'; 
 import { notFound } from 'next/navigation'
 
 import "./PostsByCategory.css"
-
-export const revalidate = 3600 // Pages are considered stale after 1 hour -- revalidate upon first page visit after 1 hour.
-export const dynamicParams = true;
 
 export async function generateStaticParams({params}) {
   try {
@@ -54,7 +56,6 @@ export async function generateMetadata({ params }) {
   }
 }
 
-import Posts from '@/app/_components/_posts/Posts'
 
 export default async function PostsByCategory({ params }) {
 
