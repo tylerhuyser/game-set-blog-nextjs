@@ -1,5 +1,3 @@
-'use server'
-
 import { getCategories } from '@/app/_services/categories'
 import { getPostsByCategory } from '@/app/_services/posts'
 import { notFound } from 'next/navigation'

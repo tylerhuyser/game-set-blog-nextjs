@@ -1,5 +1,3 @@
-'use server'
-
 import { getTags } from "@/app/_services/tags";
 import { getPostsByTag } from "@/app/_services/posts";
 import { notFound } from 'next/navigation'

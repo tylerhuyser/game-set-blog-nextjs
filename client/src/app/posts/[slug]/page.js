@@ -1,5 +1,3 @@
-'use server'
-
 import React, { Suspense } from 'react';
 import parse from 'html-react-parser';
 
