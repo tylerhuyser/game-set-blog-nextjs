@@ -15,14 +15,38 @@ import "./page.css"
 
 export async function generateStaticParams() {
   try {
-    const posts = await getPosts({
+
+    const firstPage = await getPosts({
       page: String(1),
       perPage: String(100)
     })
 
-    console.log(`Generating Static Params for ${posts.data.length} posts.`)
+    const totalPages = parseInt(firstPage.totalPages)
+    let allPosts = [...firstPage.data]
+    console.log(`Total pages of posts to fetch: ${totalPages}`)
 
-    return posts.data.map((post) => ({
+    if (totalPages > 1) {
+      const pagePromises = []
+
+      for (let page = 2; page <= totalPages; page++) {
+        pagePromises.push(
+          getPosts({
+            page: String(page),
+            perPage: String(100)
+          })
+        )
+      }
+
+      const remainingPages = await Promise.all(pagePromises)
+
+      remainingPages.forEach(pageData => {
+        allPosts = [...allPosts, ...pageData.data]
+      })
+    }
+
+    console.log(`Generating Static Params for ${allPosts.length} posts.`)
+
+    return allPosts.map((post) => ({
       slug: post.slug,
     }));
   

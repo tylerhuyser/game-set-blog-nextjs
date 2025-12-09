@@ -22,6 +22,9 @@ export const api = async (endpoint, options = {}, cacheOptions = {}) => {
     const response = await fetch(url, mergedOptions);
 
     if (!response.ok) {
+      if (response.status === 404) {
+        return null;
+      }
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 

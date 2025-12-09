@@ -1,12 +1,14 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 
-const WP_API_URL = process.env.WORDPRESS_API_URL || 'https://www.admin.gamesetblog.com/wp-json/wp/v2';
+const WP_API_URL = 'https://www.admin.gamesetblog.com/wp-json/wp/v2';
 
 async function getPostData(slug) {
   try {
     const res = await fetch(
       `${WP_API_URL}/posts?slug=${slug}&_embed`,
-      { cache: 'no-store' } // Don't cache this fetch
+      {
+        cache: 'no-store',
+      } // Don't cache this fetch
     );
     
     if (!res.ok) return null;
@@ -17,7 +19,7 @@ async function getPostData(slug) {
     console.error('Error fetching post data:', error);
     return null;
   }
-}
+} 
 
 export async function POST(request) {
   const secret = request.nextUrl.searchParams.get('secret')
@@ -61,14 +63,14 @@ export async function POST(request) {
             const categories = postData._embedded['wp:term']?.[0] || [];
             for (const category of categories) {
               revalidatePath(`/categories/${category.id}/${category.slug}`);
-              console.log(`✅ Revalidated /categories/${category.id}/${category.slug}`);
+              console.log(`Revalidated /categories/${category.id}/${category.slug}`);
             }
 
             // Revalidate all tag pages this post belongs to
             const tags = postData._embedded['wp:term']?.[1] || [];
             for (const tag of tags) {
               revalidatePath(`/tags/${tag.id}/${tag.slug}`);
-              console.log(`✅ Revalidated /tags/${tag.id}/${tag.slug}`);
+              console.log(`Revalidated /tags/${tag.id}/${tag.slug}`);
             }
           }
         }
@@ -101,7 +103,6 @@ export async function POST(request) {
         break
       
       case 'category_updated':
-        // Revalidate specific category page
         const { termId, termSlug } = body;
         if (termId && termSlug) {
           revalidatePath(`/categories/${termId}/${termSlug}`);
@@ -110,7 +111,6 @@ export async function POST(request) {
         break;
       
       case 'tag_updated':
-        // Revalidate specific tag page
         const tagId = body.termId;
         const tagSlug = body.termSlug;
         if (tagId && tagSlug) {

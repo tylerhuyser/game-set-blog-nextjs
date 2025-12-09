@@ -8,9 +8,3 @@ directory = ".netlify/functions"
 clear_cache = true
 command = "npm run build"
 publish = ".next"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = true
