@@ -1,9 +1,7 @@
+'use server'
+
 import React, { Suspense } from 'react';
 import parse from 'html-react-parser';
-
-import Categories from '@/app/_components/_categories/Categories';
-import Tags from '@/app/_components/_tags.jsx/Tags';
-import Comments from '@/app/_components/_comments/Comments';
 
 import { getPosts, getPostBySlug } from "@/app/_services/posts"; 
 import { notFound } from 'next/navigation'
@@ -90,6 +88,10 @@ export async function generateMetadata({ params }) {
     }
   }
 }
+
+import Categories from '@/app/_components/_categories/Categories';
+import Tags from '@/app/_components/_tags.jsx/Tags';
+import Comments from '@/app/_components/_comments/Comments';
 
 export default async function PostDetail({ params }) {
 

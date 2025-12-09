@@ -1,7 +1,5 @@
 'use server'
 
-import Posts from "@/app/_components/_posts/Posts";
-
 import { getTags } from "@/app/_services/tags";
 import { getPostsByTag } from "@/app/_services/posts";
 import { notFound } from 'next/navigation'
@@ -57,6 +55,8 @@ export async function generateMetadata({ params }) {
     }
   }
 }
+
+import Posts from "@/app/_components/_posts/Posts";
 
 export default async function PostsByTag({ params }) {
   
