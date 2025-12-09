@@ -11,12 +11,12 @@ import "./PostsByTag.css"
 
 export async function generateStaticParams({params}) {
   try {
-    const tags = getTags()
+    const tags = await getTags()
 
     console.log(`Generating Static Params for ${tags.length} tags.`)
 
     return tags.map((tag) => ({
-      id: tag.id,
+      id: String(tag.id),
       slug: tag.slug,
     }));
   

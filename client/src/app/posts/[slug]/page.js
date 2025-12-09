@@ -15,14 +15,14 @@ import "./page.css"
 
 export async function generateStaticParams() {
   try {
-    const posts = getPosts({
-      page: 1,
-      perPage: 100
+    const posts = await getPosts({
+      page: String(1),
+      perPage: String(100)
     })
 
-    console.log(`Generating Static Params for ${posts.length} posts.`)
+    console.log(`Generating Static Params for ${posts.data.length} posts.`)
 
-    return posts.map((post) => ({
+    return posts.data.map((post) => ({
       slug: post.slug,
     }));
   
@@ -56,7 +56,7 @@ export async function generateMetadata({ params }) {
       .replace("\n", "")
       .slice(0, 120)
       .trim(),
-    featuredImage: postData._embedded?.['wp:featuredmedia']?.[0]?.source_url,
+    featuredImage: postData.featured_img,
     published: postData.date,
     modified: postData.modified
   }
@@ -77,7 +77,7 @@ export async function generateMetadata({ params }) {
       title: metaData.title,
       description: metaData.description,
       url: `https://gamesetblog.com/posts/${slug}`,
-      images: metaData.featuredImage ? [featuredImage] : [],
+      images: metaData.featuredImage ? metaData.featuredImage : [],
       type: "article",
       publishedTime: metaData.date,
       modifiedTime: metaData.modified,
@@ -86,7 +86,7 @@ export async function generateMetadata({ params }) {
       card: 'summary_large_image',
       title: metaData.title,
       description: metaData.description,
-      images: featuredImage ? [featuredImage] : [],
+      images: metaData.featuredImage ? metaData.featuredImage : [],
     }
   }
 }

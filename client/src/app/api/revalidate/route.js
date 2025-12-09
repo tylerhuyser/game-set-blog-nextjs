@@ -77,7 +77,7 @@ export async function POST(request) {
         revalidatePath(`/`)
         console.log('Revalidated Homepage')
 
-        revalidateTag('all-posts', 'layout');
+        revalidateTag('all-posts', 'max');
         console.log(`Revalidated all-posts tag`)
 
         console.log(`Revalidation Complete`)
@@ -87,7 +87,7 @@ export async function POST(request) {
       case 'post_deleted':
           // When a post is deleted, revalidate listings
         revalidatePath('/');
-        revalidateTag('all-posts', 'layout');
+        revalidateTag('all-posts', 'max');
           
         console.log(`✅ Revalidated after post deletion`);
         break;
@@ -122,7 +122,7 @@ export async function POST(request) {
       case 'revalidate_all':
         // Nuclear option: revalidate everything
         revalidatePath('/', 'layout');
-        revalidateTag('all-posts', 'layout');
+        revalidateTag('all-posts', 'max');
         console.log(`✅ Revalidated all pages`);
         break;
 

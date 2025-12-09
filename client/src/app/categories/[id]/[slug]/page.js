@@ -11,12 +11,12 @@ import "./PostsByCategory.css"
 
 export async function generateStaticParams({params}) {
   try {
-    const categories = getCategories()
+    const categories = await getCategories()
 
     console.log(`Generating Static Params for ${categories.length} categories.`)
 
     return categories.map((category) => ({
-      id: category.id,
+      id: String(category.id),
       slug: category.slug,
     }));
   
