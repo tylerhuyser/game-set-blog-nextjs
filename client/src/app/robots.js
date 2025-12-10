@@ -3,7 +3,11 @@ export default function robots() {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/private/',
+      disallow: [
+        '/private/',
+        '/?p=',              // Stop crawling old GUIDs
+        '/*opengraph-image', // Stop crawling dynamic images
+      ],
     },
     sitemap: 'https://gamesetblog.com/sitemap.xml',
   }
