@@ -2,12 +2,10 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
-import { useScrollDirection } from '../../../_hooks'
-import useWindowSize from '../../../_hooks/useWindowSize'
+import { useScrollDirection, useWindowSize } from '../../../_hooks'
 
 import NavLinks from './NavLinks';
 import NavMenuIcons from './NavMenuIcons';
-import IconLogo from '../_logos/IconLogo';
 
 import './Nav.css'
 
@@ -18,11 +16,10 @@ export default function Nav() {
   const [navVisibility, setNavVisibility] = useState(false)
 
   function toggleVisibility (navVisibility) {
-    const layoutContainer = document.getElementsByClassName('layout-container')
     if (!navVisibility) {
-      layoutContainer[0].style.position = 'fixed'
+      document.body.style.overflow = 'hidden';
     } else {
-      layoutContainer[0].style.removeProperty('position')
+      document.body.style.removeProperty('overflow')
     }
     setNavVisibility(!navVisibility)
   }
@@ -33,18 +30,18 @@ export default function Nav() {
     if (windowSize.width >= 1024) {
       setNavVisibility(false)
       const layoutContainer = document.getElementsByClassName('layout-container')
-      layoutContainer[0].style.removeProperty('position')
+      if (layoutContainer.length > 0) {
+        const element = layoutContainer[0]
+        element.style.removeProperty('position')
+      }
     }
   }, [windowSize])
+
 
   // Scroll Direction State and Effect:
 
   const scrollDirection = useScrollDirection('down');
   const [scrolledToTop, setScrolledToTop] = useState(true);
-
-  const handleScroll = () => {
-    setScrolledToTop(window.scrollY < 50);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,52 +58,44 @@ export default function Nav() {
 return (
   <>
     
-  <div className='nav-container slide-in-top-nav' style={
-
-    (windowSize.width <= 758 && scrollDirection === 'up' && !scrolledToTop && !navVisibility) ?
-      { transform: 'translateY(0px)',
-        boxShadow: 'none',
-        height: "calc(75px - 20px)"
+    <div className={`nav-container slide-in-top-nav ${
+      scrollDirection === 'down' && !scrolledToTop && !navVisibility
+        ? 'nav-container-hidden' 
+        : 'nav-container-visible'
       }
-      :
-      (windowSize.width <= 758 && scrollDirection === 'down' && !scrolledToTop && !navVisibility) ?
-        {
-          transform: 'translateY(-75px)',
-          boxShadow: 'none',
-          height: "calc(75px - 20px)"
-        }
-        :
-        (windowSize.width > 758 && scrollDirection === 'up' && !scrolledToTop && !navVisibility) ?
-        { transform: 'translateY(0px)',
-          boxShadow: 'none',
-          height: "calc(100px - 20px)"
-        }
-        :   
-        (windowSize.width > 758 && scrollDirection === 'down' && !scrolledToTop && !navVisibility) ?
-        {
-          transform: 'translateY(-100px)',
-          boxShadow: 'none',
-          height: "calc(100px - 20px)"
-          }
-          :
-          { transform: 'none' }
-    }>
+    `}>
       
-    <Link href="/" className="nav-logo-container">
+      <Link href="/" className="nav-logo-container">
 
-      <IconLogo />
+        <p className="nav-logo-title">
+          GAME<span className='nav-logo-title-period' id="first-period"></span>
+          SET<span className='nav-logo-title-period' id="second-period"></span>
+          BLOG<span className='nav-logo-title-period' id="third-period"></span>
+        </p>
+          
+      </Link>
 
-      <p className="nav-logo-title">GAME, SET, BLOG</p>
+      <NavLinks
+        context="desktop"
+        onLinkClick={null}
+        navVisibility={null}
+      />
         
-    </Link>
+      <NavMenuIcons
+        onClick={() =>
+          toggleVisibility(navVisibility)}
+          navVisibility={navVisibility}
+      />
 
-    <NavLinks context="desktop" onLinkClick={null} navVisibility={null} />
-      
-    <NavMenuIcons onClick={() => toggleVisibility(navVisibility)} navVisibility={navVisibility} />
-
-  </div>
+    </div>
     
-  <NavLinks context="mobile" onLinkClick={() => toggleVisibility(navVisibility)} navVisibility={navVisibility} />
+    <NavLinks
+      context="mobile"
+      onLinkClick={() =>
+        toggleVisibility(navVisibility)}
+        navVisibility={navVisibility}
+    />
     
   </>
+
 )}

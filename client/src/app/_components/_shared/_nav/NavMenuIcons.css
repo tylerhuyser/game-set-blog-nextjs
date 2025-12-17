@@ -1,3 +1,16 @@
+.mobile-menu-toggle-icons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  height: 100%;
+  padding: 0 2rem;
+  flex-grow: 1;
+
+  background-color: var(--light-green);
+}
+
 .menu-icon {
   width: 30px;
   height: 30px;
@@ -38,4 +51,10 @@
 
 .open #line-3 {
   width: 0px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .mobile-menu-toggle-icons-container {
+    display: none;
+  }
 }

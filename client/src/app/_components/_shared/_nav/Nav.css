@@ -3,13 +3,15 @@
   top: 0;
   z-index: 5;
 
-  width: calc(100vw - 50px);
-  /* width: 100%; */
-  height: calc(75px - 20px);
-  padding: 10px 25px;
+  width: 100%;
+  max-width: 100cvw;
+  height: 75px;
+  
   background: #F39C12;
+  font-family: Oswald;
 
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 
@@ -17,83 +19,78 @@
   transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
+.nav-container-visible {
+  transform: translateY(0);
+}
+
+.nav-container-hidden {
+  transform: translateY(-75px);
+}
+
 /* Logo Container */
 
 .nav-logo-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
+  flex-grow: 2;
 
   text-decoration: none;
   text-decoration-line: none;
-}
 
-.nav-logo-container svg {
-  transform: scale(0.5);
-  transform-origin: left;
+  height: 100%;
+  background-color: var(--light-green);
+  padding-left: 2rem;
 }
 
 .nav-logo-title {
-  display: none;
+  font-size: clamp(1.25rem, 2rem, 30px);
+  line-height: 1.5;
+  font-weight: 700;
+  color: white;
 }
 
-.desktop-nav-links-container {
-  display: none;
-}
+.nav-logo-title-period {
+  z-index: 2;
+  position: relative;
+  display: inline-block;
 
-/* Mobile Menu */
+  width: 0.4em;
+  height: 0.4em;
 
-.mobile-menu-hidden {
-  display: none;
-}
+  background: var(--neon-yellow);
+  border: 2px solid white;
+  border-radius: 50%;
 
-.mobile-menu-visible {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-
-  position: fixed;
-  top: 75px;
-  z-index: 5;
-
-  /* background-color: #367bd6; */
-  width: calc(100vw - 50px);
-  height: calc(100vh - 75px - 20px);
   overflow: hidden;
 
-  background-image: linear-gradient(rgba(54, 123, 214, 0.9), rgba(54, 123, 214, 0.25)), url('https://i.imgur.com/AxblwEN.png');
-  background-size: contain;
-  background-repeat: repeat;
-  background-position: center center;
-  background-attachment: fixed;
-
-  padding: 10px 25px;
+  margin-right: 0.40ch;
+  margin-left: 0.25ch;
 }
 
-.mobile-nav-link {
-  font-family: helvetica;
-  font-size: 20px;
-  color: white;
-
-  text-decoration: none;
-  text-decoration-line: none;
-
+.nav-logo-title-period::before, .nav-logo-title-period::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  
+  box-sizing: border-box;
+  background: transparent;
+  border: 2px solid white;
+  /* filter: blur(1px); */
 }
 
-.mobile-nav-link:not(:first-child) {
-  padding-top: 10px;
-
+.nav-logo-title-period::before {
+  left: -65%;
 }
 
-
-@media only screen and (min-width: 375px) {
-
+.nav-logo-title-period::after {
+  right: -65%;
 }
 
-@media only screen and (min-width: 481px) {
-
+.nav-logo-title-period:last-of-type {
+  margin-right: 0;
 }
 
 @media only screen and (min-width: 768px) {
@@ -103,65 +100,25 @@
 @media only screen and (min-width: 1024px) {
 
   .nav-container {
-    height: calc(100px - 20px);
+    height: 80px;
   }
+
+  .nav-container-hidden {
+    transform: translateY(-80px);
+  }
+
+  /* .nav-logo-container {
+    font-size: 1.5rem;
+    color: white;
+  } */
 
   .nav-logo-container {
-    font-family: bogart-semibold;
-    font-size: 24px;
-    color: white;
+    flex-grow: 0;
   }
 
-  .nav-logo-container svg {
-    transform: scale(1);
+  .nav-logo-title-period {
+    margin-right: 0.3ch;
   }
-
-  .logo-copy-nav {
-    display: inline-block;
-    margin-left: 25px;
-  }
-
-  .desktop-nav-links-container {
-  
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-  
-    width: 50%;
-    flex-grow: 1;
-  }
-
-  .desktop-nav-link {
-
-    font-family: helvetica;
-    font-size: 20px;
-    color: white;
-    margin: 0px 25px;
-  
-    text-decoration: none;
-    text-decoration-line: none;
-  
-  }
-
-  .desktop-nav-link:last-child {
-    margin-right: 0px;
-  }
-
-  .mobile-menu-toggle-icons-container {
-    display: none;
-  }
-
-  .mobile-menu {
-    display: none;
-  }
-}
-
-@media only screen and (min-width: 1200px) {
-
-}
-
-@media only screen and (min-width: 1600px) {
 
 }
 

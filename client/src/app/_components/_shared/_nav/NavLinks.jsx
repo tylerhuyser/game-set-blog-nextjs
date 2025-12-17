@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import "./NavLinks.css"
+
 export default function NavLinks({context, onLinkClick, navVisibility}) {
 
   const links = [
@@ -14,7 +16,7 @@ export default function NavLinks({context, onLinkClick, navVisibility}) {
             link.external ? (
               <a
                 key={index}
-                className={`${context}-nav-link`}
+                className={`${context}-nav-link external-nav-link`}
                 target="_blank"
                 rel="noopener noreferrer"
                 href={link.path}
