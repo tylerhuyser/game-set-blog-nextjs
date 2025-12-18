@@ -1,13 +1,14 @@
 .nav-container {
   position: fixed;
   top: 0;
-  z-index: 5;
+  z-index: 98;
 
-  width: 100%;
-  max-width: 100cvw;
+  width: calc(100%);
+  max-width: 100svw;
   height: 75px;
+  padding: 0 1.5rem;
   
-  background: #F39C12;
+  background: var(--light-green);
   font-family: Oswald;
 
   display: flex;
@@ -24,7 +25,7 @@
 }
 
 .nav-container-hidden {
-  transform: translateY(-75px);
+  transform: translateY(calc(-75px));
 }
 
 /* Logo Container */
@@ -40,14 +41,18 @@
 
   height: 100%;
   background-color: var(--light-green);
-  padding-left: 2rem;
+  border-bottom: solid white 0.25rem;
+  padding-left: 0.5rem;
+
+  overflow-x: hidden;
 }
 
 .nav-logo-title {
-  font-size: clamp(1.25rem, 2rem, 30px);
-  line-height: 1.5;
+  font-size: var(--fs-title);
+  line-height: var(--lh-title);
   font-weight: 700;
   color: white;
+  white-space: nowrap;
 }
 
 .nav-logo-title-period {
@@ -64,7 +69,7 @@
 
   overflow: hidden;
 
-  margin-right: 0.40ch;
+  margin-right: 0.50ch;
   margin-left: 0.25ch;
 }
 
@@ -75,10 +80,8 @@
   height: 100%;
   border-radius: 50%;
   
-  box-sizing: border-box;
   background: transparent;
   border: 2px solid white;
-  /* filter: blur(1px); */
 }
 
 .nav-logo-title-period::before {
@@ -104,17 +107,16 @@
   }
 
   .nav-container-hidden {
-    transform: translateY(-80px);
+    transform: translateY(calc(-80px));
   }
-
-  /* .nav-logo-container {
-    font-size: 1.5rem;
-    color: white;
-  } */
 
   .nav-logo-container {
     flex-grow: 0;
   }
+
+  /* .nav-logo-title {
+    font-size: clamp(1.5rem, 2vw + 1rem, 2rem);
+  } */
 
   .nav-logo-title-period {
     margin-right: 0.3ch;

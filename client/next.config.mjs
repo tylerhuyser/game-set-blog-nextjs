@@ -19,7 +19,16 @@ const nextConfig = {
         permanent: true,
       },
     ];
-  }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'admin.gamesetblog.com',
+        pathname: '/wp-content/uploads/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

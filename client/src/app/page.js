@@ -1,6 +1,7 @@
 import { getPosts } from "./_services/posts";
 
-import FeaturedPostCard from "./_components/_postCards/FeaturedPostCard";
+import Hero from "./_components/_hero/Hero";
+import Featured from "./_components/_featured/Featured";
 import Posts from "./_components/_posts/Posts";
 
 import "./home.css"
@@ -15,25 +16,15 @@ export default async function Home() {
 
   const [posts] = await Promise.all([postsData])
 
-  const FEATUREDPOSTCARDSJSX = posts.data.slice(0, 5).map((post) => {
-    
-    return(
-      <FeaturedPostCard postData ={post} key={post.id} />
-    )
-  })
-
   return (
-    <div className="home-container">
 
-      <div className='featured-post-cards-container'>
+    <>
       
-        {FEATUREDPOSTCARDSJSX[0]}
+      <Hero />
+      
+      <Featured data={posts.data.slice(0, 3)} />
 
-        <p className='home-page-copy posts-title' id="featured-posts-title">FEATURED POSTS</p>
-
-        {FEATUREDPOSTCARDSJSX.slice(1)}
-
-      </div>
+    <div className="home-container">
 
       <p className='home-page-copy posts-title' id="latest-posts-title">LATEST POSTS</p>
 
@@ -41,6 +32,7 @@ export default async function Home() {
 
     </div>
 
+    </>
 
   );
 }
