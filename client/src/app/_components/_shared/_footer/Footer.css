@@ -1,12 +1,15 @@
 .footer-container {
 
-  width: calc(100vw - 50px);
-  /* width: 100%; */
-  height: calc(75px - 20px);
+  /* width: calc(100vw - 50px); */
+  width: 100%;
+  /* height: calc(75px - 20px); */
+  /* min-height: 500px; */
+  min-height: min(10vh, 250px);
+  padding-block: 2rem;
   z-index: 5;
 
-  padding: 10px 25px;
-  background-color: #F39C12;
+  /* padding: 10px 25px; */
+  background-color: var(--dark-green);
   
   display: flex;
   align-items: center;
@@ -15,6 +18,9 @@
   color: white;
   font-family: helvetica;
   font-size: 16px;
+
+  position: relative;
+  top: 75px;
 }
 
 @media only screen and (min-width: 375px) {

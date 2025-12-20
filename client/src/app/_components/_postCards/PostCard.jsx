@@ -1,5 +1,6 @@
 import React, { useCallback, useRef } from 'react'
 import Link from 'next/link'
+import Image from "next/image"
 import parse from 'html-react-parser';
 
 import './PostCard.css'
@@ -14,20 +15,34 @@ export default function PostCard ({ postData }) {
   
     <Link className="post-card-container" key={postData.id} href={`/posts/${postData.slug}`} >
 
-      <div className='post-card-image-container'>
-
-        <img className="post-card-image" src={postData["_embedded"]["wp:featuredmedia"][0].source_url} alt={`post-card-image-${postData.id}`} />
-              
-      </div>
-
       <div className="post-card-content-container">
+
+        <p className="post-card-title">
+          {parse(postData.title.rendered).toUpperCase()}
+        </p>
+      
+        <div className='post-card-image-wrapper'>
+
+          <img className="post-card-image" src={postData["_embedded"]["wp:featuredmedia"][0].source_url} alt={`post-card-image-${postData.id}`} />
+              
+        </div>
+
+        <p className='post-card-excerpt'>
+          {parse(postData.excerpt.rendered.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, '').slice(0, 300).trim())}
+        </p>
 
         <p className="post-card-date">{`${postMonth}.${postDate}.${postYear}`}</p>
 
-        <p className="post-card-title">{parse(postData.title.rendered).toUpperCase()}</p>
+        <p className="post-card-read-estimate">
+          5 MIN READ
+        </p>
 
-      </div>
-            
+        <p className="post-card-CTA">
+          READ MORE
+        </p>
+
+      </div> 
+        
     </Link>
 
   )

@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useState, useEffect } from 'react'
 import { useInView } from "react-intersection-observer";
 
@@ -6,6 +7,8 @@ import LoaderLogo from '../_shared/_logos/LoaderLogo'
 import PostCard from "../_postCards/PostCard"
 
 import { getPosts, getPostsByCategory, getPostsByTag } from '@/app/_services/posts'
+
+import Masonry from 'react-masonry-css';
 
 import './Posts.css'
 
@@ -43,10 +46,19 @@ export default function Posts({ postsData, totalPages, mode, sourceID }) {
       loadMorePosts()
     }
   }, [inView])
+
+  const breakpointColumns = {
+    default: 2,
+    768: 1
+  };
   
   return (
     
-    <div className="post-cards-container">
+    <Masonry
+      breakpointCols={breakpointColumns}
+      className="post-cards-container"
+      columnClassName='post-cards-column'
+    >
       
       {posts.map((post, index) => {
         return (
@@ -70,6 +82,6 @@ export default function Posts({ postsData, totalPages, mode, sourceID }) {
         <></>
       }
 
-    </div>
+    </Masonry>
   )
 }

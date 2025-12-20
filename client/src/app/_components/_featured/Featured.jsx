@@ -63,9 +63,9 @@ export default function Featured({ data, key }) {
 
 
   return (
-    <div className='featured-section-container'>
+    <div className='home-section featured-section-container'>
 
-      <div className="featured-section-content-container">
+      <div className="home-section-content-container featured-section-content-container">
 
         <p className='section-title featured-posts-text featured-posts-title'>
           FEATURED POSTS
