@@ -1,0 +1,26 @@
+[
+  {
+    "name": "YouTube",
+    "url": "https://www.youtube.com/",
+    "icon": "faYoutube",
+    "class": "fa-brands fa-youtube"
+  },
+  {
+    "name": "Instagram",
+    "url": "https://www.instagram.com/",
+    "icon": "faInstagram",
+    "class": "fa-brands fa-instagram"
+  },
+  {
+    "name": "Facebook",
+    "url": "https://www.facebook.com/",
+    "icon": "faFacebook",
+    "class": "fa-brands fa-facebook"
+  },
+  {
+    "name": "Twitter",
+    "url": "https://x.com/gameset_blog",
+    "icon": "faTwitter",
+    "class": "fa-brands fa-twitter"
+  }
+]

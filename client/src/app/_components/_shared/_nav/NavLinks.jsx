@@ -9,32 +9,30 @@ export default function NavLinks({context, onLinkClick, navVisibility}) {
     { name: 'ABOUT', path: '/about', external: false },
     { name: 'RANKINGS', path: 'https://rankings.gamesetblog.com/', external: true },
   ];
+
+  const isDesktop = context === "desktop";
+  const isMobile = context === 'mobile';
+  const containerClass = isDesktop 
+  ? `${context}-nav-links-container` 
+  : `mobile-menu ${navVisibility ? 'mobile-menu-visible' : 'mobile-menu-hidden'}`;
+
   
     return (
-      <div className={ context === "desktop" ? `${context}-nav-links-container` : navVisibility ? 'mobile-menu mobile-menu-visible' : 'mobile-menu mobile-menu-hidden'}>
-        {links.map((link, index) => (
-            link.external ? (
-              <a
-                key={index}
-                className={`${context}-nav-link external-nav-link`}
-                target="_blank"
-                rel="noopener noreferrer"
-                href={link.path}
-                onClick={context === 'mobile' ? onLinkClick : null}
-              >
-                {link.name}
-              </a>
-            ) : (
-              <Link
-                key={index}
-                className={`${context}-nav-link`}
-                href={link.path}
-                onClick={context === 'mobile' ? onLinkClick : null}
-              >
-                {link.name}
-              </Link>
-            )
-        ))}
+      <div className={containerClass}>
+        {links.map((link, index) => {
+          const linkProps = {
+            key: index,
+            className: `${context}-nav-link ${link.external ? 'external-nav-link' : ''}`,
+            href: link.path,
+            ...(isMobile && { onClick: onLinkClick }),
+            ...(link.external && { 
+              target: "_blank",
+              rel: "noopener noreferrer" 
+            })
+          }
+
+          return <Link {...linkProps}>{link.name}</Link>;
+        })}
       </div>
     );
   };
