@@ -9,15 +9,42 @@ import { notFound } from 'next/navigation'
 
 import "./PostsByTag.css"
 
-export async function generateStaticParams({params}) {
+export async function generateStaticParams() {
   try {
-    const tags = await getTags()
+    const firstPage = await getTags({
+      page: String(1),
+      perPage: String(100)
+    })
 
-    console.log(`Generating Static Params for ${tags.length} tags.`)
+    const totalPages = parseInt(firstPage.totalPages)
+    let allTags = [...firstPage.data]
+    console.log(`Total pages of TAGS to fetch: ${totalPages}`)
 
-    return tags.map((tag) => ({
-      id: String(tag.id),
-      slug: tag.slug,
+    if (totalPages > 1) {
+      const pagePromises = []
+
+      for (let page = 2; page <= totalPages; page++) {
+        pagePromises.push(
+          getTags({
+            page: String(page),
+            perPage: String(100)
+          })
+        )
+      }
+
+      const remainingPages = await Promise.all(pagePromises)
+
+      remainingPages.forEach(pageData => {
+        allTags = [...allPosts, ...pageData.data]
+      })
+    }
+
+    console.log(`Generating Static Params for ${allTags.length} tags.`)
+
+
+    return allTags.map((category) => ({
+      id: String(category.id),
+      slug: category.slug,
     }));
   
   } catch (error) {

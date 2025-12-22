@@ -23,7 +23,7 @@ export async function generateStaticParams() {
 
     const totalPages = parseInt(firstPage.totalPages)
     let allPosts = [...firstPage.data]
-    console.log(`Total pages of posts to fetch: ${totalPages}`)
+    console.log(`Total pages of POSTS to fetch: ${totalPages}`)
 
     if (totalPages > 1) {
       const pagePromises = []

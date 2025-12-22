@@ -1,6 +1,6 @@
 import { getPosts } from "./_services/posts";
-import { getCategories } from "./_services/categories";
-import { getTags } from "./_services/tags";
+import { getTopCategories } from "./_services/categories";
+import { getTopTags } from "./_services/tags";
 
 import Hero from "./_components/_hero/Hero";
 import Featured from "./_components/_featured/Featured";
@@ -13,16 +13,21 @@ import "./home.css"
 export default async function Home() {
 
   const postsData = getPosts({
-    id: null,
     page: 1,
     perPage: 10
   })
 
   const [posts] = await Promise.all([postsData])
 
-  const categoriesData = await getCategories()
+  const categoriesData = await getTopCategories({
+    page: 1,
+    perPage: 5
+  })
 
-  const tagsData = await getTags()
+  const tagsData = await getTopTags({
+    page: 1,
+    perPage: 10
+  })
 
   return (
 
@@ -49,8 +54,8 @@ export default async function Home() {
 
           <div className="home-categories-tags-container">
 
-            <HomeCategories data={categoriesData.sort((a, b) => b - a).slice(0, 5)} />
-            <HomeTags data={tagsData.sort((a, b) => b - a).slice(0, 10)} />
+            <HomeCategories data={categoriesData} />
+            <HomeTags data={tagsData} />
 
           </div>
           
