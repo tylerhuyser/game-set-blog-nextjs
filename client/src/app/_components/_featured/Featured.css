@@ -28,24 +28,27 @@
 }
 
 .featured-post-card {
-  width: min(100%, 400px);
+  width: 100%;
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: subgrid;
-  grid-row: span 4;
+  grid-template-rows: auto auto auto auto;
+  grid-template-rows: auto auto 1fr;
   justify-self: center;
 
   position: relative;
 }
 
 .featured-post-card-image-wrapper {
-  width: 100%; 
+  width: 100%;
   height: auto;
   aspect-ratio: 1 / 1;
+
   box-sizing: border-box;
 
-  grid-row: 1;
+  grid-row: 1 / span 3;
+  grid-row: 1 / span 2;
+  grid-column: 1;
   
   position: relative;
 }
@@ -81,14 +84,22 @@
 }
 
 .featured-post-card-content-container {
-  width: 100%;
+  width: calc(100% - 2rem);
   padding: 1rem;
+  margin-top: 1rem;
   box-sizing: border-box;
 
+  grid-row: 3 / span 2;
+  grid-row: 2 / span 2;
+  grid-column: 1;
+  align-self: end;
+  justify-self: center;
+
+  z-index: 3;
+
   display: grid;
-  grid-row: 2 / 5;
-  grid-template-rows: subgrid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto auto;
   row-gap: 0.5rem;
 
   background-color: var(--light-green);
@@ -122,24 +133,60 @@
 .featured-post-date {
   grid-column: 1 / span 1;
   grid-row: 3;
+
   text-align: left;
 }
 
 .featured-post-read-estimate {
   grid-column: 2 / span 1;
   grid-row: 3;
+
   text-align: center;
 }
 
 .featured-post-CTA {
   grid-column: 3;
   grid-row: 3;
+
+  font-weight: 500;
   text-align: right;
+}
+
+@media only screen and (min-width: 481px) {
+  .featured-post-card-content-container { 
+    margin-bottom: 2rem;
+  }
+
 }
 
 @media only screen and (min-width: 768px) {
   .featured-post-cards-container {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .featured-post-card {
+    grid-template-rows: subgrid;
+    grid-row: span 4;
+  }
+
+  .featured-post-card-image-wrapper {
+    aspect-ratio: 1 / 1;
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .featured-post-card-content-container {
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    grid-row: 2 / 5;
+    grid-column: 1;
+    align-self: stretch;
+    justify-self: stretch;
+
+    grid-template-rows: subgrid;
   }
 }
 

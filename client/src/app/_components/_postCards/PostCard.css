@@ -1,5 +1,6 @@
 .post-card-container {
   width: 100%;
+  /* width: min(100%, 400px); */
 
   margin-bottom: 2rem;
 

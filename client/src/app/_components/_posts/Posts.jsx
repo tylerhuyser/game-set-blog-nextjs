@@ -65,7 +65,7 @@ export default function Posts({ postsData, totalPages, mode, sourceID }) {
 
           <PostCard
             postData={post}
-            key={post.id}
+            key={`${post.id}${index}`}
           />
         )
       })}
