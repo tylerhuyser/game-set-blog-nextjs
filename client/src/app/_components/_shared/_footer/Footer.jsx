@@ -32,7 +32,6 @@ export default function Footer() {
 
           {links.map((link, index) => {
             const linkProps = {
-              key: index,
               className: `internal-link-footer ${link.external ? 'external-link-foooter' : ''}`,
               href: link.path,
               ...(link.external && { 
@@ -41,7 +40,7 @@ export default function Footer() {
               })
             }
 
-            return <Link {...linkProps}>{link.name}</Link>;
+            return <Link key={index} {...linkProps}>{link.name}</Link>;
           })}
 
         </div>

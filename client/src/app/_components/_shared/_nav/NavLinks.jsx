@@ -21,7 +21,6 @@ export default function NavLinks({context, onLinkClick, navVisibility}) {
       <div className={containerClass}>
         {links.map((link, index) => {
           const linkProps = {
-            key: index,
             className: `${context}-nav-link ${link.external ? 'external-nav-link' : ''}`,
             href: link.path,
             ...(isMobile && { onClick: onLinkClick }),
@@ -31,7 +30,7 @@ export default function NavLinks({context, onLinkClick, navVisibility}) {
             })
           }
 
-          return <Link {...linkProps}>{link.name}</Link>;
+          return <Link key={index} {...linkProps}>{link.name}</Link>;
         })}
       </div>
     );
