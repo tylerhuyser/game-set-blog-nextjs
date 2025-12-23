@@ -93,30 +93,45 @@ export default async function PostsByTag({ params }) {
     perPage: 5
   })
 
-
 	if (!posts) {
 		return notFound()
-	}
+  }
+  
+  const postCount = posts.data.length;
+  const formattedSlug = slug
+  .split("-")
+  .map(word => word[0].toUpperCase() + word.slice(1))
+    .join(" ");
+  
+  const titleText =
+  postCount === 0
+    ? `There are 0 posts tagged with ${formattedSlug}.`
+    : `There are ${postCount} posts tagged with: ${formattedSlug}`;
 
   return (
 
     <div className="posts-by-tag-container">
 
-      {posts.data.length === 0 ?
-          
-          <h1 className="posts-by-tag-title">{`There are 0 posts tagged with ${slug.split("-").join(" ")}.`}</h1>
+      <div className="section-posts-by-tag">
 
-        :
-      
-        <>
-          
-          <h1 className="posts-by-tag-title">{`There are ${posts.data.length} total posts tagged with: ${slug.split("-").map((word) => {return word[0].toUpperCase() + word.substring(1)}).join(" ")}`}</h1>
+        <div className="content-container-posts-by-tag-body content-container-posts-by-tag content-container">
 
-          <Posts postsData={posts.data} totalPages={posts.totalPages} mode={"Posts by Tag"} sourceID={id} />
+          <h1 className="section-title text-posts-by-tag title-posts-by-tag">
+            {titleText}
+          </h1>
 
-        </>
-      
-      }
+          {postCount > 0 && (
+            <Posts
+              postsData={posts.data}
+              totalPages={posts.totalPages}
+              mode="Posts by Tag"
+              sourceID={id}
+            />
+          )}
+
+        </div>
+
+      </div>
 
     </div>
     

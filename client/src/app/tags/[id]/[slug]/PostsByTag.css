@@ -1,167 +1,66 @@
 .posts-by-tag-container { 
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-posts-by-tag {
+  width: 100%;
+  background-color: var(--black);
+  padding: 2rem;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  width: calc(100%);
-  max-width: 1200px;
-  padding: 0px;  width: 100%;
+  column-gap: 2rem;
 }
 
-.posts-by-tag-title {
-  width: 33%;
-  margin-bottom: 25px;
+
+.content-container-posts-by-tag {
+  width: min(90%, 1200px);
+  background-color: var(--black);
+  padding: 2rem;
 
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  /* flex-wrap: wrap; */
-
-  font-family: bogart-semibold;
-  font-size: 20px;
-  color: #F39C12;
-
-  word-wrap: break-word;
-  /* overflow: hidden; */
-  text-align: center;
-
-  position: relative;
-  top: 50px;
+  align-items: center;
+  column-gap: 2rem;
 }
 
-.posts-by-tag-title:before, .posts-by-tag-title:after {
-  content: "";
-  display: inline-block;
-  background-color: #F39C12;
-  height: 2px;
-  position: relative;
-  vertical-align: middle;
-  width: 50%;
-}
+.title-posts-by-tag {
+  /* Flexbox -- to middle-align text within container */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-.posts-by-tag-title:before {
-  right: 0.5em;
-  margin-left: -50%;
-}
-
-.posts-by-tag-title:after {
-  left: 0.5em;
-  margin-right: -50%;
-}
-
-.posts-by-tag-container .post-cards-container {
-  margin-top: -85px;
-  padding-top: 100px;
-}
-
-.posts-by-tag-loader-container {
-
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   width: 100%;
-  height: 100%;
-  background-color: #f39c12;
-  z-index: 99;
+  height: 75px;
+  padding: 0 0.5rem;
+  margin-bottom: 2rem;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: Oswald;
+  font-size: var(--fs-title);
+  line-height: var(--lh-title);
+  font-weight: 700;
 
-  background-image: url('../../../_assets/Icons-Background-White-Transparent-1000X875.png'), linear-gradient(rgba(243, 156, 18, 1), rgba(243, 156, 18, 1));
-
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box; /* Firefox, other Gecko */
-  box-sizing: border-box;
-
-}
-
-.posts-by-tag-logo-wrapper {
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: max-content;
-  /* max-width: 500px; */
-  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-  scale: 1;
-
-  background-color: #f39c12;
-  text-align: center;
-  /* padding: 50px; */
-
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box; /* Firefox, other Gecko */
-  box-sizing: border-box;
-}
-
-.posts-by-tag-logo-wrapper svg {
-
-  display: block;
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  user-select: none;
-
-  background-color: #f39c12;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@media only screen and (max-width: 366px) {
-  .posts-by-tag-container .post-cards-container {
-    margin-top: -115px;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .posts-by-tag-container .post-cards-container {
-    /* margin-top: -105px; */
-    padding-top: 75px;
-  }
-
-  .posts-by-tag-logo-wrapper {
-    /* max-width: 50vw; */
-    width: 30vw;
-    scale: 1;
-  }
-
-  .posts-by-tag-logo-wrapper svg {
-    width: 100%;
-    height: 100%;
-  }
+  border-bottom: solid white 0.25rem;
 }
 
 @media only screen and (min-width: 1024px) {
-  
-  .posts-by-tag-container { 
-    width: calc(100% - 100px);
-    height: 100%;
-    padding: 50px;
+
+  .section-posts-by-tag {
+    padding: 4rem 2rem;
   }
 
-  .posts-by-tag-title {
-    font-size: 36px;
+  .title-posts-by-tag {
+    height: 80px;
   }
-
-  .posts-by-tag-title:before, .posts-by-tag-title:after {
-    width: 50%;
-  }
-
-  .posts-by-tag-title {
-    top: 50px
-  }
-
-  .posts-by-tag-container .post-cards-container {
-    margin-top: -170px;
-    padding-top: 220px;
-  }
-
 }
+
+
+
+

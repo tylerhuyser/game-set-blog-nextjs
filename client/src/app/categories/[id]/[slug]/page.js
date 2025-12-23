@@ -97,30 +97,46 @@ export default async function PostsByCategory({ params }) {
 
   if (!posts) {
 		return notFound()
-	}
+  }
+  
+  const postCount = posts.data.length;
+  const formattedSlug = slug
+  .split("-")
+  .map(word => word[0].toUpperCase() + word.slice(1))
+    .join(" ");
+  
+  const titleText =
+  postCount === 0
+    ? `There are 0 posts categorized as ${formattedSlug}.`
+    : `There are ${postCount} posts categorized as: ${formattedSlug}`;
 
 
   return (
    
-        <div className="posts-by-category-container">
+    <div className="posts-by-category-container">
 
-          {posts.data.length === 0 ?
-              
-              <h1 className="posts-by-category-title">{`There are 0 posts categorized as ${slug.split("-").join(" ")}.`}</h1>
+      <div className="section-posts-by-tag">
 
-            :
-          
-            <>
-              
-              <h1 className="posts-by-category-title">{`There are ${posts.data.length} total posts categorized as: ${slug.split("-").map((word) => {return word[0].toUpperCase() + word.substring(1)}).join(" ")}.`}</h1>
+        <div className="content-container-posts-by-category-body content-container-posts-by-category content-container">
 
-              <Posts postsData={posts.data} totalPages={posts.totalPages} mode={"Posts by Category"} sourceID={id} />
+          <h1 className="section-title text-posts-by-category title-posts-by-category">
+            {titleText}
+          </h1>
 
-            </>
-          
-          }
+          {postCount > 0 && (
+            <Posts
+              postsData={posts.data}
+              totalPages={posts.totalPages}
+              mode="Posts by Category"
+              sourceID={id}
+            />
+          )}
 
         </div>
+
+      </div>
+      
+    </div>
 
   )
 }
