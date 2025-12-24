@@ -110,11 +110,11 @@ export default async function PostsByTag({ params }) {
 
   return (
 
-    <div className="posts-by-tag-container">
+    <div className="page-container" id="page-container-posts-by-tag">
 
-      <div className="section-posts-by-tag">
+      <div className="section-container section-container-posts-by-tag">
 
-        <div className="content-container-posts-by-tag-body content-container-posts-by-tag content-container">
+        <div className="content-container content-container-posts-by-tag">
 
           <h1 className="section-title text-posts-by-tag title-posts-by-tag">
             {titleText}

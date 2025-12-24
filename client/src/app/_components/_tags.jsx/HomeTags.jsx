@@ -16,7 +16,7 @@ export default function HomeTags({data}) {
 
   return (
     <div className="home-tags-container">
-      <p className='section-title home-tags-text home-tags-title'>
+      <p className='section-title text-home-tags' id='tags-title-home'>
         TAGS
       </p>
 

@@ -23,9 +23,9 @@ export default function Hero() {
   
 
   return (
-    <div className="home-section hero-section-container">
+    <div className="section-container section-container-home" id="hero-section-container">
 
-      <div className="home-section-content-container hero-section-content-container">
+      <div className="content-container content-contaier-home" id="hero-content-container">
 
         <div className="tennis-court">
 

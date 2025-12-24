@@ -16,12 +16,12 @@ export default function Featured({ data, key }) {
     const postYear = new Date(post.date).getFullYear();
 
     return (
-      <Link className='featured-post-card' key={post.id} href={`/posts/${post.slug}`}>
+      <Link className='post-card post-card-featured' key={post.id} href={`/posts/${post.slug}`}>
 
-        <div className="featured-post-card-image-wrapper">
+        <div className="image-wrapper image-wrapper-post-card image-wrapper-post-card-featured">
 
           <Image
-            className="featured-post-card-image"
+            className="image image-post-card image-post-card-featured"
             id={``}
             alt={``}
             src={post["_embedded"]["wp:featuredmedia"][0].source_url}
@@ -33,25 +33,25 @@ export default function Featured({ data, key }) {
           
         </div>
 
-        <div className="featured-post-card-content-container">
+        <div className="post-card-content-container-featured">
 
-          <p className="featured-post-title featured-posts-text">
+          <p className="text-featured featured-post-title">
             {parse(post.title.rendered).toUpperCase()}
           </p>
 
-          <p className="featured-post-excerpt featured-posts-text">
+          <p className="text-featured featured-post-excerpt">
             {parse(post.excerpt.rendered.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, '').slice(0, 300).trim())}
           </p>
 
-          <p className="featured-post-date featured-posts-text">
+          <p className="text-featured featured-post-date">
             {`${postMonth}.${postDate}.${postYear}`}
           </p>
 
-          <p className="featured-post-read-estimate featured-posts-text">
+          <p className="text-featured featured-post-read-estimate">
             5 MIN READ
           </p>
 
-          <p className="featured-post-CTA featured-posts-text">
+          <p className="text-featured featured-post-CTA">
             READ MORE
           </p>
           
@@ -63,15 +63,15 @@ export default function Featured({ data, key }) {
 
 
   return (
-    <div className='home-section featured-section-container'>
+    <div className="section-container section-container-home" id="featured-section-container">
 
-      <div className="home-section-content-container featured-section-content-container">
+      <div className="content-container content-contaier-home" id="featured-content-container">
 
-        <p className='section-title featured-posts-text featured-posts-title'>
+        <p className='section-title text-featured' id='featured-posts-title'>
           FEATURED POSTS
         </p>
 
-        <div className="featured-post-cards-container">
+        <div className="post-cards-container" id="post-cards-container-featured">
 
           {FEATUREDPOSTSJSX}
 

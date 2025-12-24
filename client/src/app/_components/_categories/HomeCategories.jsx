@@ -19,7 +19,7 @@ export default function HomeCategories({ data }) {
   return (
     <div className="home-categories-container">
 
-      <p className='section-title home-categories-text home-categories-title'>
+      <p className='section-title text-home-categories' id='categories-title-home'>
         CATEGORIES
       </p>
 

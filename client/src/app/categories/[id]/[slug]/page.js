@@ -98,7 +98,7 @@ export default async function PostsByCategory({ params }) {
   if (!posts) {
 		return notFound()
   }
-  
+
   const postCount = posts.data.length;
   const formattedSlug = slug
   .split("-")
@@ -113,11 +113,11 @@ export default async function PostsByCategory({ params }) {
 
   return (
    
-    <div className="posts-by-category-container">
+    <div className="page-container" id="page-container-posts-by-category">
 
-      <div className="section-posts-by-tag">
+      <div className="section-container section-container-posts-by-category">
 
-        <div className="content-container-posts-by-category-body content-container-posts-by-category content-container">
+        <div className="content-container content-container-posts-by-category">
 
           <h1 className="section-title text-posts-by-category title-posts-by-category">
             {titleText}
@@ -135,7 +135,7 @@ export default async function PostsByCategory({ params }) {
         </div>
 
       </div>
-      
+
     </div>
 
   )

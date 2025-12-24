@@ -1,30 +1,14 @@
 /* NEW */
 
-.home-section {
-  width: 100%;
-  padding-block: 2rem;
-
-  display: flex;
+#split-section-container {
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.split-section-container {
-  background-color: var(--dark-green);
   background-color: black;
 }
 
-.home-section-content-container {
-  width: min(90%, 1200px);
-
-  /* Gap Between Section Title and the Card Section */
-  column-gap: 2rem;
-}
-
-.split-section-content-container {
+#split-content-container {
   display: grid;
   grid-template-columns: 1fr;
+  align-items: start;
   gap: 2rem;
 }
 
@@ -36,30 +20,9 @@
   align-items: center;
 }
 
-.section-title {
-  width: 100%;
-  height: 75px;
-  padding: 0 0.5rem;
-  margin-bottom: 2rem;
-
-  /* Flexbox -- to middle-align text within container */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  font-family: Oswald;
-  font-size: var(--fs-title);
-  line-height: var(--lh-title);
-  font-weight: 700;
-}
-
-.latest-posts-title, .home-categories-title, .home-tags-title {
+#latest-posts-title, #categories-title-home, #tags-title-home {
   border-bottom: solid white 0.25rem;
 }
-
-
-
-
 
 @media only screen and (min-width: 375px) {
 
@@ -74,16 +37,8 @@
 
 @media only screen and (min-width: 1024px) {
 
-  .home-section {
-    padding-block: 4rem;
-  }
-
-  .split-section-content-container {
+  #split-content-container {
     grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  .section-title {
-    height: 80px;
   }
 }
 

@@ -15,17 +15,23 @@ export default async function PageNotFound() {
   const posts = await getPosts({
     id: null,
     page: 1,
-    perPage: 5
+    perPage: 10
   })
-
-  // console.log(posts)
    
   return(
-    <div className="page-not-found-container">
+    <div className="page-container" id="page-container-posts-by-page-not-found">
 
-      <p className="page-not-found-title">{`Sorry, the page you requested cannot be found.`}</p>
+      <div className="section-container section-container-posts-by-page-not-found">
+
+        <div className="content-container content-container-page-not-found">
+
+          <p className="section-title text-page-not-found title-page-not-found ">{`Foot fault! Sorry, the page you requested cannot be found.`}</p>
       
-      <Posts postsData={posts.data} totalPages={posts.totalPages} mode={"General Posts"} sourceID={null} />   
+          <Posts postsData={posts.data} totalPages={posts.totalPages} mode={"General Posts"} sourceID={null} />   
+        
+        </div>
+      
+      </div>
       
     </div>
   )

@@ -31,19 +31,19 @@ export default async function Home() {
 
   return (
 
-    <>
+    <div className="page-container" id="page-container-home">
       
       <Hero />
       
       <Featured data={posts.data.slice(0, 3)} />
 
-      <div className="home-section split-section-container">
+      <div className="section-container section-container-home" id="split-section-container">
 
-        <div className="home-section-content-container split-section-content-container">
+        <div className="content-container content-container-home" id="split-content-container">
           
           <div className="latest-posts-container">
 
-            <p className='section-title latest-posts-text latest-posts-title'>
+            <p className='section-title text-latest-posts' id='latest-posts-title'>
               LATEST POSTS
             </p>
             
@@ -65,7 +65,7 @@ export default async function Home() {
       </div>
 
 
-    </>
+    </div>
 
   );
 }
