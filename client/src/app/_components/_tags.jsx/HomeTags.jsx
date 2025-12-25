@@ -9,7 +9,7 @@ export default function HomeTags({data}) {
     <Link className="home-tag-card" key={tag.id} href={`/tags/${tag.id}/${tag.slug}`}>
       <div className='home-tag-card-content-container'>
           <p className="tag-name">{tag.name.replace('&amp;', "&").toUpperCase()}</p>
-          <p className='tag-count'>{tag.count.toString()}</p>
+          { tag.count ? <p className='tag-count'>{tag.count.toString()}</p> : <></>}
         </div>
     </Link>
   ))

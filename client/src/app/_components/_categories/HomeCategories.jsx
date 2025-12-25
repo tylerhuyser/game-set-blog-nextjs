@@ -10,7 +10,7 @@ export default function HomeCategories({ data }) {
       <Link className="home-category-card" key={category.id} href={`/categories/${category.id}/${category.slug}`}>
         <div className='home-category-card-content-container'>
           <p className="category-name">{category.name.replace('&amp;', "&").toUpperCase()}</p>
-          <p className='category-count'>{category.count.toString()}</p>
+          {category.count ? <p className='category-count'>{category.count.toString()}</p> : <></>}
         </div>
       </Link>
     )

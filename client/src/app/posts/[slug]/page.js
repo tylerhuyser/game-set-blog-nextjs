@@ -3,6 +3,9 @@
 import React, { Suspense } from 'react';
 import parse from 'html-react-parser';
 
+import HomeCategories from '@/app/_components/_categories/HomeCategories';
+import HomeTags from '@/app/_components/_tags.jsx/HomeTags';
+
 import Categories from '@/app/_components/_categories/Categories';
 import Tags from '@/app/_components/_tags.jsx/Tags';
 import Comments from '@/app/_components/_comments/Comments';
@@ -123,7 +126,9 @@ export default async function PostDetail({ params }) {
 
   if (!postData) {
 		return notFound()
-	}
+  }
+  
+  console.log(postData)
 
   const postDate = new Date(postData.date).getDate();
   const postMonth = new Date(postData.date).getMonth() + 1;
@@ -133,51 +138,59 @@ export default async function PostDetail({ params }) {
 
   
   return (
-    <div className="post-container">
+    <div className="page-container post-container">
 
-    <div className='post-hero-container'>
-      
-      <div className="post-image-container" id='post-hero-image-container'>
+      <div className="section-container section-container-post" id="hero-section-container-post">
+          
+        <div className="content-container content-container-post" id="hero-content-container">
+            
+          <div className='image-wrapper post-image-wrapper' id='post-hero-image-wrapper'>
 
-        {/* <img className="post-image" id="post-hero-image" src={postData["_embedded"]["wp:featuredmedia"][0].source_url} atl="post-hero-image" /> */}
-        {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<img"), postData.content.rendered.toString().indexOf('<div class="wp-block-cover__inner-container')))}
+            {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<img"), postData.content.rendered.toString().indexOf('<div class="wp-block-cover__inner-container')))}
+
+          </div>
+            
+          <h1 className="section-title" id="post-title">{parse(postData.title.rendered)}</h1>
+
+          <p className='post-excerpt'>
+            {parse(postData.excerpt.rendered.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, '').slice(0, 300).trim())}
+          </p>
+
+          <p className='post-date'>
+            {postData.absolute_dates.created}
+          </p>
+
+        </div>
 
       </div>
 
-      <div className="post-hero-content-container">
+      <div className="section-container section-container-post" id="body-section-container-post">
+          
+        <div className="content-container content-container-post" id="body-content-container">
 
-        <h1 className="post-title">{parse(postData.title.rendered)}</h1>
+          <div className='post-body-container'>
 
-        <p className="post-date">{`${postMonth}.${postDate}.${postYear}`}</p>
+            <div className="post-content-container">
+              {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")))}
+            </div>
 
-        <div className="post-content-container">{parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")))}</div>
+            <Suspense fallback={<div>Loading...</div>}>
+      
+              <Comments postData={postData} />
+      
+            </Suspense>
+
+          </div>
+
+          <div className="post-categories-tags-container">
+            <HomeCategories data={postData["_embedded"]["wp:term"][0]} />
+            <HomeTags data={postData["_embedded"]["wp:term"][1]} />
+          </div>
+
+        </div>
 
       </div>
 
     </div>
-    
-    <div className='post-categories-container'>
-
-      <p className="post-categories-tags-container-title" id="post-categories-container-title">CATEGORIES</p>
-
-      <Categories postCategories={postData["_embedded"]["wp:term"][0]} />
-      
-    </div>
-
-    <div className='post-tags-container'>
-
-      <p className="post-categories-tags-container-title" id="post-tags-container-title">TAGS</p>
-
-      <Tags postTags={postData["_embedded"]["wp:term"][1]} />
-      
-    </div>
-
-      <Suspense fallback={<div>Loading...</div>}>
-      
-        <Comments postData={postData} />
-        
-      </Suspense>
-    
-  </div>
   )
 }
