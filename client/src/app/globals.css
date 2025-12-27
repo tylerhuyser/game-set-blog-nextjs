@@ -98,8 +98,8 @@ a {
   justify-content: center;
 
   width: 100%;
-  min-height: 75px;
-  padding: 0 0.5rem;
+  min-height: calc(75px - 2rem);
+  padding: 1rem 0.5rem;
   margin-bottom: 2rem;
 
   font-family: Oswald;
@@ -123,7 +123,7 @@ a {
   }
 
   .section-title {
-    min-height: 80px;
+    min-height: calc(80px - 2rem);
   }
 }
 
