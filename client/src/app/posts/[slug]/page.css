@@ -144,7 +144,7 @@
   line-height: 0;
 }
 
-.wp-block-cover > :not(:first-child) {
+.wp-block-cover > :not(img):not(video) {
   display: none;
 }
 

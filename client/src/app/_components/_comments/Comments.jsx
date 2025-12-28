@@ -5,10 +5,31 @@ import CommentCard from './CommentCard'
 
 import { getCommentsPerPost } from '@/app/_services/comments'
 
+import "./Comments.css"
+
 
 export default async function Comments({postData}) {
 
   const commentsData = await getCommentsPerPost(postData.id)
+
+  const COMMENTSJSX =
+    commentsData && commentsData !== "No Comments." ? (
+      <>
+        <p
+          className="section-title comments-section-title"
+          id="comments-title"
+        >
+          COMMENTS
+        </p>
+
+        {commentsData.map(comment => (
+          <CommentCard
+            key={comment.id}
+            commentData={comment}
+          />
+        ))}
+      </>
+    ) : null
   
   return (
         
@@ -16,17 +37,7 @@ export default async function Comments({postData}) {
 
       <CommentForm postData={postData} />
 
-      {commentsData && commentsData !== "No Comments." ?
-
-        commentsData && commentsData.map((comment) => (
-          <CommentCard commentData={comment} key={comment.id} />
-        ))
-            
-      :
-
-      <></>
-          
-      }
+      {COMMENTSJSX}   
 
     </div>
 

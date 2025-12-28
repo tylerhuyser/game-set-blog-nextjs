@@ -47,7 +47,7 @@ export default async function Home() {
               LATEST POSTS
             </p>
             
-            <Posts postsData={posts.data.slice(5)} totalPages={Math.ceil(parseInt(posts.totalPosts) / 5)} mode={"General Posts"} sourceID={null}  />
+            <Posts postsData={posts.data.slice(3)} totalPages={Math.ceil(parseInt(posts.totalPosts) / 5)} mode={"General Posts"} sourceID={null}  />
             
           </div>
           
