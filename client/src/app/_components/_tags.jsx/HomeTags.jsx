@@ -3,11 +3,11 @@ import Link from 'next/link'
 
 import "./HomeTags.css"
 
-export default function HomeTags({data}) {
+export default function HomeTags({data, context}) {
 
   const TAGSJSX = data.map((tag, index) => (
-    <Link className="home-tag-card" key={tag.id} href={`/tags/${tag.id}/${tag.slug}`}>
-      <div className='home-tag-card-content-container'>
+    <Link className={`tag-card ${context}-tag-card`} key={tag.id} href={`/tags/${tag.id}/${tag.slug}`}>
+      <div className={`tag-card-content-container ${context}-tag-card-content-container`}>
           <p className="tag-name">{tag.name.replace('&amp;', "&").toUpperCase()}</p>
           { tag.count ? <p className='tag-count'>{tag.count.toString()}</p> : <></>}
         </div>
@@ -15,12 +15,12 @@ export default function HomeTags({data}) {
   ))
 
   return (
-    <div className="home-tags-container">
-      <p className='section-title text-home-tags' id='tags-title-home'>
+    <div className={`tags-container`} id={`${context}-tags-container`}>
+      <p className={`section-title tags-title text-${context}-tags`} id={`tags-title-${context}`}>
         TAGS
       </p>
 
-      <div className='home-tag-cards-container'>
+      <div className={`tag-cards-container`} id={`${context}-tag-cards-container`}>
         {TAGSJSX}
       </div>
     </div>

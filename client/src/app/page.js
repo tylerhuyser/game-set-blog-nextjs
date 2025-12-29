@@ -54,8 +54,8 @@ export default async function Home() {
 
           <div className="home-categories-tags-container">
 
-            <HomeCategories data={categoriesData.data} />
-            <HomeTags data={tagsData.data} />
+            <HomeCategories data={categoriesData.data} context={"home"} />
+            <HomeTags data={tagsData.data} context={"home"} />
 
           </div>
           

@@ -20,7 +20,7 @@
   align-items: center;
 }
 
-#latest-posts-title, #categories-title-home, #tags-title-home {
+#latest-posts-title {
   border-bottom: solid white 0.25rem;
 }
 

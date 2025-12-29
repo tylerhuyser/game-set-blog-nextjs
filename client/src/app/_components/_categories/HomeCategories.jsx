@@ -3,12 +3,12 @@ import Link from 'next/link'
 
 import "./HomeCategories.css"
 
-export default function HomeCategories({ data }) {
+export default function HomeCategories({ data, context }) {
 
   const CATEGORIESJSX = data.map((category, index) => {
     return (
-      <Link className="home-category-card" key={category.id} href={`/categories/${category.id}/${category.slug}`}>
-        <div className='home-category-card-content-container'>
+      <Link className={`category-card ${context}-category-card`} key={category.id} href={`/categories/${category.id}/${category.slug}`}>
+        <div className={`category-card-content-container ${context}-category-card-content-container`}>
           <p className="category-name">{category.name.replace('&amp;', "&").toUpperCase()}</p>
           {category.count ? <p className='category-count'>{category.count.toString()}</p> : <></>}
         </div>
@@ -17,13 +17,13 @@ export default function HomeCategories({ data }) {
   })
 
   return (
-    <div className="home-categories-container">
+    <div className={`categories-container`} id={`${context}-categories-container`}>
 
-      <p className='section-title text-home-categories' id='categories-title-home'>
+      <p className={`section-title categories-title text-${context}-categories`} id={`categories-title-${context}`}>
         CATEGORIES
       </p>
 
-      <div className='home-category-cards-container'>
+      <div className={`category-cards-container`} id={`${context}-category-cards-container`}>
         {CATEGORIESJSX}
       </div>
     </div>

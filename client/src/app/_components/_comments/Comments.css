@@ -1,6 +1,4 @@
 .comments-section-title {
-  padding-left: 0;
-  padding-right: 0;
   border-bottom: solid white 0.25rem;
 }
 
@@ -9,6 +7,7 @@
 
   font-size: var(--fs-title);
   line-height: var(--lh-title);
+  font-weight: 700;
 }
 
 #comment-form-button:hover {

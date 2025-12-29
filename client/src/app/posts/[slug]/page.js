@@ -5,13 +5,9 @@ import parse from 'html-react-parser';
 
 import HomeCategories from '@/app/_components/_categories/HomeCategories';
 import HomeTags from '@/app/_components/_tags.jsx/HomeTags';
-
-import Categories from '@/app/_components/_categories/Categories';
-import Tags from '@/app/_components/_tags.jsx/Tags';
 import Comments from '@/app/_components/_comments/Comments';
 
 import { getPosts, getPostBySlug } from "@/app/_services/posts";
-import { revalidate, dynamicParams } from '@/app/utils/revalidation'; 
 import { notFound } from 'next/navigation'
 
 import "./page.css"
@@ -128,15 +124,6 @@ export default async function PostDetail({ params }) {
 		return notFound()
   }
   
-  console.log(postData)
-
-  const postDate = new Date(postData.date).getDate();
-  const postMonth = new Date(postData.date).getMonth() + 1;
-  const postYear = new Date(postData.date).getFullYear();
-
-  // console.log(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")).replaceAll('gamesetblog.com/wp-content/', 'admin.gamesetblog.com/wp-content/'))
-
-  
   return (
     <div className="page-container post-container">
 
@@ -183,8 +170,8 @@ export default async function PostDetail({ params }) {
           </div>
 
           <div className="post-categories-tags-container">
-            <HomeCategories data={postData["_embedded"]["wp:term"][0]} />
-            <HomeTags data={postData["_embedded"]["wp:term"][1]} />
+            <HomeCategories data={postData["_embedded"]["wp:term"][0]} context={"post"} />
+            <HomeTags data={postData["_embedded"]["wp:term"][1]} context={"post"} />
           </div>
 
         </div>
