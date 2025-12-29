@@ -13,7 +13,7 @@ export default async function Comments({postData}) {
   const commentsData = await getCommentsPerPost(postData.id)
 
   const COMMENTSJSX =
-    commentsData && commentsData !== "No Comments." ? (
+    commentsData && commentsData.length !== 0 && commentsData !== "No Comments." ? (
       <>
         <p
           className="section-title comments-section-title"

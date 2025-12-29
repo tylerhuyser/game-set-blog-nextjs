@@ -3,6 +3,8 @@ import Image from "next/image"
 import ImageData from "../../_content/00-hero-image-data.json"
 import "./Hero.css"
 
+import LoaderLogo from "../_shared/_logos/LoaderLogo"
+
 export default function Hero() {
 
   const HEROIMAGESJSX = ImageData.map((data, index) => {
@@ -26,6 +28,8 @@ export default function Hero() {
     <div className="section-container section-container-home" id="hero-section-container">
 
       <div className="content-container content-contaier-home" id="hero-content-container">
+
+        <LoaderLogo />
 
         <div className="tennis-court">
 
