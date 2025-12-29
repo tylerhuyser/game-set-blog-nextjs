@@ -1,13 +1,36 @@
-.comments-section-title {
-  border-bottom: solid white 0.25rem;
+.comments-container {
+  width: 100%;
 }
 
-#comments-title, #comment-form-title {
+.comments-section-title {
   margin-bottom: 2rem;
 
   font-size: var(--fs-title);
   line-height: var(--lh-title);
   font-weight: 700;
+
+  border-bottom: solid white 0.25rem;
+}
+
+.comment-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form-inputs-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form-input, #comment-form-button {
+  width: 100%;
+  font-family: Oswald;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: 400;
+  margin-bottom: 1rem;
 }
 
 #comment-form-button:hover {
