@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { useInView } from "react-intersection-observer";
 
 import Loader from '../_shared/_loader/Loader'
-import PostCard from "../_postCards/PostCard"
+import PostCard from "./PostCard"
 
 import { getPosts, getPostsByCategory, getPostsByTag } from '@/app/_services/posts'
 
