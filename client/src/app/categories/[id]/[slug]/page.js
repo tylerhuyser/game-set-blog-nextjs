@@ -4,7 +4,6 @@ import Posts from "@/app/_components/_posts/Posts";
 
 import { getCategories } from '@/app/_services/categories'
 import { getPostsByCategory } from '@/app/_services/posts'
-import { revalidate, dynamicParams } from '@/app/utils/revalidation'; 
 import { notFound } from 'next/navigation'
 
 import "./PostsByCategory.css"

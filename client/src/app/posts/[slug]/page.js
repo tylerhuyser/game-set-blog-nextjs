@@ -7,6 +7,8 @@ import HomeCategories from '@/app/_components/_categories/HomeCategories';
 import HomeTags from '@/app/_components/_tags.jsx/HomeTags';
 import Comments from '@/app/_components/_comments/Comments';
 
+import Loader from '@/app/_components/_shared/_loader/Loader';
+
 import { getPosts, getPostBySlug } from "@/app/_services/posts";
 import { notFound } from 'next/navigation'
 
@@ -161,7 +163,7 @@ export default async function PostDetail({ params }) {
               {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")))}
             </div>
 
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader />}>
       
               <Comments postData={postData} />
       

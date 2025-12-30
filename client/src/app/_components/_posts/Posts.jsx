@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { useInView } from "react-intersection-observer";
 
-import LoaderLogo from '../_shared/_logos/LoaderLogo'
+import Loader from '../_shared/_loader/Loader'
 import PostCard from "../_postCards/PostCard"
 
 import { getPosts, getPostsByCategory, getPostsByTag } from '@/app/_services/posts'
@@ -72,11 +72,7 @@ export default function Posts({ postsData, totalPages, mode, sourceID }) {
 
       {currentPage < totalPages ?
 
-        <div className="infinite-scroll-loader" ref={ref}>
-                  
-          <LoaderLogo fill="#f39c12" stroke="#f39c12" />
-
-        </div>
+        <Loader ref={ref} />
 
       :
         <></>

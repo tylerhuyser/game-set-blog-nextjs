@@ -4,7 +4,6 @@ import Posts from "@/app/_components/_posts/Posts";
 
 import { getTags } from "@/app/_services/tags";
 import { getPostsByTag } from "@/app/_services/posts";
-import { revalidate, dynamicParams } from '@/app/utils/revalidation'; 
 import { notFound } from 'next/navigation'
 
 import "./PostsByTag.css"
