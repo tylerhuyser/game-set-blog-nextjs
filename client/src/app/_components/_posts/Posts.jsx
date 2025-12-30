@@ -70,13 +70,7 @@ export default function Posts({ postsData, totalPages, mode, sourceID }) {
         )
       })}
 
-      {currentPage < totalPages ?
-
-        <Loader ref={ref} />
-
-      :
-        <></>
-      }
+      {currentPage < totalPages && <Loader ref={ref} />}
 
     </Masonry>
   )

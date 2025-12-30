@@ -19,9 +19,9 @@ export default async function PageNotFound() {
   })
    
   return(
-    <div className="page-container" id="page-container-posts-by-page-not-found">
+    <div className="page-container" id="page-container-page-not-found">
 
-      <div className="section-container section-container-posts-by-page-not-found">
+      <div className="section-container section-container-page-not-found">
 
         <div className="content-container content-container-page-not-found">
 
