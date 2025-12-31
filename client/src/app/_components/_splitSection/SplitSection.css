@@ -1,0 +1,30 @@
+#split-section-container {
+  flex-direction: row;
+  background-color: black;
+}
+
+#split-content-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 2rem;
+}
+
+.latest-posts-container {
+  grid-column: 1 / span 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#latest-posts-title {
+  border-bottom: solid white 0.25rem;
+}
+
+@media only screen and (min-width: 1024px) {
+
+  #split-content-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

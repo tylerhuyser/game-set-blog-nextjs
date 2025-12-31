@@ -1,19 +1,21 @@
-import React, { useCallback, useRef } from 'react'
+import React from 'react'
 import Link from 'next/link'
-import Image from "next/image"
 import parse from 'html-react-parser';
+import { estimateReadTime } from '@/app/utils/estimateReadTime';
 
 import './PostCard.css'
 
-export default function PostCard ({ postData }) {
+export default function PostCard({ postData }) {
+  
+  const htmlContent = postData.content.rendered
+  .toString()
+  .slice(postData.content.rendered.indexOf("<p>"));
 
-  const postDate = new Date(postData.date).getDate()
-  const postMonth = new Date(postData.date).getMonth() + 1
-  const postYear = new Date(postData.date).getFullYear()
+  const readTime = estimateReadTime(htmlContent);
 
   return (
   
-    <Link className="post-card-container" key={postData.id} href={`/posts/${postData.slug}`} >
+    <Link className="post-card-container pseudo-wrapper" key={postData.id} href={`/posts/${postData.slug}`} >
 
       <div className="post-card-content-container">
 
@@ -21,9 +23,9 @@ export default function PostCard ({ postData }) {
           {parse(postData.title.rendered).toUpperCase()}
         </p>
       
-        <div className='post-card-image-wrapper'>
+        <div className='image-wrapper post-card-image-wrapper'>
 
-          <img className="post-card-image" src={postData["_embedded"]["wp:featuredmedia"][0].source_url} alt={`post-card-image-${postData.id}`} />
+          <img className="post-card-image image" src={postData["_embedded"]["wp:featuredmedia"][0].source_url} alt={`post-card-image-${postData.id}`} />
               
         </div>
 
@@ -31,10 +33,12 @@ export default function PostCard ({ postData }) {
           {parse(postData.excerpt.rendered.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, '').slice(0, 300).trim())}
         </p>
 
-        <p className="post-card-date">{`${postMonth}.${postDate}.${postYear}`}</p>
+        <p className="post-card-date">
+          {(([y,m,d]) => `${m}.${d}.${y}`)(postData.date.slice(0,10).split("-"))}
+        </p>
 
         <p className="post-card-read-estimate">
-          5 MIN READ
+          {`${readTime}`}
         </p>
 
         <p className="post-card-CTA">

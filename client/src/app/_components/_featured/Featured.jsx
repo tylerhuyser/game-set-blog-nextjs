@@ -1,35 +1,44 @@
+'use client'
 import React from 'react'
 
 import Link from 'next/link'
 import Image from 'next/image'
-
 import parse from 'html-react-parser';
+import { estimateReadTime } from '@/app/utils/estimateReadTime';
+import { useAnimationState } from '../_shared/_animations/AnimationContext'
 
 import './Featured.css'
 
 export default function Featured({ data, key }) {
 
+  const { featuredAnimationStarted } = useAnimationState()
+
   const FEATUREDPOSTSJSX = data.map((post, index) => {
 
-    const postDate = new Date(post.date).getDate();
-    const postMonth = new Date(post.date).getMonth() + 1;
-    const postYear = new Date(post.date).getFullYear();
+      const htmlContent = post.content.rendered
+      .toString()
+      .slice(post.content.rendered.indexOf("<p>"));
+    
+      const readTime = estimateReadTime(htmlContent);
 
     return (
       <Link className='post-card post-card-featured' key={post.id} href={`/posts/${post.slug}`}>
 
-        <div className="image-wrapper image-wrapper-post-card image-wrapper-post-card-featured">
+        <div className="image-wrapper pseudo-wrapper image-wrapper-post-card image-wrapper-post-card-featured">
 
-          <Image
-            className="image image-post-card image-post-card-featured"
-            id={``}
-            alt={``}
-            src={post["_embedded"]["wp:featuredmedia"][0].source_url}
-            key={`-${index}`}
-            style={{'--index': index + 1}}
-            width={400}
-            height={400}
-          />
+          <div className='zoom-clipper'>
+
+            <Image
+              className="image image-post-card image-post-card-featured"
+              alt={`Featured Post Card Image ${post.id}`}
+              src={post["_embedded"]["wp:featuredmedia"][0].source_url}
+              key={`-${index}`}
+              style={{'--index': index + 1}}
+              width={400}
+              height={400}
+            />
+            
+          </div>
           
         </div>
 
@@ -44,11 +53,11 @@ export default function Featured({ data, key }) {
           </p>
 
           <p className="text-featured featured-post-date">
-            {`${postMonth}.${postDate}.${postYear}`}
+            {(([y,m,d]) => `${m}.${d}.${y}`)(post.date.slice(0,10).split("-"))}
           </p>
 
           <p className="text-featured featured-post-read-estimate">
-            5 MIN READ
+            {readTime}
           </p>
 
           <p className="text-featured featured-post-CTA">
@@ -65,7 +74,7 @@ export default function Featured({ data, key }) {
   return (
     <div className="section-container section-container-home" id="featured-section-container">
 
-      <div className="content-container content-contaier-home" id="featured-content-container">
+      <div className={`content-container content-container-home featured-content-container ${featuredAnimationStarted ? 'featured-fade-in' : ''}`}>
 
         <p className='section-title text-featured' id='featured-posts-title'>
           FEATURED POSTS

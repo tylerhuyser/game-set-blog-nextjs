@@ -44,7 +44,7 @@
   border-bottom: solid white 0.25rem;
   padding-left: 0.5rem;
 
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 .nav-logo-title {
@@ -152,4 +152,57 @@
             transform: translateY(0);
     opacity: 1;
   }
+}
+
+@keyframes ball-roll-in {
+  0% {
+    transform: translateX(200px) rotate(720deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(-10px) rotate(432deg);
+  }
+  80% {
+    transform: translateX(5px) rotate(396deg);
+  }
+  100% {
+    transform: translateX(0) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.ball-roll-in {
+  animation: ball-roll-in 800ms cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes text-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-initial-load .nav-logo-title {
+  animation: text-fade-in 500ms ease-out forwards;
+  animation-delay: 1250ms;
+  opacity: 0;
+}
+
+.nav-link-stagger {
+  opacity: 0;
+  animation: text-fade-in 400ms ease-out forwards;
+}
+
+/* Keep border visible during initial load */
+.nav-initial-load .nav-logo-container {
+  border-bottom: solid white 0.25rem;
+}
+
+/* Keep only initial container animation, remove on subsequent renders */
+.nav-initial-load {
+  animation: slide-in-top 600ms ease-out both;
 }

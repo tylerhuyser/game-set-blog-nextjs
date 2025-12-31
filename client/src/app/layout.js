@@ -9,6 +9,7 @@ const oswald = Oswald({
 
 import Nav from "./_components/_shared/_nav/Nav";
 import Footer from "./_components/_shared/_footer/Footer";
+import { AnimationProvider } from "./_components/_shared/_animations/AnimationContext";
 import { SEO } from "./_components/_shared/_seo/SEO";
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
@@ -28,17 +29,19 @@ export default function RootLayout({ children }) {
       <GoogleAnalytics gaID="GTM-TLX3ZGT2" />
       <GoogleTagManager gtmId="GTM-TLX3ZGT2" />
       <body>
-        <div className="layout-container">
+        <AnimationProvider>
+          <div className="layout-container">
 
-          <Nav />
+            <Nav />
 
-          <main className="main-container">
-            {children}
-          </main>
+            <main className="main-container">
+              {children}
+            </main>
 
-          <Footer />
+            <Footer />
           
-        </div>
+          </div>
+        </AnimationProvider>
       </body>
     </html>
   );

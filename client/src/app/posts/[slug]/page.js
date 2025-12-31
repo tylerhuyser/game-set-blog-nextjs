@@ -133,7 +133,7 @@ export default async function PostDetail({ params }) {
           
         <div className="content-container content-container-post" id="hero-content-container">
             
-          <div className='image-wrapper post-image-wrapper' id='post-hero-image-wrapper'>
+          <div className='image-wrapper pseudo-wrapper post-image-wrapper' id='post-hero-image-wrapper'>
 
             {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<img"), postData.content.rendered.toString().indexOf('<div class="wp-block-cover__inner-container')))}
 
@@ -141,11 +141,11 @@ export default async function PostDetail({ params }) {
             
           <h1 className="section-title" id="post-title">{parse(postData.title.rendered)}</h1>
 
-          <p className='post-excerpt'>
+          <p className='post-excerpt post-text post-hero-text'>
             {parse(postData.excerpt.rendered.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, '').slice(0, 300).trim())}
           </p>
 
-          <p className='post-date'>
+          <p className='post-date post-text post-hero-text'>
             {postData.absolute_dates.created}
           </p>
 
@@ -157,9 +157,9 @@ export default async function PostDetail({ params }) {
           
         <div className="content-container content-container-post" id="body-content-container">
 
-          <div className='post-body-container'>
+          <div className='article-container'>
 
-            <div className="post-content-container">
+            <div className="article-content-container">
               {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")))}
             </div>
 

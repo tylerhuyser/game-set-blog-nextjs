@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
 import { useScrollDirection, useWindowSize } from '../../../_hooks'
+import { ANIMATION_TIMINGS } from '../_animations/AnimationTimings';
 
 import NavLinks from './NavLinks';
 import NavMenuIcons from './NavMenuIcons';
@@ -12,8 +13,37 @@ import './Nav.css'
 export default function Nav() {
 
   // Mobile Navigation Menu Visibility State & Functions:
-
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [navVisibility, setNavVisibility] = useState(false)
+
+  // Track which animations have completed
+  const [animationStage, setAnimationStage] = useState({
+    ballsVisible: false,
+    textVisible: false,
+    linksVisible: false
+  });
+
+  useEffect(() => {
+    // Trigger animation sequence on mount
+    const ballsTimer = setTimeout(() => {
+      setAnimationStage(prev => ({ ...prev, ballsVisible: true }));
+    }, ANIMATION_TIMINGS.nav.ballsRollIn.delay);
+
+    const textTimer = setTimeout(() => {
+      setAnimationStage(prev => ({ ...prev, textVisible: true }));
+    }, ANIMATION_TIMINGS.nav.textFadeIn.delay);
+
+    const linksTimer = setTimeout(() => {
+      setAnimationStage(prev => ({ ...prev, linksVisible: true }));
+      setIsInitialLoad(false);
+    }, ANIMATION_TIMINGS.nav.linksFadeIn.delay);
+
+    return () => {
+      clearTimeout(ballsTimer);
+      clearTimeout(textTimer);
+      clearTimeout(linksTimer);
+    };
+  }, []);
 
   function toggleVisibility (navVisibility) {
     if (!navVisibility) {
@@ -58,19 +88,51 @@ export default function Nav() {
 return (
   <>
     
-    <div className={`nav-container slide-in-top-nav ${
-      scrollDirection === 'down' && !scrolledToTop && !navVisibility
-        ? 'nav-container-hidden' 
-        : 'nav-container-visible'
-      }
-    `}>
+    <div className={`nav-container ${
+          isInitialLoad ? 'nav-initial-load' : 'slide-in-top-nav'
+        } ${
+          scrollDirection === 'down' && !scrolledToTop && !navVisibility
+            ? 'nav-container-hidden'
+            : 'nav-container-visible'
+        }`}
+      >
       
       <Link href="/" className="nav-logo-container">
 
         <p className="nav-logo-title">
-          GAME<span className='nav-logo-title-period' id="first-period"></span>
-          SET<span className='nav-logo-title-period' id="second-period"></span>
-          BLOG<span className='nav-logo-title-period' id="third-period"></span>
+          GAME
+          <span
+            className={`nav-logo-title-period ${
+              animationStage.ballsVisible ? 'ball-roll-in' : ''
+            }`}
+            id="first-period"
+            style={{
+              animationDelay: '0ms',
+              opacity: animationStage.ballsVisible ? 1 : 0
+            }}
+          ></span>
+          SET
+          <span
+            className={`nav-logo-title-period ${
+              animationStage.ballsVisible ? 'ball-roll-in' : ''
+            }`}
+            id="second-period"
+            style={{
+              animationDelay: `${ANIMATION_TIMINGS.nav.ballsRollIn.stagger}ms`,
+              opacity: animationStage.ballsVisible ? 1 : 0
+            }}
+          ></span>
+          BLOG
+          <span
+            className={`nav-logo-title-period ${
+              animationStage.ballsVisible ? 'ball-roll-in' : ''
+            }`}
+            id="third-period"
+            style={{
+              animationDelay: `${ANIMATION_TIMINGS.nav.ballsRollIn.stagger * 2}ms`,
+              opacity: animationStage.ballsVisible ? 1 : 0
+            }}
+          ></span>
         </p>
           
       </Link>
@@ -79,6 +141,7 @@ return (
         context="desktop"
         onLinkClick={null}
         navVisibility={null}
+        isVisible={animationStage.linksVisible}
       />
         
       <NavMenuIcons
@@ -93,7 +156,8 @@ return (
       context="mobile"
       onLinkClick={() =>
         toggleVisibility(navVisibility)}
-        navVisibility={navVisibility}
+      navVisibility={navVisibility}
+      isVisible={animationStage.linksVisible}
     />
     
   </>
