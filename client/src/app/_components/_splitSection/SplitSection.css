@@ -7,7 +7,8 @@
   display: grid;
   grid-template-columns: 1fr;
   align-items: start;
-  gap: 2rem;
+  row-gap: 2rem;
+  column-gap: 0;
 }
 
 .latest-posts-container {
@@ -26,5 +27,6 @@
 
   #split-content-container {
     grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2rem;
   }
 }
