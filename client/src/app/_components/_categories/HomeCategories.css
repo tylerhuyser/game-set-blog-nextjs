@@ -53,6 +53,12 @@
 
   font-family: Oswald;
   color: white;
+
+  transition: transform 0.25s ease;
+}
+
+.category-card:hover .category-card-content-container {
+  transform: translate(0.1875rem, -0.1875rem);
 }
 
 .category-card::after {
@@ -77,6 +83,10 @@
   font-size: var(--fs-heading);
   line-height: var(--lh-heading);
   font-weight: 500;
+}
+
+.category-name:hover {
+  color: var(--neon-yellow);
 }
 
 .category-count {

@@ -1,6 +1,7 @@
 .section-fade-in {
   display: flex;
   justify-content: center;
+  width: 100%;
   opacity: 0;
 }
 

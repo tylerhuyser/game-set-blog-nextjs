@@ -48,8 +48,14 @@
   background-color: black;
   border: solid white 0.25rem;
 
+  transition: transform 0.25s ease;
+
   font-family: Oswald;
   color: white;
+}
+
+.tag-card:hover .tag-card-content-container {
+  transform: translate(0.1875rem, -0.1875rem);
 }
 
 .tag-card::after {
@@ -74,6 +80,10 @@
   font-size: var(--fs-heading);
   line-height: var(--lh-heading);
   font-weight: 500;
+}
+
+.tag-name:hover {
+  color: var(--neon-yellow);
 }
 
 .tag-count {

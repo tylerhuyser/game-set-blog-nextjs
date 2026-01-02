@@ -33,17 +33,21 @@ export default function PostCard({ postData }) {
           {parse(postData.excerpt.rendered.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, '').slice(0, 300).trim())}
         </p>
 
-        <p className="post-card-date">
-          {(([y,m,d]) => `${m}.${d}.${y}`)(postData.date.slice(0,10).split("-"))}
-        </p>
+        <div className='post-card-meta-container'>
+          <p className="post-card-date post-card-meta">
+            {(([y,m,d]) => `${m}.${d}.${y}`)(postData.date.slice(0,10).split("-"))}
+          </p>
 
-        <p className="post-card-read-estimate">
-          {`${readTime}`}
-        </p>
+          <p className="post-card-read-estimate post-card-meta">
+            {`${readTime}`}
+          </p>
 
-        <p className="post-card-CTA">
-          READ MORE
-        </p>
+          <div className='post-card-meta button post-card-cta-container'>
+            <p className="post-card-CTA post-card-meta">
+              READ MORE
+            </p>
+          </div>
+        </div>
 
       </div> 
         

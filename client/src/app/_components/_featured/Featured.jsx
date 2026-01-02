@@ -52,20 +52,23 @@ export default function Featured({ data, key }) {
             {parse(post.excerpt.rendered.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, '').slice(0, 300).trim())}
           </p>
 
-          <p className="text-featured featured-post-date">
-            {(([y,m,d]) => `${m}.${d}.${y}`)(post.date.slice(0,10).split("-"))}
-          </p>
+          <div className='featured-meta-container'>
 
-          <p className="text-featured featured-post-read-estimate">
-            {readTime}
-          </p>
+            <p className="text-featured featured-meta featured-post-date">
+              {(([y,m,d]) => `${m}.${d}.${y}`)(post.date.slice(0,10).split("-"))}
+            </p>
 
-          <p className="text-featured featured-post-CTA">
-            READ MORE
-          </p>
-          
+            <p className="text-featured featured-meta featured-post-read-estimate">
+              {readTime}
+            </p>
+
+            <div className='featured-meta button featured-post-cta-container'>
+              <p className="text-featured featured-meta featured-post-CTA">
+                READ MORE
+              </p>
+            </div>
+          </div>
         </div>
-        
       </Link>
     )
   })

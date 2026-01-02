@@ -1,6 +1,5 @@
 .post-card-container {
   width: 100%;
-  /* width: min(100%, 400px); */
 
   margin-bottom: 2rem;
 
@@ -17,23 +16,29 @@
   border: solid white 0.25rem;
 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat (4, 1fr);
+  grid-template-columns: auto;
+  grid-auto-rows: auto;
   gap: 2rem;
+
+  transition: transform 0.25s ease;
+
+  container-type: inline-size;
+  container-name: cardcontent;
+}
+
+.post-card-container:hover .post-card-content-container {
+  transform: translate(0.1875rem, -0.1875rem);
 }
 
 .post-card-container::after {
   background-color: var(--neon-yellow);
 }
 
-.post-card-container:hover::after {
-}
-
 .post-card-image-wrapper {
   width: 100%;
   box-sizing: border-box;
 
-  grid-column: 1 / span 3;
+  grid-column: 1 / -1;
   grid-row: 2 / span 1;
 
   overflow: hidden;
@@ -52,8 +57,12 @@
   line-height: var(--lh-heading);
   font-weight: 700;
 
-  grid-column: 1 / span 3;
+  grid-column: 1 / -1;
   grid-row: 1 / span 1;
+}
+
+.post-card-container:hover .post-card-title {
+  color: var(--neon-yellow);
 }
 
 .post-card-excerpt {
@@ -61,32 +70,72 @@
   line-height: var(--lh-body);
   font-weight: 400;
 
-  grid-column: 1 / span 3;
+  grid-column: 1 / -1;
   grid-row: 3 / span 1;
 }
 
-.post-card-date {
-  grid-column: 1 / span 1;
+.post-card-meta-container {
+  width: 100%;
   grid-row: 4;
-  text-align: left;
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post-card-meta {
+  display: flex;
+  align-items: center;
+}
+
+.post-card-date {
+  display: none
+}
+
+@container cardcontent (min-width: 275px) {
+  .post-card-date {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+  }
 }
 
 .post-card-read-estimate {
-  grid-column: 2 / span 1;
-  grid-row: 4;
-  text-align: center;
+  white-space: nowrap;
+
+  justify-content: flex-start;
+  text-align: left;
+}
+
+@container cardcontent (min-width: 275px) {
+  .post-card-read-estimate {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.post-card-cta-container {
+  justify-content: flex-end;
 }
 
 .post-card-CTA {
-  grid-column: 3;
-  grid-row: 4;
+  white-space: nowrap;
+  justify-content: center;
+  text-align: center;
+
+  background-color: var(--black);
+  border: solid white 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 1rem;
 
   font-weight: 500;
-  text-align: right;
 }
 
 .post-card-container:hover .post-card-CTA {
-  color: var(--neon-yellow);
+  background-color: var(--neon-yellow);
+  color: var(--black);
+  border-color: var(--neon-yellow);
 }
 
 
