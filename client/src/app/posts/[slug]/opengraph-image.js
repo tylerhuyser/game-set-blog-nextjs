@@ -85,7 +85,6 @@ export default async function Image({ params }) {
     (
       <OGImage
         pageTitle={title}
-        baseUrl={baseUrl}
         iconImages={iconImages}
         featuredImage={featuredImageUrl}
       />
