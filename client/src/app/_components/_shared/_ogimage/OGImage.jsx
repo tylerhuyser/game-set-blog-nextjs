@@ -1,4 +1,4 @@
-export default function OGImage({ pageTitle, iconImages, featuredImage }) {
+export default function OGImage({ featuredImage }) {
 
   const TENNISBALLJSX = (index) => (
     // Tennis Ball Container
@@ -13,8 +13,8 @@ export default function OGImage({ pageTitle, iconImages, featuredImage }) {
         width: "0.4em",
         height: "0.4em",
         borderRadius: "50%",
-        marginRight: "20px",
-        marginLeft: "5px",
+        marginRight: "25px",
+        marginLeft: "10px",
         marginBottom: 0,
     }}>
   
@@ -32,7 +32,7 @@ export default function OGImage({ pageTitle, iconImages, featuredImage }) {
         borderRadius: "50%",
       }}></span>
 
-      {/* Left Stripe */}
+      {/* Top Seam */}
       <span style={{
         position: "absolute",
         left: "-62%",
@@ -44,7 +44,7 @@ export default function OGImage({ pageTitle, iconImages, featuredImage }) {
         borderRadius: "50%",
       }}></span>
   
-      {/* Right Stripe */}
+      {/* Bottom Seam */}
       <span style={{
         position: "absolute",
         right: "-62%",
@@ -136,7 +136,6 @@ export default function OGImage({ pageTitle, iconImages, featuredImage }) {
           alignItems: "center",
             
           position: "relative",
-          width: "100vh", 
           padding: "0 2rem",
 
           backgroundColor: "#d7f704",
