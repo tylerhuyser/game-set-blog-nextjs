@@ -8,7 +8,7 @@ export default function OGImageHome({ iconImages }) {
       style={{
         display: "flex",
         position: "relative", 
-        top: "-20px",
+        top: "-12px",
     
         width: "0.4em",
         height: "0.4em",

@@ -1,5 +1,3 @@
-import { icon } from "@fortawesome/fontawesome-svg-core";
-
 export default function OGImage({ pageTitle, iconImages, featuredImage }) {
 
   const TENNISBALLJSX = (index) => (
@@ -10,16 +8,14 @@ export default function OGImage({ pageTitle, iconImages, featuredImage }) {
       style={{
         display: "flex",
         position: "relative", 
-        top: "-12px",
+        top: "-15px",
     
         width: "0.4em",
         height: "0.4em",
         borderRadius: "50%",
-    
         marginRight: "20px",
         marginLeft: "5px",
         marginBottom: 0,
-        overflow: "hidden", // Clip the borders
     }}>
   
       {/* Tennis Ball Base (Yellow)*/}
@@ -31,35 +27,35 @@ export default function OGImage({ pageTitle, iconImages, featuredImage }) {
         width: "0.4em",
         height: "0.4em",
 
-        background: "#d7f704",
-        border: "2px solid white",
+        backgroundColor: "black",
+        border: "2px solid black",
         borderRadius: "50%",
-
       }}></span>
-              
+
       {/* Left Stripe */}
       <span style={{
         position: "absolute",
-        left: "-65%",
+        left: "-62%",
         top: 0,
         width: "0.4em",
         height: "0.4em",
         background: "transparent",
-        border: "2px solid white",
+        borderRight: "2px solid #d7f704",
         borderRadius: "50%",
       }}></span>
   
       {/* Right Stripe */}
       <span style={{
         position: "absolute",
-        right: "-65%", // Matches your original CSS
+        right: "-62%",
         top: 0,
-        width: "100%",
-        height: "100%",
+        width: "0.4em",
+        height: "0.4em",
         background: "transparent",
-        border: "2px solid white",
+        borderLeft: "2px solid #d7f704",
         borderRadius: "50%",
       }}></span>
+              
     </span>
   )
 
@@ -73,48 +69,9 @@ export default function OGImage({ pageTitle, iconImages, featuredImage }) {
       width: "100%",
       height: "100%",
 
-      backgroundColor: "#66905c",
-
       fontFamily: "Oswald",
-      color: "white",
+      color: "black"
     }}>
-
-      {/* <div className="og-title-container" style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          width: "100%",
-          padding: "4rem",
-          paddingBottom: "1rem",
-          backgroundColor: "#66905c",
-        }}>
-        
-        <p className="og-title" id="site-title" style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "baseline",
-              flexWrap: "wrap",
-              
-              margin: "0px",
-                  
-              fontWeight: "700",
-              fontSize: "3rem",
-
-              borderBottom: "solid white 0.25rem",
-            }}>
-          
-              <span style={{marginBottom: 0,}}>GAME</span>
-              {TENNISBALLJSX(1)}
-              <span style={{marginBottom: 0,}}>SET</span>
-              {TENNISBALLJSX(2)}
-              <span style={{marginBottom: 0,}}>BLOG</span>
-              {TENNISBALLJSX(3)}
-        </p>
-
-        {ICONIMAGEJSX()}
-
-      </div>  */}
 
       <div className="og-content-container" style={{
         display: "flex",
@@ -124,8 +81,7 @@ export default function OGImage({ pageTitle, iconImages, featuredImage }) {
         
         height: "100%",
         width: "100%",
-        padding: "2rem",
-        paddingTop: "2rem",
+        paddingLeft: "8rem",
       }}>           
 
         <div className="featured-image-container" style={{
@@ -136,17 +92,7 @@ export default function OGImage({ pageTitle, iconImages, featuredImage }) {
           width: "100%",
           height: "100%",
         }}>
-          <div className="featured-image-shadow" style={{
-            position: "absolute",
-            top: "0.375rem",
-            left: "-0.375rem",
-            width: "100%",
-            height: "100%",
-            backgroundColor: "#415e4d",
-            border: "solid #415e4d 0.25rem",
-          }}></div>
 
-          {/* Main image wrapper */}
           <div className="featured-image-wrapper" style={{
             position: "relative",
             display: "flex",
@@ -173,82 +119,54 @@ export default function OGImage({ pageTitle, iconImages, featuredImage }) {
       </div>
 
       <div style={{
-        position: "absolute",
         display: "flex",
-        top: "4rem",
-        left: "4rem",
+
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        height: "8rem",
+
+        transform: "rotate(-90deg) translateY(100%)",
+        transformOrigin: "bottom left",
         }}>
-        
-        <div style={{
-          display: "flex",
-          position: "absolute",
-          top: "0.375rem",
-          left: "-0.375rem",
-          padding: "2rem",
-          paddingBottom: "2rem",
-          backgroundColor: "#d7f704", // Neon yellow
-          border: "solid #d7f704 0.25rem",
-          borderRadius: "0.5rem",
-        }}>
-            <p style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "baseline",
-                margin: "0px",
-                fontWeight: "700",
-                fontSize: "3rem",
-                borderBottom: "solid transparent 0.25rem",
-                opacity: 0,
-              }}>
-                <span>GAME</span>
-                {TENNISBALLJSX(1)}
-                <span>SET</span>
-                {TENNISBALLJSX(2)}
-                <span>BLOG</span>
-                {TENNISBALLJSX(3)}
-              </p>
-        </div>
         
         <div className="og-title-container" style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
             
-            position: "relative",
+          position: "relative",
+          width: "100vh", 
+          padding: "0 2rem",
 
-
-            padding: "2rem",
-            paddingBottom: "2rem",
-            backgroundColor: "black",
-            border: "solid white 0.25rem",
-            borderRadius: "0.5rem",
+          backgroundColor: "#d7f704",
+          border: "solid black 0.25rem",
           }}>
           
           <p className="og-title" id="site-title" style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "baseline",
-                flexWrap: "wrap",
-                
-                margin: "0px",
-                    
-                fontWeight: "700",
-                fontSize: "3rem",
-
-                borderBottom: "solid white 0.25rem",
-              }}>
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "baseline",
+            flexWrap: "nowrap",
             
-                <span style={{marginBottom: 0,}}>GAME</span>
-                {TENNISBALLJSX(1)}
-                <span style={{marginBottom: 0,}}>SET</span>
-                {TENNISBALLJSX(2)}
-                <span style={{marginBottom: 0,}}>BLOG</span>
-                {TENNISBALLJSX(3)}
+            margin: "0px",
+                
+            fontSize: "4rem",
+            fontWeight: "700",
+          }}>
+            
+            <span style={{marginBottom: 0,}}>GAME</span>
+            {TENNISBALLJSX(1)}
+            <span style={{marginBottom: 0,}}>SET</span>
+            {TENNISBALLJSX(2)}
+            <span style={{marginBottom: 0,}}>BLOG</span>
+            {TENNISBALLJSX(3)}
           </p>
 
         </div> 
       
       </div>
+
     </div>
   )
 }
