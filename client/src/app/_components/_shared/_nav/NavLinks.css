@@ -30,6 +30,7 @@
 }
 
 .mobile-nav-link {
+  font-family: Oswald;
   font-size: var(--fs-heading);
   line-height: var(--lh-heading);
   font-weight: 500;

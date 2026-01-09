@@ -7,7 +7,7 @@
   },
   {
     "name": "Instagram",
-    "url": "https://www.instagram.com/",
+    "url": "https://www.instagram.com/the.brown.tyler",
     "icon": "faInstagram",
     "class": "fa-brands fa-instagram"
   },
@@ -22,5 +22,11 @@
     "url": "https://x.com/gameset_blog",
     "icon": "faTwitter",
     "class": "fa-brands fa-twitter"
+  },
+  {
+    "name": "Email",
+    "url": "mailto:tyler@gameset.blog",
+    "icon": "faEnvelope",
+    "class": "far fa-envelope"
   }
 ]

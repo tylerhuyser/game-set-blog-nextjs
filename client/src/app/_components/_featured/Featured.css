@@ -43,14 +43,6 @@
   grid-column: 1;
 }
 
-.zoom-clipper {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border: solid black 0.25rem;
-  transition: transform 0.25s ease;
-}
-
 .post-card-featured:hover .zoom-clipper {
   transform: translate(0.1875rem, -0.1875rem);
 }
