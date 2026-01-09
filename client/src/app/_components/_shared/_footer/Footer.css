@@ -52,6 +52,10 @@
   text-decoration: none;
 }
 
+.internal-link-footer:hover, .social-link-footer:hover {
+  color: var(--neon-yellow);
+}
+
 @media only screen and (min-width: 375px) {
 
 }

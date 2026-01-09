@@ -1,0 +1,259 @@
+/* TennisCourt.css */
+
+/* Base tennis court styles */
+.tennis-court {
+  display: grid;
+  place-content: center;
+  background-color: var(--dark-green);
+  position: relative;
+}
+
+.tennis-court-horizontal {
+  width: min(100%, 900px);
+  height: auto;
+  aspect-ratio: 78 / 36;
+  grid-template-columns: 18fr 21fr 21fr 18fr;
+  grid-template-rows: 4.5fr 13.5fr 13.5fr 4.5fr;
+}
+
+/* Vertical orientation */
+.tennis-court-vertical {
+  width: auto;
+  /* height: min(100%, calc(900px * 36 / 78)); */
+  height: 1000px;
+  aspect-ratio: 36 / 78;
+  grid-template-columns: 4.5fr 13.5fr 13.5fr 4.5fr;
+  grid-template-rows: 18fr 21fr 21fr 18fr;
+}
+
+.alley {
+  border: solid white 0.25rem;
+}
+
+/* HORIZONAL - COURT SECTIONS */
+
+.tennis-court-horizontal .alley-top {
+  grid-column: 1 / span 4;
+  grid-row: 1;
+  border-bottom: solid white 0.125rem;
+}
+
+.tennis-court-horizontal  .alley-bottom {
+  grid-column: 1 / span 4;
+  grid-row: 4;
+  border-top: solid white 0.125rem;
+}
+
+.tennis-court-horizontal .baseline-left {
+  grid-column: 1;
+  grid-row: 2 / span 2;
+  border-top: solid white 0.125rem;
+  border-bottom: solid white 0.125rem;
+  border-left: solid white 0.25rem;
+  border-right: solid white 0.125rem;
+}
+
+.tennis-court-horizontal .baseline-right {
+  grid-column: 4;
+  grid-row: 2 / span 2;
+  border-top: solid white 0.125rem;
+  border-bottom: solid white 0.125rem;
+  border-left: solid white 0.125rem;
+  border-right: solid white 0.25rem;
+}
+
+.tennis-court-horizontal .service-box-top-left {
+  grid-column: 2;
+  grid-row: 2;
+  border-top: solid white 0.125rem;
+  border-bottom: solid white 0.125rem;
+  border-left: solid white 0.125rem;
+}
+
+.tennis-court-horizontal .service-box-top-right {
+  grid-column: 3;
+  grid-row: 2;
+  border-top: solid white 0.125rem;
+  border-bottom: solid white 0.125rem;
+  border-right: solid white 0.125rem;
+}
+
+.tennis-court-horizontal .service-box-bottom-left {
+  grid-column: 2;
+  grid-row: 3;
+  border-top: solid white 0.125rem;
+  border-bottom: solid white 0.125rem;
+  border-left: solid white 0.125rem;
+}
+
+.tennis-court-horizontal .service-box-bottom-right {
+  grid-column: 3;
+  grid-row: 3;
+  border-top: solid white 0.125rem;
+  border-bottom: solid white 0.125rem;
+  border-right: solid white 0.125rem;
+}
+
+/* Court sections - Vertical layout */
+.tennis-court-vertical .alley-left {
+  grid-column: 1;
+  grid-row: 1 / span 4;
+  border-right: solid white 0.125rem;
+}
+
+.tennis-court-vertical .alley-right {
+  grid-column: 4;
+  grid-row: 1 / span 4;
+  border-left: solid white 0.125rem;
+}
+
+.tennis-court-vertical .baseline-top {
+  grid-column: 2 / span 2;
+  grid-row: 1;
+  border-top: solid white 0.25rem;
+  border-bottom: solid white 0.125rem;
+  border-left: solid white 0.125rem;
+  border-right: solid white 0.125rem;
+}
+
+.tennis-court-vertical .baseline-bottom {
+  grid-column: 2 / span 2;
+  grid-row: 4;
+  border-top: solid white 0.125rem;
+  border-bottom: solid white 0.25rem;
+  border-left: solid white 0.125rem;
+  border-right: solid white 0.125rem;
+}
+
+.tennis-court-vertical .service-box-top-left {
+  grid-column: 2;
+  grid-row: 2;
+  border-top: solid white 0.125rem;
+  border-right: solid white 0.125rem;
+}
+
+.tennis-court-vertical .service-box-bottom-left {
+  grid-column: 2;
+  grid-row: 3;
+  border-bottom: solid white 0.125rem;
+  border-right: solid white 0.125rem;
+}
+
+.tennis-court-vertical .service-box-top-right {
+  grid-column: 3;
+  grid-row: 2;
+  border-top: solid white 0.125rem;
+  border-left: solid white 0.125rem;
+}
+
+.tennis-court-vertical .service-box-bottom-right {
+  grid-column: 3;
+  grid-row: 3;
+  border-bottom: solid white 0.125rem;
+  border-left: solid white 0.125rem;
+}
+
+/* Court overlay and border */
+.court-overlay {
+  grid-column: 1 / span 4;
+  grid-row: 1 / span 4;
+  z-index: 2;
+  background-color: var(--dark-green);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.court-border {
+  grid-column: 1 / span 4;
+  grid-row: 1 / span 4;
+  z-index: 3;
+  border: solid white 0.25rem;
+  pointer-events: none;
+}
+
+/* Text content in sections */
+/* .court-section {
+  position: relative;
+  z-index: 4;
+} */
+
+.section-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 1rem;
+  color: white;
+  text-align: center;
+
+  position: relative;
+  z-index: 4;
+}
+
+.section-text h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.section-text p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Icon illustrations (for hero) */
+.icon-illustration {
+  grid-row: 2 / span 2;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: transform 0.3s ease-out;
+  transform: scale(1);
+  grid-column-start: var(--index);
+}
+
+.icon-illustration:hover {
+  transform: scale(1.1) !important;
+}
+
+/* Animations */
+.court-fade-in {
+  animation: fade-in 800ms ease-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.icon-fade-in {
+  animation: icon-fade-scale 600ms ease-out forwards;
+}
+
+@keyframes icon-fade-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media only screen and (min-width: 1024px) {
+  .section-text h3 {
+    font-size: 1.5rem;
+  }
+  
+  .section-text p {
+    font-size: 1rem;
+  }
+}
