@@ -1,46 +1,43 @@
 import { getPosts } from "./_services/posts";
+import { getTopCategories } from "./_services/categories";
+import { getTopTags } from "./_services/tags";
 
-import FeaturedPostCard from "./_components/_postCards/FeaturedPostCard";
-import Posts from "./_components/_posts/Posts";
+import Hero from "./_components/_hero/Hero";
+import Featured from "./_components/_featured/Featured";
+import SplitSection from "./_components/_splitSection/SplitSection";
 
 import "./home.css"
 
 export default async function Home() {
 
   const postsData = getPosts({
-    id: null,
     page: 1,
     perPage: 10
   })
 
   const [posts] = await Promise.all([postsData])
 
-  const FEATUREDPOSTCARDSJSX = posts.data.slice(0, 5).map((post) => {
-    
-    return(
-      <FeaturedPostCard postData ={post} key={post.id} />
-    )
+  const categoriesData = await getTopCategories({
+    page: 1,
+    perPage: 5
+  })
+
+  const tagsData = await getTopTags({
+    page: 1,
+    perPage: 10
   })
 
   return (
-    <div className="home-container">
 
-      <div className='featured-post-cards-container'>
+    <div className="page-container" id="page-container-home">
       
-        {FEATUREDPOSTCARDSJSX[0]}
+      <Hero />
+      
+      <Featured data={posts.data.slice(0, 3)} />
 
-        <p className='home-page-copy posts-title' id="featured-posts-title">FEATURED POSTS</p>
-
-        {FEATUREDPOSTCARDSJSX.slice(1)}
-
-      </div>
-
-      <p className='home-page-copy posts-title' id="latest-posts-title">LATEST POSTS</p>
-
-      <Posts postsData={posts.data.slice(5)} totalPages={Math.ceil(parseInt(posts.totalPosts) / 5)} mode={"General Posts"} sourceID={null}  />
+      <SplitSection posts={posts} categoriesData={categoriesData} tagsData={tagsData} />
 
     </div>
-
 
   );
 }

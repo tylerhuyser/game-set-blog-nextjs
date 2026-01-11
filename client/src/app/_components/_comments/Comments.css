@@ -1,0 +1,157 @@
+.comments-container {
+  width: 100%;
+}
+
+.comments-section-title {
+  margin-bottom: 2rem;
+
+  font-size: var(--fs-title);
+  line-height: var(--lh-title);
+  font-weight: 700;
+
+  border-bottom: solid white 0.25rem;
+}
+
+.comment-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form-inputs-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form-input, #comment-form-button {
+  width: 100%;
+  font-family: Oswald;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+#comment-form-button:hover {
+  color: black;
+  background-color: var(--neon-yellow);
+}
+
+/* Comment Card Styling */
+
+.comment-card-container {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 2rem;
+}
+
+.comment-card-container:last-of-type {
+  margin-bottom: 0;
+}
+
+.comment-card-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--neon-yellow);
+  transform: translate(-0.25rem, 0.25rem);
+  transition: transform 0.25s ease;
+  z-index: -1;
+}
+
+.comment-card-container:hover::after {
+  transform: translate(-0.375rem, 0.375rem);
+}
+
+/* Comment Card Content */
+.comment-card-content-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto 1fr;
+  gap: 0.5rem;
+  
+  width: 100%;
+  min-height: 6rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  
+  background-color: black;
+  border: solid white 0.25rem;
+  
+  font-family: Oswald;
+  color: white;
+}
+
+.comment-card-content-container .image-comment-card {
+  grid-row: 1 / span 3;
+  grid-column: 1;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 6rem;
+  height: 6rem;
+  padding: 0.25rem;
+  
+  color: white;
+  filter: brightness(0) invert(1);
+  border: solid white 0.25rem;
+  border-radius: 50%;
+  
+  font-size: 1.5rem;
+}
+
+#comment-author-name {
+  grid-row: 1;
+  grid-column: 2;
+  align-self: end;
+  
+  margin: 0;
+  padding: 0;
+
+  font-weight: 700;
+}
+
+#comment-date {
+  grid-row: 2;
+  grid-column: 2;
+  align-self: start;
+  
+  margin: 0;
+  padding: 0;
+  
+  font-size: var(--fs-label);
+  line-height: var(--lh-label);
+  font-weight: 200;
+  color: var(--neon-yellow);
+}
+
+#comment-body {
+  grid-row: 3;
+  grid-column: 2;
+  
+  margin: 0;
+  padding-top: 0.5rem;
+}
+
+#comment-body * {
+  margin: 0;
+  padding: 0;
+}
+
+#comment-body p {
+  margin-bottom: 0.5rem;
+}
+
+#comment-body p:last-child {
+  margin-bottom: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .comment-card-content-container {
+    column-gap: 1.5rem;
+  }
+}

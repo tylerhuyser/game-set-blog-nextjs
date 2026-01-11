@@ -4,18 +4,45 @@ import Posts from "@/app/_components/_posts/Posts";
 
 import { getCategories } from '@/app/_services/categories'
 import { getPostsByCategory } from '@/app/_services/posts'
-import { revalidate, dynamicParams } from '@/app/utils/revalidation'; 
 import { notFound } from 'next/navigation'
 
 import "./PostsByCategory.css"
 
-export async function generateStaticParams({params}) {
+export async function generateStaticParams() {
   try {
-    const categories = await getCategories()
 
-    console.log(`Generating Static Params for ${categories.length} categories.`)
+    const firstPage = await getCategories({
+      page: String(1),
+      perPage: String(100)
+    })
 
-    return categories.map((category) => ({
+    const totalPages = parseInt(firstPage.totalPages)
+    let allCategories = [...firstPage.data]
+    console.log(`Total pages of CATEGORIES to fetch: ${totalPages}`)
+
+    if (totalPages > 1) {
+      const pagePromises = []
+
+      for (let page = 2; page <= totalPages; page++) {
+        pagePromises.push(
+          getCategories({
+            page: String(page),
+            perPage: String(100)
+          })
+        )
+      }
+
+      const remainingPages = await Promise.all(pagePromises)
+
+      remainingPages.forEach(pageData => {
+        allCategories = [...allPosts, ...pageData.data]
+      })
+    }
+
+    console.log(`Generating Static Params for ${allCategories.length} categories.`)
+
+
+    return allCategories.map((category) => ({
       id: String(category.id),
       slug: category.slug,
     }));
@@ -69,30 +96,46 @@ export default async function PostsByCategory({ params }) {
 
   if (!posts) {
 		return notFound()
-	}
+  }
+
+  const postCount = posts.data.length;
+  const formattedSlug = slug
+  .split("-")
+  .map(word => word[0].toUpperCase() + word.slice(1))
+    .join(" ");
+  
+  const titleText =
+  postCount === 0
+    ? `There are 0 posts categorized as ${formattedSlug}.`
+    : `There are ${postCount} posts categorized as: ${formattedSlug}`;
 
 
   return (
    
-        <div className="posts-by-category-container">
+    <div className="page-container" id="page-container-posts-by-category">
 
-          {posts.data.length === 0 ?
-              
-              <h1 className="posts-by-category-title">{`There are 0 posts categorized as ${slug.split("-").join(" ")}.`}</h1>
+      <div className="section-container section-container-posts-by-category">
 
-            :
-          
-            <>
-              
-              <h1 className="posts-by-category-title">{`There are ${posts.data.length} total posts categorized as: ${slug.split("-").map((word) => {return word[0].toUpperCase() + word.substring(1)}).join(" ")}.`}</h1>
+        <div className="content-container content-container-posts-by-category">
 
-              <Posts postsData={posts.data} totalPages={posts.totalPages} mode={"Posts by Category"} sourceID={id} />
+          <h1 className="section-title text-posts-by-category title-posts-by-category">
+            {titleText}
+          </h1>
 
-            </>
-          
-          }
+          {postCount > 0 && (
+            <Posts
+              postsData={posts.data}
+              totalPages={posts.totalPages}
+              mode="Posts by Category"
+              sourceID={id}
+            />
+          )}
 
         </div>
+
+      </div>
+
+    </div>
 
   )
 }

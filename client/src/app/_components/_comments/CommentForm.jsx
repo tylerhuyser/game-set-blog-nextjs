@@ -76,7 +76,7 @@ const validateForm = (e) => {
       validateForm(e)
     }}>
       
-      <p className="comment-form-title">LEAVE A COMMENT</p>
+      <p className="section-title comments-section-title" id="comment-form-title">LEAVE A COMMENT</p>
       {
         error === "Your comment is subbmited and awaiting approval!" ?
           
@@ -114,7 +114,7 @@ const validateForm = (e) => {
               onChange={handleChange}
             />
         
-            <button className="comment-button">SUBMIT</button>
+            <button className="button" id="comment-form-button">SUBMIT</button>
 
           </div>
 

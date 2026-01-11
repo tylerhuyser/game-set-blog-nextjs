@@ -1,11 +1,14 @@
 'use client'
+
 import React, { useState, useEffect } from 'react'
 import { useInView } from "react-intersection-observer";
 
-import LoaderLogo from '../_shared/_logos/LoaderLogo'
-import PostCard from "../_postCards/PostCard"
+import Loader from '../_shared/_loader/Loader'
+import PostCard from "./PostCard"
 
 import { getPosts, getPostsByCategory, getPostsByTag } from '@/app/_services/posts'
+
+import Masonry from 'react-masonry-css';
 
 import './Posts.css'
 
@@ -43,33 +46,32 @@ export default function Posts({ postsData, totalPages, mode, sourceID }) {
       loadMorePosts()
     }
   }, [inView])
+
+  const breakpointColumns = {
+    default: 2,
+    768: 1
+  };
   
   return (
     
-    <div className="post-cards-container">
+    <Masonry
+      breakpointCols={breakpointColumns}
+      className="post-cards-container"
+      columnClassName='post-cards-column'
+    >
       
       {posts.map((post, index) => {
         return (
 
           <PostCard
             postData={post}
-            key={post.id}
+            key={`${post.id}${index}`}
           />
         )
       })}
 
-      {currentPage < totalPages ?
+      {currentPage < totalPages && <Loader ref={ref} />}
 
-        <div className="infinite-scroll-loader" ref={ref}>
-                  
-          <LoaderLogo fill="#f39c12" stroke="#f39c12" />
-
-        </div>
-
-      :
-        <></>
-      }
-
-    </div>
+    </Masonry>
   )
 }

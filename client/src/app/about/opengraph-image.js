@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og'
-import OGImage from '../_components/_shared/_ogimage/OGImage'
+import OGImageHome from "../_components/_shared/_ogimage/OGImageHome"
  
 export const runtime = 'edge'
  
@@ -19,19 +19,34 @@ export default async function Image() {
     ? 'http://localhost:3000'
     : 'https://gamesetblog.com';
 
-  const font = await fetch(
-    `${baseUrl}/assets/fonts/bogart-semibold.otf`
-  ).then((res) => res.arrayBuffer())
+  const [oswaldBold, serenaBuffer, djokovicBuffer, nadalBuffer, federerBuffer] = 
+  await Promise.all([
+    fetch(`${baseUrl}/fonts/Oswald-Bold.ttf`).then(res => res.arrayBuffer()),
+    fetch(`${baseUrl}/assets/_images/serena-illustration-white(900x1350).png`).then(res => res.arrayBuffer()),
+    fetch(`${baseUrl}/assets/_images/djokovic-illustration-white(900x1350).png`).then(res => res.arrayBuffer()),
+    fetch(`${baseUrl}/assets/_images/nadal-illustration-white(900x1350).png`).then(res => res.arrayBuffer()),
+    fetch(`${baseUrl}/assets/_images/federer-illustration-white(900x1350).png`).then(res => res.arrayBuffer()),
+  ])
+
+  // Convert images to base64 data URLs
+  const iconImages = [serenaBuffer, djokovicBuffer, nadalBuffer, federerBuffer].map(buffer => 
+    `data:image/png;base64,${Buffer.from(buffer).toString('base64')}`
+  )
+
 
   return new ImageResponse(
     (
-      <OGImage pageTitle={"About"} baseUrl={baseUrl} />
+      <OGImageHome
+        iconImages={iconImages}
+      />
     ),
     {
       ...size,
       fonts: [{
-        name: "bogart-semibold",
-        data: font,
+        name: 'Oswald',
+        data: oswaldBold,
+        style: 'normal',
+        weight: 700,
       }]
     }
   )

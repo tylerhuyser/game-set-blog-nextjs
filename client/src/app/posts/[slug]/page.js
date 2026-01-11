@@ -7,8 +7,10 @@ import Categories from '@/app/_components/_categories/Categories';
 import Tags from '@/app/_components/_tags.jsx/Tags';
 import Comments from '@/app/_components/_comments/Comments';
 
+import Loader from '@/app/_components/_shared/_loader/Loader';
+import ScrollFadeIn from '@/app/_components/_shared/_animations/ScrollFadeIn';
+
 import { getPosts, getPostBySlug } from "@/app/_services/posts";
-import { revalidate, dynamicParams } from '@/app/utils/revalidation'; 
 import { notFound } from 'next/navigation'
 
 import "./page.css"
@@ -23,7 +25,7 @@ export async function generateStaticParams() {
 
     const totalPages = parseInt(firstPage.totalPages)
     let allPosts = [...firstPage.data]
-    console.log(`Total pages of posts to fetch: ${totalPages}`)
+    console.log(`Total pages of POSTS to fetch: ${totalPages}`)
 
     if (totalPages > 1) {
       const pagePromises = []
@@ -123,61 +125,65 @@ export default async function PostDetail({ params }) {
 
   if (!postData) {
 		return notFound()
-	}
-
-  const postDate = new Date(postData.date).getDate();
-  const postMonth = new Date(postData.date).getMonth() + 1;
-  const postYear = new Date(postData.date).getFullYear();
-
-  // console.log(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")).replaceAll('gamesetblog.com/wp-content/', 'admin.gamesetblog.com/wp-content/'))
-
+  }
   
   return (
-    <div className="post-container">
+    <div className="page-container post-container">
 
-    <div className='post-hero-container'>
-      
-      <div className="post-image-container" id='post-hero-image-container'>
+      <div className="section-container section-container-post" id="hero-section-container-post">
+        <ScrollFadeIn> 
+          <div className="content-container content-container-post" id="hero-content-container">
+              
+            <div className='image-wrapper pseudo-wrapper post-image-wrapper' id='post-hero-image-wrapper'>
 
-        {/* <img className="post-image" id="post-hero-image" src={postData["_embedded"]["wp:featuredmedia"][0].source_url} atl="post-hero-image" /> */}
-        {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<img"), postData.content.rendered.toString().indexOf('<div class="wp-block-cover__inner-container')))}
+              {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<img"), postData.content.rendered.toString().indexOf('<div class="wp-block-cover__inner-container')))}
+
+            </div>
+              
+            <h1 className="section-title" id="post-title">{parse(postData.title.rendered)}</h1>
+
+            <p className='post-excerpt post-text post-hero-text'>
+              {parse(postData.excerpt.rendered.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, '').slice(0, 300).trim())}
+            </p>
+
+            <p className='post-date post-text post-hero-text'>
+              {postData.absolute_dates.created}
+            </p>
+
+          </div>
+        </ScrollFadeIn>
 
       </div>
 
-      <div className="post-hero-content-container">
+      <div className="section-container section-container-post" id="body-section-container-post">
 
-        <h1 className="post-title">{parse(postData.title.rendered)}</h1>
+        <ScrollFadeIn threshold={0.01}>
+          <div className="content-container content-container-post" id="body-content-container">
 
-        <p className="post-date">{`${postMonth}.${postDate}.${postYear}`}</p>
+            <div className='article-container'>
 
-        <div className="post-content-container">{parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")))}</div>
+              <div className="article-content-container">
+                {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")))}
+              </div>
+
+
+              <Suspense fallback={<Loader />}>
+                <Comments postData={postData} />
+              </Suspense>
+
+            </div>
+
+            <div className="post-categories-tags-container">
+              <Categories data={postData["_embedded"]["wp:term"][0]} context={"post"} />
+              <Tags data={postData["_embedded"]["wp:term"][1]} context={"post"} />
+            </div>
+
+
+          </div>
+        </ScrollFadeIn>
 
       </div>
 
     </div>
-    
-    <div className='post-categories-container'>
-
-      <p className="post-categories-tags-container-title" id="post-categories-container-title">CATEGORIES</p>
-
-      <Categories postCategories={postData["_embedded"]["wp:term"][0]} />
-      
-    </div>
-
-    <div className='post-tags-container'>
-
-      <p className="post-categories-tags-container-title" id="post-tags-container-title">TAGS</p>
-
-      <Tags postTags={postData["_embedded"]["wp:term"][1]} />
-      
-    </div>
-
-      <Suspense fallback={<div>Loading...</div>}>
-      
-        <Comments postData={postData} />
-        
-      </Suspense>
-    
-  </div>
   )
 }

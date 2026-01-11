@@ -1,0 +1,145 @@
+#hero-section-container {
+  height: 100%;
+  min-height: min(30vh, 500px);
+
+  background-color: var(--light-green);
+}
+
+.tennis-court {
+  width: min(100%, 900px);
+  height: auto;
+  aspect-ratio: 78 / 36;
+
+  display: grid;
+  grid-template-columns: 18fr 21fr 21fr 18fr;
+  grid-template-rows: 4.5fr 13.5fr 13.5fr 4.5fr;
+  place-content: center;
+
+  background-color: var(--dark-green);
+
+  opacity: 0;
+}
+
+.tennis-court-alley {
+  grid-column: 1 / span 4;
+  border: solid white 0.25rem;
+}
+
+#top-alley {
+  grid-row-start: 1;
+  border-bottom: solid white 0.125rem;
+}
+
+#bottom-alley {
+  grid-row-start: 4;
+  border-top: solid white 0.125rem;
+}
+
+.service-box {
+  border-top: solid white 0.125rem;
+  border-bottom: solid white 0.125rem;
+}
+
+.service-box-top {
+  grid-row-start: 2;
+
+}
+
+.service-box-bottom {
+ grid-row-start: 3;
+}
+
+.service-box-left {
+  grid-column-start: 2;
+  border-left: solid white 0.125rem
+}
+
+.service-box-right {
+  grid-column-start: 3;
+  border-right: solid white 0.125rem;
+}
+
+.baseline-box {
+  grid-row: 2 / span 2;
+  border-top: solid white 0.125rem;
+  border-bottom: solid white 0.125rem;
+}
+
+#baseline-box-left {
+  grid-column-start: 1;
+  border-left: solid white 0.25rem;
+  border-right: solid white 0.125rem;
+}
+
+#baseline-box-right {
+  grid-column-start: 4;
+  border-left: solid white 0.125rem;
+  border-right: solid white 0.25rem;
+}
+
+.court-overlay {
+  grid-column: 1 / span 4;
+  grid-row: 1 / span 4;
+  z-index: 2;
+
+  background-color: var(--dark-green);
+  opacity: 0.6;
+}
+
+.court-border {
+  grid-column: 1 / span 4;
+  grid-row: 1 / span 4;
+  z-index: 3;
+
+  border: solid white 0.25rem;
+}
+
+.icon-illustration {
+  grid-row: 2 / span 2;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  grid-column-start: var(--index);
+  opacity: 0;
+  transition: transform 0.3s ease-out;
+  transform: scale(1);
+}
+
+.icon-illustration:hover {
+  transform: scale(1.1) !important;
+}
+
+
+@media only screen and (min-width: 1024px) {
+  .hero-section-container {
+    min-height: 50vh;
+  }
+}
+
+
+.court-fade-in {
+  animation: fade-in 800ms ease-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.icon-fade-in {
+  animation: icon-fade-scale 600ms ease-out forwards;
+}
+
+@keyframes icon-fade-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+  }
+}

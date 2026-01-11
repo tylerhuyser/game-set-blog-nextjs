@@ -1,27 +1,34 @@
 import React from 'react'
+import Image from "next/image"
 import parse from 'html-react-parser';
 
-export default function CommentCard({commentData}) {
+import TennisPlayerIcon from "../../../../public/assets/tennis-player-2-svgrepo-com.svg"
 
-  const commentDate = new Date(commentData.date).getDate()
-  const commentMonth = new Date(commentData.date).getMonth() + 1
-  const commentYear = new Date(commentData.date).getFullYear()
+export default function CommentCard({ commentData }) {
   
   return (
 
     <div className="comment-card-container" key={commentData.id}>
 
-      <div className="comment-card-hero-container">
+      <div className='comment-card-content-container'>
+        
+        <Image
+          className="image image-comment-card"
+          id={`commment-card-image-${commentData.id}`}
+          alt={`comment-card-avatar`}
+          src={TennisPlayerIcon} 
+          style={{'--id': commentData.id}}
+          width={100}
+          height={100}
+        />
 
-        <i className="far fa-user"></i>
+          <p className="comment-text" id="comment-author-name">{commentData.author_name.toUpperCase()}</p>
 
-          <p className="comment-author-name">{commentData.author_name}</p>
+          <p className="comment-text" id="comment-date">{(([y,m,d]) => `${m}.${d}.${y}`)(commentData.date.slice(0,10).split("-"))}</p>        
 
-          <p className="comment-date">{`${commentDate}.${commentMonth}.${commentYear}`}</p>  
-            
+        <div className="comment-text" id="comment-body">{parse(commentData.content.rendered.toString())}</div>
+        
       </div>
-
-      <div className="comment-content">{parse(commentData.content.rendered.toString())}</div>
 
     </div>
         

@@ -4,20 +4,46 @@ import Posts from "@/app/_components/_posts/Posts";
 
 import { getTags } from "@/app/_services/tags";
 import { getPostsByTag } from "@/app/_services/posts";
-import { revalidate, dynamicParams } from '@/app/utils/revalidation'; 
 import { notFound } from 'next/navigation'
 
 import "./PostsByTag.css"
 
-export async function generateStaticParams({params}) {
+export async function generateStaticParams() {
   try {
-    const tags = await getTags()
+    const firstPage = await getTags({
+      page: String(1),
+      perPage: String(100)
+    })
 
-    console.log(`Generating Static Params for ${tags.length} tags.`)
+    const totalPages = parseInt(firstPage.totalPages)
+    let allTags = [...firstPage.data]
+    console.log(`Total pages of TAGS to fetch: ${totalPages}`)
 
-    return tags.map((tag) => ({
-      id: String(tag.id),
-      slug: tag.slug,
+    if (totalPages > 1) {
+      const pagePromises = []
+
+      for (let page = 2; page <= totalPages; page++) {
+        pagePromises.push(
+          getTags({
+            page: String(page),
+            perPage: String(100)
+          })
+        )
+      }
+
+      const remainingPages = await Promise.all(pagePromises)
+
+      remainingPages.forEach(pageData => {
+        allTags = [...allPosts, ...pageData.data]
+      })
+    }
+
+    console.log(`Generating Static Params for ${allTags.length} tags.`)
+
+
+    return allTags.map((category) => ({
+      id: String(category.id),
+      slug: category.slug,
     }));
   
   } catch (error) {
@@ -66,30 +92,45 @@ export default async function PostsByTag({ params }) {
     perPage: 5
   })
 
-
 	if (!posts) {
 		return notFound()
-	}
+  }
+  
+  const postCount = posts.data.length;
+  const formattedSlug = slug
+  .split("-")
+  .map(word => word[0].toUpperCase() + word.slice(1))
+    .join(" ");
+  
+  const titleText =
+  postCount === 0
+    ? `There are 0 posts tagged with ${formattedSlug}.`
+    : `There are ${postCount} posts tagged with: ${formattedSlug}`;
 
   return (
 
-    <div className="posts-by-tag-container">
+    <div className="page-container" id="page-container-posts-by-tag">
 
-      {posts.data.length === 0 ?
-          
-          <h1 className="posts-by-tag-title">{`There are 0 posts tagged with ${slug.split("-").join(" ")}.`}</h1>
+      <div className="section-container section-container-posts-by-tag">
 
-        :
-      
-        <>
-          
-          <h1 className="posts-by-tag-title">{`There are ${posts.data.length} total posts tagged with: ${slug.split("-").map((word) => {return word[0].toUpperCase() + word.substring(1)}).join(" ")}`}</h1>
+        <div className="content-container content-container-posts-by-tag">
 
-          <Posts postsData={posts.data} totalPages={posts.totalPages} mode={"Posts by Tag"} sourceID={id} />
+          <h1 className="section-title text-posts-by-tag title-posts-by-tag">
+            {titleText}
+          </h1>
 
-        </>
-      
-      }
+          {postCount > 0 && (
+            <Posts
+              postsData={posts.data}
+              totalPages={posts.totalPages}
+              mode="Posts by Tag"
+              sourceID={id}
+            />
+          )}
+
+        </div>
+
+      </div>
 
     </div>
     
