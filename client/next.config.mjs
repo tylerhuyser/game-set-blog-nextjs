@@ -24,6 +24,7 @@ const nextConfig = {
     localPatterns: [
       {
         pathname: '/assets/**',
+        search: '',
       },
     ],
     remotePatterns: [
