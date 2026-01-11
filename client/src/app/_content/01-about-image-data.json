@@ -1,21 +1,21 @@
 [  {
     "name": "citi-open",
-    "path": "/assets/_images/_about/about-citi-open.jpg"
+    "path": "/assets/images/about/about-citi-open.jpg"
   },
   {
     "name": "hudson-river-park-tennis-courts",
-    "path": "/assets/_images/_about/about-hudson-river-park-tennis-courts.jpg"
+    "path": "/assets/images/about/about-hudson-river-park-tennis-courts.jpg"
   },
   {
     "name": "east-river-tennis-courts",
-    "path": "/assets/_images/_about/about-east-river-tennis-courts.jpg"
+    "path": "/assets/images/about/about-east-river-tennis-courts.jpg"
   },
   {
     "name": "miami-open-2013",
-    "path": "/assets/_images/_about/about-miami-open-2013.jpg"
+    "path": "/assets/images/about/about-miami-open-2013.jpg"
   },
   {
     "name": "citi-open-sloane-stephens",
-    "path": "/assets/_images/_about/about-citi-open-sloane.jpg"
+    "path": "/assets/images/about/about-citi-open-sloane.jpg"
   }
 ]

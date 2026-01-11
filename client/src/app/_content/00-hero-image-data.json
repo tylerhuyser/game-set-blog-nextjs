@@ -1,18 +1,18 @@
 [
   {
     "name": "serena-williams-illustration",
-    "path": "/assets/_images/serena-illustration-white(900x1350).png"
+    "path": "/assets/images/icons-illustrations/serena-illustration-white(900x1350).png"
   },
   {
     "name": "novak-djokovic-illustration",
-    "path": "/assets/_images/djokovic-illustration-white(900x1350).png"
+    "path": "/assets/images/icons-illustrations/djokovic-illustration-white(900x1350).png"
   },
   {
     "name": "rafael-nadal-illustration",
-    "path": "/assets/_images/nadal-illustration-white(900x1350).png"
+    "path": "/assets/images/icons-illustrations/nadal-illustration-white(900x1350).png"
   },
   {
     "name": "roger-federer-illustration",
-    "path": "/assets/_images/federer-illustration-white(900x1350).png"
+    "path": "/assets/images/icons-illustrations/federer-illustration-white(900x1350).png"
   }
 ]

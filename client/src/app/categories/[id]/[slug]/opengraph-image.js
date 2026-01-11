@@ -34,10 +34,10 @@ export default async function Image() {
   const [oswaldBold, serenaBuffer, djokovicBuffer, nadalBuffer, federerBuffer] = 
   await Promise.all([
     fetch(`${baseUrl}/fonts/Oswald-Bold.ttf`).then(res => res.arrayBuffer()),
-    fetch(`${baseUrl}/assets/_images/serena-illustration-white(900x1350).png`).then(res => res.arrayBuffer()),
-    fetch(`${baseUrl}/assets/_images/djokovic-illustration-white(900x1350).png`).then(res => res.arrayBuffer()),
-    fetch(`${baseUrl}/assets/_images/nadal-illustration-white(900x1350).png`).then(res => res.arrayBuffer()),
-    fetch(`${baseUrl}/assets/_images/federer-illustration-white(900x1350).png`).then(res => res.arrayBuffer()),
+    fetch(`${baseUrl}/assets/images/icons-illustrations/serena-illustration-white(900x1350).png`).then(res => res.arrayBuffer()),
+    fetch(`${baseUrl}/assets/images/icons-illustrations/djokovic-illustration-white(900x1350).png`).then(res => res.arrayBuffer()),
+    fetch(`${baseUrl}/assets/images/icons-illustrations/nadal-illustration-white(900x1350).png`).then(res => res.arrayBuffer()),
+    fetch(`${baseUrl}/assets/images/icons-illustrations/federer-illustration-white(900x1350).png`).then(res => res.arrayBuffer()),
   ])
 
   // Convert images to base64 data URLs
