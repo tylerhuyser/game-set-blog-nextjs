@@ -21,6 +21,12 @@ const nextConfig = {
     ];
   },
   images: {
+    localPatterns: [
+      {
+        pathname: '/assets/**',
+        search: '',
+      },
+    ],
     remotePatterns: [
       {
         protocol: 'https',
