@@ -3,8 +3,8 @@
 import React, { Suspense } from 'react';
 import parse from 'html-react-parser';
 
-import HomeCategories from '@/app/_components/_categories/HomeCategories';
-import HomeTags from '@/app/_components/_tags.jsx/HomeTags';
+import Categories from '@/app/_components/_categories/Categories';
+import Tags from '@/app/_components/_tags.jsx/Tags';
 import Comments from '@/app/_components/_comments/Comments';
 
 import Loader from '@/app/_components/_shared/_loader/Loader';
@@ -172,8 +172,8 @@ export default async function PostDetail({ params }) {
           </div>
 
           <div className="post-categories-tags-container">
-            <HomeCategories data={postData["_embedded"]["wp:term"][0]} context={"post"} />
-            <HomeTags data={postData["_embedded"]["wp:term"][1]} context={"post"} />
+            <Categories data={postData["_embedded"]["wp:term"][0]} context={"post"} />
+            <Tags data={postData["_embedded"]["wp:term"][1]} context={"post"} />
           </div>
 
         </div>

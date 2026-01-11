@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 
-import "./HomeTags.css"
+import "./Tags.css"
 
-export default function HomeTags({data, context}) {
+export default function Tags({ data, context }) {
 
   const TAGSJSX = data.map((tag, index) => (
     <Link className={`tag-card ${context}-tag-card`} key={tag.id} href={`/tags/${tag.id}/${tag.slug}`}>

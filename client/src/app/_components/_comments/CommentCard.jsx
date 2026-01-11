@@ -4,11 +4,7 @@ import parse from 'html-react-parser';
 
 import TennisPlayerIcon from "../../../../public/assets/tennis-player-2-svgrepo-com.svg"
 
-export default function CommentCard({commentData}) {
-
-  const commentDate = new Date(commentData.date).getDate()
-  const commentMonth = new Date(commentData.date).getMonth() + 1
-  const commentYear = new Date(commentData.date).getFullYear()
+export default function CommentCard({ commentData }) {
   
   return (
 
@@ -28,7 +24,7 @@ export default function CommentCard({commentData}) {
 
           <p className="comment-text" id="comment-author-name">{commentData.author_name.toUpperCase()}</p>
 
-          <p className="comment-text" id="comment-date">{`${commentDate}.${commentMonth}.${commentYear}`}</p>        
+          <p className="comment-text" id="comment-date">{(([y,m,d]) => `${m}.${d}.${y}`)(commentData.date.slice(0,10).split("-"))}</p>        
 
         <div className="comment-text" id="comment-body">{parse(commentData.content.rendered.toString())}</div>
         

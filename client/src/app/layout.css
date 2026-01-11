@@ -3,13 +3,7 @@
   flex-direction: column;
   align-items: center;
 
-  /* background-image: url('_assets/Icons-Background-White-Transparent-1000X875.png'); */
   background-color: var(--dark-green);
-  /* background-size: contain;
-  background-repeat: repeat;
-  background-position: center center;
-  background-attachment: fixed; */
-
   min-height: 100vh;
 }
 

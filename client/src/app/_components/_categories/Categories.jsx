@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 
-import "./HomeCategories.css"
+import "./Categories.css"
 
-export default function HomeCategories({ data, context }) {
+export default function Categories({ data, context }) {
 
   const CATEGORIESJSX = data.map((category, index) => {
     return (

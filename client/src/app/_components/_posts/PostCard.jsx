@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import parse from 'html-react-parser';
 import { estimateReadTime } from '@/app/utils/estimateReadTime';
 
@@ -25,7 +26,13 @@ export default function PostCard({ postData }) {
       
         <div className='image-wrapper post-card-image-wrapper'>
 
-          <img className="post-card-image image" src={postData["_embedded"]["wp:featuredmedia"][0].source_url} alt={`post-card-image-${postData.id}`} />
+          <Image
+            className="post-card-image image"
+            src={postData["_embedded"]["wp:featuredmedia"][0].source_url}
+            alt={`post-card-image-${postData.id}`}
+            width={400}
+            height={300}
+          />
               
         </div>
 

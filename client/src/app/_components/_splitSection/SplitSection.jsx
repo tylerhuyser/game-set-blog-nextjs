@@ -1,7 +1,7 @@
 'use client'
 import ScrollFadeIn from '../_shared/_animations/ScrollFadeIn';
-import HomeCategories from '../_categories/HomeCategories';
-import HomeTags from '../_tags.jsx/HomeTags';
+import Categories from '../_categories/Categories';
+import Tags from '../_tags.jsx/Tags';
 import Posts from '../_posts/Posts';
 
 import "./SplitSection.css"
@@ -25,8 +25,8 @@ export default function SplitSection({ posts, categoriesData, tagsData }) {
           </div>
 
           <div className="home-categories-tags-container">
-            <HomeCategories data={categoriesData.data} context={"home"} />
-            <HomeTags data={tagsData.data} context={"home"} />
+            <Categories data={categoriesData.data} context={"home"} />
+            <Tags data={tagsData.data} context={"home"} />
           </div>
           
         </div>
