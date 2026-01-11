@@ -7,4 +7,3 @@ directory = ".netlify/functions"
 [build]
 clear_cache = true
 command = "npm run build"
-publish = "."
