@@ -8,6 +8,7 @@ import Tags from '@/app/_components/_tags.jsx/Tags';
 import Comments from '@/app/_components/_comments/Comments';
 
 import Loader from '@/app/_components/_shared/_loader/Loader';
+import ScrollFadeIn from '@/app/_components/_shared/_animations/ScrollFadeIn';
 
 import { getPosts, getPostBySlug } from "@/app/_services/posts";
 import { notFound } from 'next/navigation'
@@ -130,51 +131,54 @@ export default async function PostDetail({ params }) {
     <div className="page-container post-container">
 
       <div className="section-container section-container-post" id="hero-section-container-post">
-          
-        <div className="content-container content-container-post" id="hero-content-container">
-            
-          <div className='image-wrapper pseudo-wrapper post-image-wrapper' id='post-hero-image-wrapper'>
+        <ScrollFadeIn> 
+          <div className="content-container content-container-post" id="hero-content-container">
+              
+            <div className='image-wrapper pseudo-wrapper post-image-wrapper' id='post-hero-image-wrapper'>
 
-            {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<img"), postData.content.rendered.toString().indexOf('<div class="wp-block-cover__inner-container')))}
+              {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<img"), postData.content.rendered.toString().indexOf('<div class="wp-block-cover__inner-container')))}
+
+            </div>
+              
+            <h1 className="section-title" id="post-title">{parse(postData.title.rendered)}</h1>
+
+            <p className='post-excerpt post-text post-hero-text'>
+              {parse(postData.excerpt.rendered.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, '').slice(0, 300).trim())}
+            </p>
+
+            <p className='post-date post-text post-hero-text'>
+              {postData.absolute_dates.created}
+            </p>
 
           </div>
-            
-          <h1 className="section-title" id="post-title">{parse(postData.title.rendered)}</h1>
-
-          <p className='post-excerpt post-text post-hero-text'>
-            {parse(postData.excerpt.rendered.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, '').slice(0, 300).trim())}
-          </p>
-
-          <p className='post-date post-text post-hero-text'>
-            {postData.absolute_dates.created}
-          </p>
-
-        </div>
+        </ScrollFadeIn>
 
       </div>
 
       <div className="section-container section-container-post" id="body-section-container-post">
-          
+
         <div className="content-container content-container-post" id="body-content-container">
 
           <div className='article-container'>
-
-            <div className="article-content-container">
-              {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")))}
-            </div>
+            <ScrollFadeIn threshold={0.01}>
+              <div className="article-content-container">
+                {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")))}
+              </div>
+            </ScrollFadeIn>
 
             <Suspense fallback={<Loader />}>
-      
               <Comments postData={postData} />
-      
             </Suspense>
 
           </div>
 
-          <div className="post-categories-tags-container">
-            <Categories data={postData["_embedded"]["wp:term"][0]} context={"post"} />
-            <Tags data={postData["_embedded"]["wp:term"][1]} context={"post"} />
-          </div>
+
+          <ScrollFadeIn>
+            <div className="post-categories-tags-container">
+              <Categories data={postData["_embedded"]["wp:term"][0]} context={"post"} />
+              <Tags data={postData["_embedded"]["wp:term"][1]} context={"post"} />
+            </div>
+          </ScrollFadeIn>
 
         </div>
 

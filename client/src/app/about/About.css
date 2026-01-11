@@ -62,8 +62,8 @@
   grid-area: 2 / 2 / 2 / 2;
 }
 
-.impage-wrapper-large {
-  aspect-ratio: 3 / 4;
+.image-wrapper-large {
+  aspect-ratio: 1 / 1;
 }
 
 .image-wrapper-small {
@@ -77,6 +77,10 @@
 
 .image-wrapper-about:hover .zoom-clipper {
   transform: translate(0.1875rem, -0.1875rem);
+}
+
+.image-wrapper-about:hover .image-about {
+  transform: scale(1.05);
 }
 
 /* BODY SECTION STYLING */
@@ -136,8 +140,8 @@
 }
 
 .bio-content-container li {
-  font-size: var(--fs-label);
-  line-height: var(--lh-label);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
   margin-bottom: 1rem;
 
   display: flex;
@@ -156,7 +160,7 @@
   height: 1rem;
 
   margin-top: 0.45em;
-  margin-right: 0.6ch;
+  margin-right: 1.5ch;
 
   background: var(--neon-yellow);
   border: 2px solid white;
