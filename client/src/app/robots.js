@@ -7,6 +7,7 @@ export default function robots() {
         '/private/',
         '/?p=',              // Stop crawling old GUIDs
         '/*opengraph-image', // Stop crawling dynamic images
+        '/wp-json/'
       ],
     },
     sitemap: 'https://gamesetblog.com/sitemap.xml',

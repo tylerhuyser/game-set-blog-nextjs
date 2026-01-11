@@ -157,30 +157,30 @@ export default async function PostDetail({ params }) {
 
       <div className="section-container section-container-post" id="body-section-container-post">
 
-        <div className="content-container content-container-post" id="body-content-container">
+        <ScrollFadeIn threshold={0.01}>
+          <div className="content-container content-container-post" id="body-content-container">
 
-          <div className='article-container'>
-            <ScrollFadeIn threshold={0.01}>
+            <div className='article-container'>
+
               <div className="article-content-container">
                 {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")))}
               </div>
-            </ScrollFadeIn>
-
-            <Suspense fallback={<Loader />}>
-              <Comments postData={postData} />
-            </Suspense>
-
-          </div>
 
 
-          <ScrollFadeIn>
+              <Suspense fallback={<Loader />}>
+                <Comments postData={postData} />
+              </Suspense>
+
+            </div>
+
             <div className="post-categories-tags-container">
               <Categories data={postData["_embedded"]["wp:term"][0]} context={"post"} />
               <Tags data={postData["_embedded"]["wp:term"][1]} context={"post"} />
             </div>
-          </ScrollFadeIn>
 
-        </div>
+
+          </div>
+        </ScrollFadeIn>
 
       </div>
 

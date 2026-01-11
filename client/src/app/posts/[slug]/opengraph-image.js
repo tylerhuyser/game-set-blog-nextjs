@@ -46,10 +46,7 @@ export default async function Image({ params }) {
 
         if (featuredMedia) {
           const { source_url, mime_type } = featuredMedia
-          console.log('Featured media:', source_url)
-          console.log('MIME type:', mime_type)
           
-
           if (mime_type === 'image/webp') {
             console.log('Converting WebP to PNG...')
             const convertResponse = await fetch(
