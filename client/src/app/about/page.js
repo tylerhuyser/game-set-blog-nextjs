@@ -3,6 +3,7 @@ import Image from "next/image"
 import ScrollFadeIn from "../_components/_shared/_animations/ScrollFadeIn";
 
 import aboutImageData from "../_content/01-about-image-data.json"
+import { aboutImages } from "../_content/01-about-image-data";
 import SocialIcon from "../_components/_shared/_socialIcon/SocialIcon";
 import socialIcons from "../_content/00-social-icons.json"
 import {
@@ -39,7 +40,7 @@ export const metadata = {
 
 export default function About() {
 
-  const ABOUTIMAGESJSX = aboutImageData.map((image, index) => {
+  const ABOUTIMAGESJSX = aboutImages.map((image, index) => {
     const isLarge = index === 0;
     
     return (
