@@ -40,7 +40,7 @@ export const metadata = {
 
 export default function About() {
 
-  const ABOUTIMAGESJSX = aboutImages.map((image, index) => {
+  const ABOUTIMAGESJSX = aboutImageData.map((image, index) => {
     const isLarge = index === 0;
     
     return (
@@ -53,7 +53,7 @@ export default function About() {
           <Image
             className={`image image-about hero-image ${isLarge ? 'hero-image-large' : 'hero-image-small'} image-fade-in`}
             alt={image.name}
-            src={image.src}
+            src={`https://gamesetblog.com/${image.path}`}
             // width={900}
             // height={900}
             style={{
