@@ -21,6 +21,8 @@ const nextConfig = {
     ];
   },
   images: {
+    loader: 'custom',
+    loaderFile: './netlifyImageLoader.js',
     localPatterns: [
       {
         pathname: '/assets/**',
