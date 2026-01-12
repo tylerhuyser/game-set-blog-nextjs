@@ -23,12 +23,6 @@ const nextConfig = {
   images: {
     loader: 'custom',
     loaderFile: './netlifyImageLoader.js',
-    localPatterns: [
-      {
-        pathname: '/assets/**',
-        search: '',
-      },
-    ],
     remotePatterns: [
       {
         protocol: 'https',
