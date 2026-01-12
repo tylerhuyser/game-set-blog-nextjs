@@ -53,8 +53,8 @@ export default function About() {
             className={`image image-about hero-image ${isLarge ? 'hero-image-large' : 'hero-image-small'} image-fade-in`}
             alt={image.name}
             src={image.path}
-            width={900}
-            height={900}
+            // width={900}
+            // height={900}
             style={{
               '--index': index + 1,
               animationDelay: `${index * 150}ms`
