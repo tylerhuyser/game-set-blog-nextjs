@@ -53,7 +53,7 @@ export default function About() {
           <Image
             className={`image image-about hero-image ${isLarge ? 'hero-image-large' : 'hero-image-small'} image-fade-in`}
             alt={image.name}
-            src={image.path}
+            src={image.src}
             // width={900}
             // height={900}
             style={{
