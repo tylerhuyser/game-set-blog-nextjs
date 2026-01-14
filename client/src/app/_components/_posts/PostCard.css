@@ -5,6 +5,8 @@
 
   font-family: Oswald;
   color: white;
+
+  display: block !important;
 }
 
 .post-card-content-container {

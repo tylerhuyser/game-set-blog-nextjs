@@ -85,6 +85,7 @@
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   font-weight: 400;
+  color: white;
 }
 
 .article-content-container > * {
