@@ -5,7 +5,7 @@
   display: flex;
   gap: 2rem;
 }
-
+ 
 .post-cards-column {
   background-clip: padding-box;
 }
