@@ -1,6 +1,7 @@
 'use server'
 
 import React, { Suspense } from 'react';
+import Image from "next/image"
 import parse from 'html-react-parser';
 
 import Categories from '@/app/_components/_categories/Categories';
@@ -136,7 +137,13 @@ export default async function PostDetail({ params }) {
               
             <div className='image-wrapper pseudo-wrapper post-image-wrapper' id='post-hero-image-wrapper'>
 
-              {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<img"), postData.content.rendered.toString().indexOf('<div class="wp-block-cover__inner-container')))}
+              <Image
+                className="post-card-image image"
+                src={postData["_embedded"]["wp:featuredmedia"][0].source_url}
+                alt={`post-card-image-${postData.id}`}
+                width={1600}
+                height={900}
+              />
 
             </div>
               
