@@ -177,7 +177,7 @@
   aspect-ratio: 4 / 5;
 }
 
-.youtube-iframe {
+.article-content-container iframe, .youtube-iframe {
   aspect-ratio: 16 / 9;
 }
 
