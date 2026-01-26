@@ -145,8 +145,6 @@
   background-color: var(--neon-yellow);
 
   transform: translate(-0.25rem, 0.25rem);
-  /* transition: transform 0.25s ease; */
-
   z-index: -1;
 }
 
