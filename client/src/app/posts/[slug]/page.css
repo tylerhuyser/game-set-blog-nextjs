@@ -104,6 +104,10 @@
   font-weight: 700;
 }
 
+.article-content-container ul {
+  list-style-position: inside;
+}
+
 .wp-block-quote, .article-content-container blockquote {
   width: 80%;
 }
