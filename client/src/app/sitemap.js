@@ -53,7 +53,7 @@ export default async function sitemap() {
     for(const post of postsData) {
       posts.push({
         url: `https://gamesetblog.com/posts/${post.slug}`,
-        lastModified: post.modified || new Date(), 
+        lastModified: post.modified ? new Date(post.modified).toISOString() : new Date().toISOString(),
         changeFrequency: "weekly",
         priority: 1,
       });
@@ -62,13 +62,13 @@ export default async function sitemap() {
     return [
       {
         url: `https://gamesetblog.com/`,
-        lastModified: new Date(),
+        lastModified: new Date().toISOString(),
         changeFrequency: "weekly",
         priority: 1,
       },
       {
         url: `https://gamesetblog.com/about`,
-        lastModified: new Date(),
+        lastModified: new Date().toISOString(),
         changeFrequency: "weekly",
         priority: 1,
       },
