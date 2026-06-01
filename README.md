@@ -8,7 +8,7 @@ The application features a React frontend (built with Next.js) and a headless-Wo
 
 In addition to the blog content, **ACE TENNIS RANKINGS** provides users with up-to-date Singles, Doubles, and Race rankings for both the ATP and WTA tours.
 
-![Ace Tennis Rankings](https://res.cloudinary.com/tylerhuyser/image/upload/c_thumb,w_200,g_face/v1780280161/Game%2C%20Set%2C%20Blog/Ace_Tennis_Rankings_Home_ukc4vu.png)
+![Ace Tennis Rankings](https://res.cloudinary.com/tylerhuyser/image/upload/c_fill,g_auto,h_250,w_970/b_rgb:000000,e_gradient_fade,y_-0.50/c_scale,co_rgb:ffffff,fl_relative,l_text:montserrat_25_style_light_align_center:Shop%20Now,w_0.5,y_0.18/v1780280161/Game%2C%20Set%2C%20Blog/Ace_Tennis_Rankings_Home_ukc4vu.png)
 
 Lastly, to power this companion application, I created a custom, web-scraping API, **TENNIS-API**, which periodically crawls the ATP and WTA sites to populate live rankings acorss endpoints. 
 
@@ -199,6 +199,8 @@ export async function POST(request) {
 
 ```
 
+![Responsive CSS](https://res.cloudinary.com/tylerhuyser/image/upload/v1780280424/Game%2C%20Set%2C%20Blog/GSB%20-%20Responsive%20CSS.gif)
+
 ### 2. Responsive CSS (Grid + Flexbox)
 
 Game, Set, Blog features responsive styling that adapts across different breakpoints and screen sizes. 
@@ -237,9 +239,13 @@ Additionally, while previous projects have given me good experience with CSS Fle
 
 Ultimately, I leared that Flexbox can be best at distributing groups of items, either horizontally or vvertically, whereas Grid can be leveraged to handle content across multiple planes.
 
-#### Featured Post Cards (Flex Box)
+#### Featured Post Cards (arranged with Flexbox)
 
 ![Featured Post Card](https://res.cloudinary.com/tylerhuyser/image/upload/v1780278580/Game%2C%20Set%2C%20Blog/Featured_Post_Card_f3wv68.png)
+
+### Featured Post Card (individually designed with Grid)
+
+![Individual Post Card](https://res.cloudinary.com/tylerhuyser/image/upload/v1780280568/Game%2C%20Set%2C%20Blog/Featured%20Post%20Card%20%28CSS%20-%20FlexBox%29.png)
 
 ```
 
