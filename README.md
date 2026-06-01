@@ -203,9 +203,9 @@ export async function POST(request) {
 <br>
 <br>
 
-![Responsive CSS](https://res.cloudinary.com/tylerhuyser/image/upload/v1780280424/Game%2C%20Set%2C%20Blog/GSB%20-%20Responsive%20CSS.gif)
-
 ### 2. Responsive CSS (Grid + Flexbox)
+
+![Responsive CSS](https://res.cloudinary.com/tylerhuyser/image/upload/v1780280424/Game%2C%20Set%2C%20Blog/GSB%20-%20Responsive%20CSS.gif)
 
 Game, Set, Blog features responsive styling that adapts across different breakpoints and screen sizes. 
 
@@ -293,9 +293,9 @@ Ultimately, I leared that Flexbox can be best at distributing groups of items, e
 <br>
 <br>
 
-![Masonry Grid](https://res.cloudinary.com/tylerhuyser/image/upload/v1780281338/Game%2C%20Set%2C%20Blog/GSB%20-%20Masonry%20Grid.png)
-
 ### 3. Pinterest-like Masonry Grid
+
+<img src="https://res.cloudinary.com/tylerhuyser/image/upload/v1780281338/Game%2C%20Set%2C%20Blog/GSB%20-%20Masonry%20Grid.png" width=50%/>
 
 For the blog post archive and category pages, a Pinterest-style masonry layout provides visual interest while optimizing space.
 
@@ -326,10 +326,9 @@ export default function Posts({ postsData, totalPages }) {
 <br>
 <br>
 
-![]()
-
-
 ### 4. Infinite Scroll
+
+![Infinite Scroll](https://res.cloudinary.com/tylerhuyser/image/upload/v1780282527/Game%2C%20Set%2C%20Blog/GSB%20-%20Infinte%20Scroll.gif)
 
 As users scroll through the masonry grid, new posts load automatically when they reach the bottom of the page. This is made possible through Intersection Observer.
 
