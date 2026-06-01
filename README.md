@@ -377,9 +377,9 @@ export default function Posts({ postsData, totalPages, mode, sourceID }) {
 <br>
 <br>
 
-![GSB - Animation Provider](https://res.cloudinary.com/tylerhuyser/image/upload/v1780281939/Game%2C%20Set%2C%20Blog/GSB%20-%20Animation%20Context%20Provider.gif)
-
 ### 5. Animation Context System
+
+![GSB - Animation Provider](https://res.cloudinary.com/tylerhuyser/image/upload/v1780281939/Game%2C%20Set%2C%20Blog/GSB%20-%20Animation%20Context%20Provider.gif)
 
 In order to make the website feel more lively upon interaction, I used an Animation Context component to coordinate animations and micro-interactions.
 
@@ -455,6 +455,8 @@ export const AnimationProvider = ({ children }) => {
 
 ### 6. Post Excerpt Truncation & Read Time Estimation
 
+![Read Estimate - GSB](https://res.cloudinary.com/tylerhuyser/image/upload/v1780282943/Game%2C%20Set%2C%20Blog/Read%20Estimate%20-%20GSB.png)
+
 Post excerpts are truncated to 300 characters and HTML tags are stripped for clean display. Read time is estimated based on average reading speed:
 
 ```javascript
@@ -509,6 +511,8 @@ return (
 <br>
 
 ### 7. Utility: Date Formatting for Rankings
+
+![Rankings - Time](https://res.cloudinary.com/tylerhuyser/image/upload/v1780282886/Game%2C%20Set%2C%20Blog/Time%20Reformatting%20-%20Rankings.png)
 
 The Ace Tennis Rankings updates every Monday. A utility function calculates the most recent Monday for consistent publication date display:
 
