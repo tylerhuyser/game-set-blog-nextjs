@@ -17,13 +17,17 @@ Deployed Sites can be found below:
 
 ## RENDERS
  
-Game, Set, Blog (Desktop)
+Game, Set, Blog - Home (Desktop)
 
 <img src="https://res.cloudinary.com/tylerhuyser/image/upload/v1780277214/Game%2C%20Set%2C%20Blog/Blog_-_Home_Animation_qjwz4d.gif" width=60% />
 
-Game, Set, Blog (Mobile)
+Game, Set, Blog - Home (Mobile)
 
 ![GAME, SET, BLOG - Home Page - Mobile Animation](https://res.cloudinary.com/tylerhuyser/image/upload/v1780277678/Game%2C%20Set%2C%20Blog/Blog_-_Home_Mobile_Animation_rx6q2s.gif)
+
+Game, Set, Blog - Post
+
+![Game, Set, Blog - Post](https://res.cloudinary.com/tylerhuyser/image/upload/e_improve,w_300,h_600,c_thumb,g_auto/v1780279145/Game%2C%20Set%2C%20Blog/Game%20Set%20Blog%20-%20Post.gif)
 
 ## TECHNOLOGY STACK
 
