@@ -19,7 +19,7 @@ Deployed Sites can be found below:
  
 Game, Set, Blog (Desktop)
 
-![GAME, SET, BLOG - Home Page - Desktop Animation](https://res.cloudinary.com/tylerhuyser/image/upload/v1780277214/Game%2C%20Set%2C%20Blog/Blog_-_Home_Animation_qjwz4d.gif)
+<img src="https://res.cloudinary.com/tylerhuyser/image/upload/v1780277214/Game%2C%20Set%2C%20Blog/Blog_-_Home_Animation_qjwz4d.gif" alt="GAME, SET, BLOG - Home Page - Desktop Animation" width="60%" />
 
 Game, Set, Blog (Mobile)
 
