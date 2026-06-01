@@ -8,7 +8,7 @@ The application features a React frontend (built with Next.js) and a headless-Wo
 
 In addition to the blog content, **ACE TENNIS RANKINGS** provides users with up-to-date Singles, Doubles, and Race rankings for both the ATP and WTA tours.
 
-![Ace Tennis Rankings](https://res.cloudinary.com/tylerhuyser/image/upload/c_fill,g_auto,h_250,w_970/b_rgb:000000,e_gradient_fade,y_-0.50/c_scale,co_rgb:ffffff,fl_relative,l_text:montserrat_25_style_light_align_center:Shop%20Now,w_0.5,y_0.18/v1780280161/Game%2C%20Set%2C%20Blog/Ace_Tennis_Rankings_Home_ukc4vu.png)
+![Ace Tennis Rankings](https://res.cloudinary.com/tylerhuyser/image/upload/v1780280161/Game%2C%20Set%2C%20Blog/Ace_Tennis_Rankings_Home_ukc4vu.png)
 
 Lastly, to power this companion application, I created a custom, web-scraping API, **TENNIS-API**, which periodically crawls the ATP and WTA sites to populate live rankings acorss endpoints. 
 
@@ -21,7 +21,7 @@ Deployed Sites can be found below:
  
 Game, Set, Blog - Home (Desktop)
 
-<img src="https://res.cloudinary.com/tylerhuyser/image/upload/v1780277214/Game%2C%20Set%2C%20Blog/Blog_-_Home_Animation_qjwz4d.gif" width=60% />
+![GSB - HOME - DESKTOP](https://res.cloudinary.com/tylerhuyser/image/upload/v1780277214/Game%2C%20Set%2C%20Blog/Blog_-_Home_Animation_qjwz4d.gif)
 
 Game, Set, Blog - Home (Mobile)
 
@@ -199,6 +199,9 @@ export async function POST(request) {
 
 ```
 
+
+
+
 ![Responsive CSS](https://res.cloudinary.com/tylerhuyser/image/upload/v1780280424/Game%2C%20Set%2C%20Blog/GSB%20-%20Responsive%20CSS.gif)
 
 ### 2. Responsive CSS (Grid + Flexbox)
@@ -241,11 +244,11 @@ Ultimately, I leared that Flexbox can be best at distributing groups of items, e
 
 #### Featured Post Cards (arranged with Flexbox)
 
-![Featured Post Card](https://res.cloudinary.com/tylerhuyser/image/upload/v1780278580/Game%2C%20Set%2C%20Blog/Featured_Post_Card_f3wv68.png)
+![Featured Post Card](https://res.cloudinary.com/tylerhuyser/image/upload/v1780280568/Game%2C%20Set%2C%20Blog/Featured%20Post%20Card%20%28CSS%20-%20FlexBox%29.png)
 
 ### Featured Post Card (individually designed with Grid)
 
-![Individual Post Card](https://res.cloudinary.com/tylerhuyser/image/upload/v1780280568/Game%2C%20Set%2C%20Blog/Featured%20Post%20Card%20%28CSS%20-%20FlexBox%29.png)
+![Individual Post Card](https://res.cloudinary.com/tylerhuyser/image/upload/v1780278580/Game%2C%20Set%2C%20Blog/Featured_Post_Card_f3wv68.png)
 
 ```
 
@@ -285,6 +288,10 @@ Ultimately, I leared that Flexbox can be best at distributing groups of items, e
 
 ```
 
+
+
+![Masonry Grid](https://res.cloudinary.com/tylerhuyser/image/upload/v1780281338/Game%2C%20Set%2C%20Blog/GSB%20-%20Masonry%20Grid.png)
+
 ### 3. Pinterest-like Masonry Grid
 
 For the blog post archive and category pages, a Pinterest-style masonry layout provides visual interest while optimizing space.
@@ -312,6 +319,11 @@ export default function Posts({ postsData, totalPages }) {
   );
 }
 ```
+
+
+
+![]()
+
 
 ### 4. Infinite Scroll
 
