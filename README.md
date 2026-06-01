@@ -28,7 +28,7 @@ Game, Set, Blog (Mobile)
 ## TECHNOLOGY STACK
 
 | **Layer** | **Technologies** |
-| -------- | -------- | -------- |
+| -------- | -------- |
 | Frontend (Blog) | React + Next.js|
 | Backend (Blog) | Wordpress |
 | Frontend (Rankings) | React + Vite |
