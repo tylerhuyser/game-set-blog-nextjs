@@ -199,8 +199,9 @@ export async function POST(request) {
 
 ```
 
-
-
+<br>
+<br>
+<br>
 
 ![Responsive CSS](https://res.cloudinary.com/tylerhuyser/image/upload/v1780280424/Game%2C%20Set%2C%20Blog/GSB%20-%20Responsive%20CSS.gif)
 
@@ -288,7 +289,9 @@ Ultimately, I leared that Flexbox can be best at distributing groups of items, e
 
 ```
 
-
+<br>
+<br>
+<br>
 
 ![Masonry Grid](https://res.cloudinary.com/tylerhuyser/image/upload/v1780281338/Game%2C%20Set%2C%20Blog/GSB%20-%20Masonry%20Grid.png)
 
@@ -319,8 +322,9 @@ export default function Posts({ postsData, totalPages }) {
   );
 }
 ```
-
-
+<br>
+<br>
+<br>
 
 ![]()
 
@@ -370,6 +374,11 @@ export default function Posts({ postsData, totalPages, mode, sourceID }) {
   );
 }
 ```
+<br>
+<br>
+<br>
+
+![GSB - Animation Provider](https://res.cloudinary.com/tylerhuyser/image/upload/v1780281939/Game%2C%20Set%2C%20Blog/GSB%20-%20Animation%20Context%20Provider.gif)
 
 ### 5. Animation Context System
 
@@ -441,6 +450,10 @@ export const AnimationProvider = ({ children }) => {
 
 ```
 
+<br>
+<br>
+<br>
+
 ### 6. Post Excerpt Truncation & Read Time Estimation
 
 Post excerpts are truncated to 300 characters and HTML tags are stripped for clean display. Read time is estimated based on average reading speed:
@@ -492,7 +505,9 @@ return (
 );
 ```
 
----
+<br>
+<br>
+<br>
 
 ### 7. Utility: Date Formatting for Rankings
 
