@@ -8,6 +8,8 @@ The application features a React frontend (built with Next.js) and a headless-Wo
 
 In addition to the blog content, **ACE TENNIS RANKINGS** provides users with up-to-date Singles, Doubles, and Race rankings for both the ATP and WTA tours.
 
+![Ace Tennis Rankings](https://res.cloudinary.com/tylerhuyser/image/upload/c_thumb,w_200,g_face/v1780280161/Game%2C%20Set%2C%20Blog/Ace_Tennis_Rankings_Home_ukc4vu.png)
+
 Lastly, to power this companion application, I created a custom, web-scraping API, **TENNIS-API**, which periodically crawls the ATP and WTA sites to populate live rankings acorss endpoints. 
 
 Deployed Sites can be found below:
