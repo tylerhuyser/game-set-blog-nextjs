@@ -19,7 +19,7 @@ Deployed Sites can be found below:
  
 Game, Set, Blog (Desktop)
 
-<img src="https://res.cloudinary.com/tylerhuyser/image/upload/v1780277214/Game%2C%20Set%2C%20Blog/Blog_-_Home_Animation_qjwz4d.gif" alt="GAME, SET, BLOG - Home Page - Desktop Animation" width="60%" />
+<img src="https://res.cloudinary.com/tylerhuyser/image/upload/v1780277214/Game%2C%20Set%2C%20Blog/Blog_-_Home_Animation_qjwz4d.gif" width=60% />
 
 Game, Set, Blog (Mobile)
 
@@ -230,6 +230,10 @@ To achieve this, I used css tools such as clamps and media queries:
 Additionally, while previous projects have given me good experience with CSS Flexbox, I wanted to elevate my designs using CSS Grid.
 
 Ultimately, I leared that Flexbox can be best at distributing groups of items, either horizontally or vvertically, whereas Grid can be leveraged to handle content across multiple planes.
+
+#### Featured Post Cards (Flex Box)
+
+![Featured Post Card](https://res.cloudinary.com/tylerhuyser/image/upload/v1780278580/Game%2C%20Set%2C%20Blog/Featured_Post_Card_f3wv68.png)
 
 ```
 
