@@ -44,7 +44,7 @@ Game, Set, Blog - Post
 
 The rendering strategy for Game, Set, Blog evolved through trial and error. The main priority being to maximize web performance, discoverability, and SEO.
 
-**<u>Phase 1: WordPress.com (2017)</u>**
+**_Phase 1: WordPress.com (2017)_**
 
 I began the blog before I knew how to code.
 
@@ -52,7 +52,7 @@ As I did not (yet) possess the skills required to make a custom application, I i
 
 While these pre-made templates lacked ability for customization or control, they came with stellar search enginer discoverability out-of-the-box.
 
-**<u>Phase 2: Single-Page Applications and Client-Side Rendering (Post-Bootcamp)</u>**
+**_Phase 2: Single-Page Applications and Client-Side Rendering (Post-Bootcamp)_**
 
 After completing the General Assembly coding bootcamp and learning how to use React, I decided to build a custom version of the site. I wanted to make something less generic and more unique.
 
@@ -60,7 +60,7 @@ I used React to create a client-rendered Single Page Application (an SPA) and wh
 
 The biggest drawback was the total loss of traffic to my site. With only a bootcamp-level understanding of rendering strategies, I was ignorant to the fact that web crawlers would no longer be able to "see" my site's content until the underlying JavaScript could execute.
 
-**<u>Phase 3: Server-Side Rendering (SSR Experiment)</u>**
+**_Phase 3: Server-Side Rendering (SSR Experiment)_**
 
 In a quest to regain discoverability and rebuild traffic, I migrated to Server-Side Rendering (SSR). Instead of the application rendering on the client, the server would render content upon each request and serve it to the user.
 
@@ -68,13 +68,13 @@ While this rendering strategy would work *in theory*, instead it introdcued new 
 
 I was at my lowest point. That's when I discovered Incremental Static Regeneration (ISR)...
 
-**<u>Phase 4: Incremental Static Regeneration (ISR) — Final Solution</u>**
+**_Phase 4: Incremental Static Regeneration (ISR) — Final Solution_**
 
 A breakthrough came when I learned about Incremental Static Regeneration (ISR). In this set-up, pages are statically generated at build time—leading to speedy performance.
 
 Moreover, whenever content is created, edited, or destroyed, corresponding pages can be generated (or *regenerated*) using a webhook.
 
-**<u>Implementation: Webhook-Triggered Revalidation</u>**
+**_Implementation: Webhook-Triggered Revalidation_**
 
 Whenever a post is published, updated, or deleted in WordPress, a custom function triggers a webhook that instructs my host (in this case Netlify) which pages to build or rebuild. 
 
@@ -237,7 +237,7 @@ I wanted Game, Set, Blog to look equally polished across desktop and mobile devi
 
 The foundation for this relies on three tools working in harmony:
 
-**<u>1. Fluid Typography with clamp()</u>**
+**_1. Fluid Typography with clamp()_**
 
 To achieve this, I used css tools such as clamps and media queries:
 
@@ -258,7 +258,7 @@ This means text grows gradually as the screen widens—no jarring jumps.
 
 ```
 
-**<u>Relative Units for Spacing</u>**
+**_Relative Units for Spacing_**
 Using `rem` (root em) and viewport-relative units instead of pixels creates proportional layouts:
 
 
@@ -286,14 +286,14 @@ Using `rem` (root em) and viewport-relative units instead of pixels creates prop
 
 ```
 
-**<u>Flexbox vs. Grid</u>**
+**_Flexbox vs. Grid_**
 
 While previous projects gave me solid experience with CSS Flexbox, I wanted to elevate my designs by leveraging CSS Grid. After playing around with both, here's what I discovered:
 
 - **Flexbox** excels at distributing groups of items in a single dimension (horizontally or vertically)
 - **Grid** handles content across multiple planes, enabling complex 2D layouts with precise control
 
-**<u>Arranging Multiple Post Cards (Flexbox)</u>**
+**_Arranging Multiple Post Cards (Flexbox)_**
 
 The featured section container uses Flexbox to arrange the card groups responsively:
 
@@ -313,7 +313,7 @@ The featured section container uses Flexbox to arrange the card groups responsiv
 
 ```
 
-**<u>Designing an Individual Post Card (CSS Grid)</u>**
+**_Designing an Individual Post Card (CSS Grid)_**
 
 Each featured card itself uses Grid to create a 2D layout where the image and content can overlap and align precisely:
 
