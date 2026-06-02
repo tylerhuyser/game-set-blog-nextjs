@@ -656,7 +656,112 @@ export function getMostRecentMonday(isoDateString) {
 }
 ```
 
+### 8. Tennis API
 
+To power Ace Tennis Rankings, a custom REST API built with Node.js and Express serves real-time ranking data. Deployed on Fly.io, it acts as the single source of truth for ATP and WTA rankings across the platform.
+
+**Live Endpoints**
+
+The API provides 8 endpoints covering all ranking types:
+
+**ATP Rankings:**
+- [ATP Singles](https://tennis-api.fly.dev/api/atp/rankings/singles)
+- [ATP Doubles](https://tennis-api.fly.dev/api/atp/rankings/doubles)
+- [ATP Singles Race](https://tennis-api.fly.dev/api/atp/rankings/singles-race)
+- [ATP Doubles Race](https://tennis-api.fly.dev/api/atp/rankings/doubles-race)
+
+**WTA Rankings:**
+- [WTA Singles](https://tennis-api.fly.dev/api/wta/rankings/singles)
+- [WTA Doubles](https://tennis-api.fly.dev/api/wta/rankings/doubles)
+- [WTA Singles Race](https://tennis-api.fly.dev/api/wta/rankings/singles-race)
+- [WTA Doubles Race](https://tennis-api.fly.dev/api/wta/rankings/doubles-race)
+
+**Sample Response Format**
+
+Each endpoint returns an array of player rankings with the following structure:
+
+```json
+{
+  "ranking": 1,
+  "name": "Jannik Sinner",
+  "country": "ITA",
+  "points": 11180,
+  "tournamentsPlayed": 32,
+  "lastUpdated": "2024-12-30T00:00:00Z"
+}
+```
+
+**Scraping Strategy**
+
+The API scrapes official ATP and WTA rankings every Monday and maintains fresh data through an automated weekly pipeline. This ensures Ace Tennis Rankings always displays current standings without requiring manual updates or database administration.
+
+**Weekly Execution with Daily Fallback:**
+
+- **Monday (Primary)**: Scrapes new rankings immediately upon release
+- **If Scrape Fails**: Automatically retries up to 3 times with exponential backoff
+- **If All Retries Fail**: Marks cache as "stale" but continues serving existing data
+- **Daily Check**: Detects stale cache and attempts fresh scrape daily until successful
+
+This ensures Ace Tennis Rankings is always available—with fresh data when possible, or gracefully degraded with slightly older data if the weekly scrape encounters network issues.
+
+```javascript
+
+// api/services/populateCache.js
+
+export async function populateCache(tour, type) {
+  const cacheKey = `${tour}:${type}`;
+  const maxRetries = 3;
+  let retryCount = 0;
+
+  async function fetchWithRetry() {
+    try {
+      // Scrape rankings from official ATP/WTA source
+      const rankings = await scrapeRankings(tour, type);
+      
+      if (!rankings || rankings.length === 0) {
+        throw new Error('No rankings data returned');
+      }
+
+      // Store in cache with timestamp
+      cache.set(cacheKey, {
+        data: rankings,
+        timestamp: new Date(),
+        stale: false
+      });
+
+      console.log(`✅ Cache populated for ${tour} ${type}`);
+      return rankings;
+
+    } catch (error) {
+      retryCount++;
+      console.error(`❌ Scrape failed (Attempt ${retryCount}/${maxRetries}):`, error.message);
+
+      if (retryCount < maxRetries) {
+        // Retry after exponential backoff (1s, 2s, 4s)
+        const delay = Math.pow(2, retryCount) * 1000;
+        console.log(`⏳ Retrying in ${delay}ms...`);
+        
+        await new Promise(resolve => setTimeout(resolve, delay));
+        return fetchWithRetry();
+      }
+
+      // All retries exhausted
+      console.error(`⚠️ Max retries reached for ${tour} ${type}`);
+      
+      // Mark existing cache as stale but keep serving it
+      const existing = cache.get(cacheKey);
+      if (existing) {
+        existing.stale = true;
+        console.log(`📦 Serving stale cache for ${tour} ${type}`);
+      }
+
+      throw error;
+    }
+  }
+
+  return fetchWithRetry();
+}
+```
 
 
 
