@@ -2,15 +2,15 @@
 
 # GAME, SET, BLOG
 
-**GAME, SET, BLOG** is a tennis-themed personal blog cataloging analysis and opinion on ATP, WTA, and Grand Slam tennis.
+**GAME, SET, BLOG** is a personal blog cataloging analysis and opinion on ATP, WTA, and Grand Slam tennis.
 
 The application features a React frontend (built with Next.js) and a headless-Wordpress backend for content management.
 
-In addition to the blog content, **ACE TENNIS RANKINGS** provides users with up-to-date Singles, Doubles, and Race rankings for both the ATP and WTA tours.
+In addition to the blog, a companion app, **ACE TENNIS RANKINGS**, provides users with up-to-date Singles, Doubles, and Race rankings information for both the ATP and WTA tours.
 
 <img src="https://res.cloudinary.com/tylerhuyser/image/upload/v1780280161/Game%2C%20Set%2C%20Blog/Ace_Tennis_Rankings_Home_ukc4vu.png" width=50%/>
 
-Lastly, to power this companion application, I created a custom, web-scraping API, **TENNIS-API**, which periodically crawls the ATP and WTA sites to populate live rankings acorss endpoints. 
+Powering this companion application is a custom, web-scraping API, **TENNIS-API**, which periodically crawls the ATP and WTA sites to populate current rankings across endpoints.
 
 Deployed Sites can be found below:
 - [Game, Set, Blog](https://gamesetblog.com/)
@@ -22,10 +22,6 @@ Deployed Sites can be found below:
 Game, Set, Blog - Home (Desktop)
 
 ![GSB - HOME - DESKTOP](https://res.cloudinary.com/tylerhuyser/image/upload/v1780277214/Game%2C%20Set%2C%20Blog/Blog_-_Home_Animation_qjwz4d.gif)
-
-Game, Set, Blog - Home (Mobile)
-
-![GAME, SET, BLOG - Home Page - Mobile Animation](https://res.cloudinary.com/tylerhuyser/image/upload/v1780277678/Game%2C%20Set%2C%20Blog/Blog_-_Home_Mobile_Animation_rx6q2s.gif)
 
 Game, Set, Blog - Post
 
@@ -46,29 +42,53 @@ Game, Set, Blog - Post
 
 ### 1. Rendering Strategy
 
-Game, Set, Blog's rendering strategy evolved through three distinct phases, each teaching valuable lessons about web performance and SEO.
+The rendering strategy for Game, Set, Blog evolved through trial and error. The main priority being to maximize web performance, discoverability, and SEO.
 
 **Phase 1: WordPress.com (2017)**
-The original blog launched on WordPress.com, providing out-of-the-box SEO and search engine discoverability. However, it lacked customization and control.
+
+I began the blog before I knew how to code.
+
+As I did not (yet) possess the skills required to make a custom application, I instead used a simple template from Wordpress.com to get started.
+
+While these pre-made templates lacked ability for customization or control, they came with stellar search enginer discoverability out-of-the-box.
 
 **Phase 2: Single-Page Applications and Client-Side Rendering (Post-Bootcamp)**
-After completing a coding bootcamp, I rebuilt the site as a React SPA with full design control. The downside was immediate: search engine traffic plummeted. Client-side rendering meant crawlers couldn't access content until JavaScript executed, severely impacting SEO and initial page loads.
+
+After completing the General Assembly coding bootcamp and learning how to use React, I decided to build a custom version of the site. I wanted to make something less generic and more unique.
+
+I used React to create a client-rendered Single Page Application (an SPA) and while it helped to provide a customized experience (and not to mention, save me money on a Wordpress.com subscription), it also had its drawbacks.
+
+The biggest drawback was the total loss of traffic to my site. With only a bootcamp-level understanding of rendering strategies, I was ignorant to the fact that web crawlers would no longer be able to "see" my site's content until the underlying JavaScript could execute.
 
 **Phase 3: Server-Side Rendering (SSR Experiment)**
-To regain discoverability, I migrated to SSR. While this solved SEO issues and was crawlable, every page request required server computation, resulting in slow response times and poor Core Web Vitals.
+
+In a quest to regain discoverability and rebuild traffic, I migrated to Server-Side Rendering (SSR). Instead of the application rendering on the client, the server would render content upon each request and serve it to the user.
+
+While this rendering strategy would work *in theory*, instead it introdcued new challenges. Now, each page request required the server to compute the full HTML, resulting in slower response times. Worse, server costs increased due to the computational overhead.
+
+I was at my lowest point. That's when I discovered Incremental Static Regeneration (ISR)...
 
 **Phase 4: Incremental Static Regeneration (ISR) — Final Solution**
-The breakthrough came with ISR: pages are statically generated at build time for lightning-fast performance, but regenerated on-demand when content changes via webhook revalidation. This provides the best of all worlds: SEO discoverability, fast load times, and real-time content updates.
+
+A breakthrough came when I learned about Incremental Static Regeneration (ISR). In this set-up, pages are statically generated at build time—leading to speedy performance.
+
+Moreover, whenever content is created, edited, or destroyed, corresponding pages can be generated (or *regenerated*) using a webhook.
 
 **Implementation: Webhook-Triggered Revalidation**
 
-When a post is published, updated, or deleted in WordPress, a webhook triggers smart revalidation that updates not just the post itself, but all affected pages (home, categories, tags):
+Whenever a post is published, updated, or deleted in WordPress, a custom function triggers a webhook that instructs my host (in this case Netlify) which pages to build or rebuild. 
 
-```
+For example, a new post on “Roger Federer” would cause my application to build that page and potentially update tags, such as “Wimbledon” or “Grand Slam Champions”. The “Home” page featuring the fresh post will be rebuilt too.
 
-// _components/_posts/Posts.jsx
+
+```javascript
+
+// api/revalidate/route.js
 
 export async function POST(request) {
+
+  <!-- 1. AUTHENTICATE WEBHOOK -->
+
   const secret = request.nextUrl.searchParams.get('secret')
 
   if (secret !== process.env.REVALIDATION_SECRET) {
@@ -78,6 +98,8 @@ export async function POST(request) {
       { status: 401 }
     );
   }
+
+  <!-- 2. PARSE PAYLOAD -->
 
   let body
   try {
@@ -89,6 +111,8 @@ export async function POST(request) {
       { status: 400 }
     );
   }
+
+  <!-- 3. ROUTE BY EVEN TYPE & TRIGGER REVALIDATION -->
 
   const { type, slug, postID } = body
   console.log(`Webhook Received: ${type} for ${slug || postID}`)
@@ -181,6 +205,8 @@ export async function POST(request) {
         );
     }
 
+    <!-- 4. RETURN SUCCESS RESPONSE -->
+
     return Response.json({ 
       revalidated: true, 
       type,
@@ -203,21 +229,42 @@ export async function POST(request) {
 <br>
 <br>
 
-### 2. Responsive CSS (Grid + Flexbox)
+### 2. Responsive CSS
 
 ![Responsive CSS](https://res.cloudinary.com/tylerhuyser/image/upload/v1780280424/Game%2C%20Set%2C%20Blog/GSB%20-%20Responsive%20CSS.gif)
 
-Game, Set, Blog features responsive styling that adapts across different breakpoints and screen sizes. 
+I wanted Game, Set, Blog to look equally polished across desktop and mobile device.
+
+The foundation for this relies on three tools working in harmony:
+
+**1. Fluid Typography with clamp()**
 
 To achieve this, I used css tools such as clamps and media queries:
 
-```
+Instead of fixed font sizes that break at arbitrary breakpoints, `clamp()` scales typography smoothly across the entire viewport. 
+
+This means text grows gradually as the screen widens—no jarring jumps.
+
+```css
+
+// global.css
+
 :root {
   --fs-title: clamp(2rem, 1rem + 2vw, 2.25rem);
   --fs-heading: clamp(1.5rem, 0.9rem + 1.25vw, 1.75rem);
   --fs-body: clamp(1.25rem, 0.9rem + 0.75vw, 1.5rem);
   --fs-label: clamp(1rem, 0.75rem + 0.4vw, 1.25rem);
 }
+
+```
+
+**Relative Units for Spacing**
+Using `rem` (root em) and viewport-relative units instead of pixels creates proportional layouts:
+
+
+```css
+
+// global.css
 
 .section-container {
   width: 100%;
@@ -239,52 +286,83 @@ To achieve this, I used css tools such as clamps and media queries:
 
 ```
 
-Additionally, while previous projects have given me good experience with CSS Flexbox, I wanted to elevate my designs using CSS Grid.
+**Flexbox vs. Grid**
 
-Ultimately, I leared that Flexbox can be best at distributing groups of items, either horizontally or vvertically, whereas Grid can be leveraged to handle content across multiple planes.
+While previous projects gave me solid experience with CSS Flexbox, I wanted to elevate my designs by leveraging CSS Grid. After playing around with both, here's what I discovered:
 
-#### Featured Post Cards (arranged with Flexbox)
+- **Flexbox** excels at distributing groups of items in a single dimension (horizontally or vertically)
+- **Grid** handles content across multiple planes, enabling complex 2D layouts with precise control
 
-![Featured Post Card](https://res.cloudinary.com/tylerhuyser/image/upload/v1780280568/Game%2C%20Set%2C%20Blog/Featured%20Post%20Card%20%28CSS%20-%20FlexBox%29.png)
+**Arranging Multiple Post Cards (Flexbox)**
 
-### Featured Post Card (individually designed with Grid)
+The featured section container uses Flexbox to arrange the card groups responsively:
 
-![Individual Post Card](https://res.cloudinary.com/tylerhuyser/image/upload/v1780278580/Game%2C%20Set%2C%20Blog/Featured_Post_Card_f3wv68.png)
+![Featured Post Cards with Flexbox](https://res.cloudinary.com/tylerhuyser/image/upload/v1780280568/Game%2C%20Set%2C%20Blog/Featured%20Post%20Card%20%28CSS%20-%20FlexBox%29.png)
+
+```css
+
+/ _components/_posts/PostCard.css
+
+.post-cards-container {
+  width: calc(100% - 0.5rem);
+  padding: 0 0.25rem;
+
+  display: flex;
+  gap: 2rem;
+}
 
 ```
 
-#post-cards-container-featured {
+**Designing an Individual Post Card (CSS Grid)**
+
+Each featured card itself uses Grid to create a 2D layout where the image and content can overlap and align precisely:
+
+![Individual Post Card with Grid](https://res.cloudinary.com/tylerhuyser/image/upload/v1780278580/Game%2C%20Set%2C%20Blog/Featured_Post_Card_f3wv68.png)
+
+```css
+/ _components/_featured/Featured.css
+
+/* Individual card - uses grid for 2D layout (image + content) */
+.post-card-content-container-featured {
+
   display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: auto;
-}
-
-@media only screen and (min-width: 768px) {
-  #post-cards-container-featured {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media only screen and (min-width: 1024px) {
-  #post-cards-container-featured {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.post-card {
-  display: inline-grid;
   grid-template-columns: auto;
-  grid-auto-rows: auto;
-}
+  grid-template-rows: auto auto auto;
+  row-gap: 0.5rem;
+  align-items: center;
 
-.image-wrapper {
-  grid-row: 1 / span 2;
-  grid-column: 1;
-}
-
-.post-content {
   grid-row: 2 / span 2;
   grid-column: 1;
+  align-self: end;
+  justify-self: center;
+
+  z-index: 3;
+  
+}
+
+.featured-post-title {
+
+  grid-column: 1 / -1;
+  grid-row: 1 / span 1;
+
+}
+
+.featured-post-excerpt {
+
+  grid-column: 1 / -1;
+  grid-row: 2 / span 1;
+
+}
+
+.featured-meta-container {
+  grid-row: 4;
+  grid-column: 1 / -1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  row-gap: 1rem;
 }
 
 ```
@@ -304,6 +382,7 @@ I tried using properties, such as 'grid-template-columns' or 'display: grid-lane
 Ultimately, I used a plug-in: react-masonry-css.
 
 ```javascript
+
 // _components/_posts/Posts.jsx
 import Masonry from 'react-masonry-css';
 
@@ -321,6 +400,7 @@ export default function Posts({ postsData, totalPages }) {
     
   );
 }
+
 ```
 <br>
 <br>
