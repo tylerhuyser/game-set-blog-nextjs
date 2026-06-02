@@ -259,6 +259,7 @@ This means text grows gradually as the screen widens—no jarring jumps.
 ```
 
 **_Relative Units for Spacing_**
+
 Using `rem` (root em) and viewport-relative units instead of pixels creates proportional layouts:
 
 
@@ -375,15 +376,20 @@ Each featured card itself uses Grid to create a 2D layout where the image and co
 
 <img src="https://res.cloudinary.com/tylerhuyser/image/upload/v1780281338/Game%2C%20Set%2C%20Blog/GSB%20-%20Masonry%20Grid.png" width=50%/>
 
-For the blog post archive and category pages, a Pinterest-style masonry layout provides visual interest while optimizing space.
+For the blog post archive, I wanted to create a layout that provided visual interest and optimize space. I looked to Pinterest for inspiration...
 
-I tried using properties, such as 'grid-template-columns' or 'display: grid-lanes' but these properties did not work. Either boxes were split across the top of bottom of the parent container or they were mis-aligned.
+To recreate Pinterest's iconic 'masonry'-style layout, I tried using Flexbox, Grid, and a few new CSS properties, such as "display: grid lanes"--however I ran into a few issues:
 
-Ultimately, I used a plug-in: react-masonry-css.
+- Items wouldn't balance evenly across columns
+- Taller cards created gaps and wasted vertical space
+- Cards would 'rearrange' when paired with infinite scroll
+
+Rather than fighting CSS limitations, I leveraged the [React-Masonry-CSS](https://www.npmjs.com/package/react-masonry-css). library, library, which handles the complexity of distributing variable-height cards evenly.
 
 ```javascript
 
 // _components/_posts/Posts.jsx
+
 import Masonry from 'react-masonry-css';
 
 export default function Posts({ postsData, totalPages }) {
@@ -410,10 +416,16 @@ export default function Posts({ postsData, totalPages }) {
 
 ![Infinite Scroll](https://res.cloudinary.com/tylerhuyser/image/upload/v1780282527/Game%2C%20Set%2C%20Blog/GSB%20-%20Infinte%20Scroll.gif)
 
-As users scroll through the masonry grid, new posts load automatically when they reach the bottom of the page. This is made possible through Intersection Observer.
+To keep the browsing experience fluid and engaging, new posts load automatically as users scroll toward the bottom of the page—making the site feel alive and continuous rather than fragmented by pagination.
 
-```
+Beyond UX, this approach provides a significant **performance benefit**: instead of loading all posts and images upfront, only visible content loads initially. As users scroll, new posts (and their images) load on-demand, reducing initial page weight and allowing users with slower connections to start browsing immediately.
+
+This seamless experience is powered by the **Intersection Observer API**, which detects when the user scrolls near a loading trigger at the bottom of the page. Once visible, it automatically fetches the next batch of posts without requiring users to click "Next Page" or leave their scrolling rhythm.
+
+```javascript
+
 // _components/_posts/Posts.jsx
+
 import { useInView } from "react-intersection-observer";
 
 export default function Posts({ postsData, totalPages, mode, sourceID }) {
@@ -461,71 +473,80 @@ export default function Posts({ postsData, totalPages, mode, sourceID }) {
 
 ![GSB - Animation Provider](https://res.cloudinary.com/tylerhuyser/image/upload/v1780281939/Game%2C%20Set%2C%20Blog/GSB%20-%20Animation%20Context%20Provider.gif)
 
-In order to make the website feel more lively upon interaction, I used an Animation Context component to coordinate animations and micro-interactions.
+The blog features a sophisticated animation system that makes the initial page load feel polished and alive, while subtle micro-interactions keep users engaged as they browse.
 
-```
+**Initial Page Load Sequence**
+
+On first visit, animations coordinate in a choreographed sequence:
+
+1. **Tennis Ball Logo (0-600ms)** - Three animated balls roll in from the right, rotating 720° and settling into place
+2. **Navigation Links (600-1400ms)** - Logo text fades in with staggered link animations
+3. **Hero Section (1400-2700ms)** - Tennis court background fades in
+4. **Hero Icons (2700-3700ms)** - Player illustrations fade and scale up with stagger
+5. **Featured Section (3700-4750ms)** - Featured posts fade in from below
+
+Rather than hard-coding delays, a **React Context** manages timing globally:
+
+```javascript
 
 // _components/_shared/_animations/AnimationContext.jsx
 
 export const AnimationProvider = ({ children }) => {
-
-  const [navAnimationComplete, setNavAnimationComplete] = useState(false);
-
   const [heroAnimationStarted, setHeroAnimationStarted] = useState(false);
-
   const [featuredAnimationStarted, setFeaturedAnimationStarted] = useState(false);
 
   useEffect(() => {
-
-    // Nav balls roll in (300ms delay, 800ms duration)
-
-    const navTimer = setTimeout(() => {
-
-      setNavAnimationComplete(true);
-
+    // Hero starts after nav completes (2700ms)
+    const heroTimer = setTimeout(() => {
       setHeroAnimationStarted(true);
+    }, ANIMATION_TIMINGS.navComplete);
 
-    }, ANIMATION_TIMINGS.navComplete); // 2700ms
-
-    // Featured section fades in after hero completes
-
+    // Featured starts after hero completes (4750ms)
     const featuredTimer = setTimeout(() => {
-
       setFeaturedAnimationStarted(true);
-
-    }, ANIMATION_TIMINGS.heroComplete); // 4750ms
+    }, ANIMATION_TIMINGS.heroComplete);
 
     return () => {
-
-      clearTimeout(navTimer);
-
+      clearTimeout(heroTimer);
       clearTimeout(featuredTimer);
-
     };
-
   }, []);
 
   return (
-
-    <AnimationContext.Provider value={{
-
-      navAnimationComplete,
-
-      heroAnimationStarted,
-
-      featuredAnimationStarted,
-
-      timings: ANIMATION_TIMINGS
-
-    }}>
-
+    
       {children}
-
-    </AnimationContext.Provider>
-
+    
   );
-
 };
+
+```
+
+**Micro-Interactions**
+
+Beyond the initial sequence, subtle animations reward user interactions:
+
+- **Post Cards**: Lift and shadow shift on hover
+- **Category/Tag Cards**: Yellow pseudo-element extends on hover
+- **Images**: Scale smoothly when hovered
+- **Navigation**: Balls roll in with cubic-bezier easing for organic motion
+
+These micro-interactions make the site feel responsive and intentional—users know their actions registered.
+
+```css
+
+.post-card:hover .post-card-content-container {
+  transform: translate(0.1875rem, -0.1875rem);
+  transition: transform 0.25s ease;
+}
+
+.post-card::after {
+  transform: translate(-0.25rem, 0.25rem);
+  transition: transform 0.25s ease;
+}
+
+.post-card:hover::after {
+  transform: translate(-0.375rem, 0.375rem);
+}
 
 ```
 
@@ -537,10 +558,14 @@ export const AnimationProvider = ({ children }) => {
 
 ![Read Estimate - GSB](https://res.cloudinary.com/tylerhuyser/image/upload/v1780282943/Game%2C%20Set%2C%20Blog/Read%20Estimate%20-%20GSB.png)
 
-Post excerpts are truncated to 300 characters and HTML tags are stripped for clean display. Read time is estimated based on average reading speed:
+Post cards display truncated excerpts and estimated read time, helping users quickly decide if an article is worth their time. Excerpts are limited to 300 characters with HTML tags stripped for clean display, while read time is calculated based on average adult reading speed (200 words per minute).
+
+**Read Time Estimation** 
 
 ```javascript
+
 // utils/estimateReadTime.js
+
 export function estimateReadTime(html, wpm = 200) {
   if (!html) return null;
 
@@ -565,27 +590,35 @@ function formatReadTime(minutes) {
   return "15+ MIN READ";
 }
 ```
-
-**Usage in PostCard:**
+**Post Excerpt Truncation**
 
 ```javascript
-const htmlContent = postData.content.rendered
-  .toString()
-  .slice(postData.content.rendered.indexOf(""));
 
-const readTime = estimateReadTime(htmlContent);
+// utils/truncateText.js
 
-return (
-  
-    {parse(postData.excerpt.rendered
-      .replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, '') // Strip HTML
-      .slice(0, 300) // Truncate
-      .trim()
-    )}
-  
-);
+export function truncateAtWordBoundary(text, maxLength = 300) {
+  if (!text || text.length <= maxLength) {
+    return text;
+  }
+
+  // Truncate to maxLength
+  let truncated = text.slice(0, maxLength);
+
+  // Find the last space within the truncated text
+  const lastSpaceIndex = truncated.lastIndexOf(' ');
+
+  // If a space is found, cut there; otherwise return as-is
+  if (lastSpaceIndex > 0) {
+    truncated = truncated.slice(0, lastSpaceIndex);
+  }
+
+  // Remove trailing punctuation if desired
+  truncated = truncated.replace(/[.,!?;:]+$/, '');
+
+  return truncated + '...';
+}
+
 ```
-
 <br>
 <br>
 <br>
@@ -594,10 +627,12 @@ return (
 
 ![Rankings - Time](https://res.cloudinary.com/tylerhuyser/image/upload/v1780282886/Game%2C%20Set%2C%20Blog/Time%20Reformatting%20-%20Rankings.png)
 
-The Ace Tennis Rankings updates every Monday. A utility function calculates the most recent Monday for consistent publication date display:
+The ATP and WTA publish official rankings every Monday. To ensure accurate publication dates across the platform, a utility function accepts the API's timestamp and returns the most recent Monday:
 
 ```javascript
+
 // utils/getMostRecentMonday.js
+
 export function getMostRecentMonday(isoDateString) {
   const date = new Date(isoDateString);
   const day = date.getUTCDay();
@@ -621,18 +656,7 @@ export function getMostRecentMonday(isoDateString) {
 }
 ```
 
-**Used in Rankings Component:**
 
-```javascript
-const publishDate = getMostRecentMonday(date);
-
-return (
-  
-    {`${tour} ${type} Rankings`}
-    {`Published ${publishDate}`}
-  
-);
-```
 
 
 
