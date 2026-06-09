@@ -729,30 +729,30 @@ export async function populateCache(tour, type) {
         stale: false
       });
 
-      console.log(`✅ Cache populated for ${tour} ${type}`);
+      console.log(`Cache populated for ${tour} ${type}`);
       return rankings;
 
     } catch (error) {
       retryCount++;
-      console.error(`❌ Scrape failed (Attempt ${retryCount}/${maxRetries}):`, error.message);
+      console.error(`Scrape failed (Attempt ${retryCount}/${maxRetries}):`, error.message);
 
       if (retryCount < maxRetries) {
         // Retry after exponential backoff (1s, 2s, 4s)
         const delay = Math.pow(2, retryCount) * 1000;
-        console.log(`⏳ Retrying in ${delay}ms...`);
+        console.log(`Retrying in ${delay}ms...`);
         
         await new Promise(resolve => setTimeout(resolve, delay));
         return fetchWithRetry();
       }
 
       // All retries exhausted
-      console.error(`⚠️ Max retries reached for ${tour} ${type}`);
+      console.error(`Max retries reached for ${tour} ${type}`);
       
       // Mark existing cache as stale but keep serving it
       const existing = cache.get(cacheKey);
       if (existing) {
         existing.stale = true;
-        console.log(`📦 Serving stale cache for ${tour} ${type}`);
+        console.log(`Serving stale cache for ${tour} ${type}`);
       }
 
       throw error;
