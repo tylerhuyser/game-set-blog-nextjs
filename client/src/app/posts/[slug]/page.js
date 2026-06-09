@@ -170,7 +170,11 @@ export default async function PostDetail({ params }) {
             <div className='article-container'>
 
               <div className="article-content-container">
-                {parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")))}
+                {postData.content?.rendered ? (
+                  parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")))
+                ) : (
+                  <p>Content could not be loaded. Please try refreshing.</p>
+                )}
               </div>
 
 
