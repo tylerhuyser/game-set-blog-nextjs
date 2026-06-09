@@ -35,16 +35,9 @@ export default function Posts({ postsData, totalPages, mode, sourceID }) {
       page: nextPage,
       perPage: 5
     })
-    if (response.data && response.data.length) {
-      const validPosts = response.data.filter(post =>
-        post.content?.rendered &&
-        post._embedded?.['wp:featuredmedia']?.[0]
-      );
-    
-      if (validPosts.length > 0) {
+    if (response.data.length) {
         setCurrentPage(nextPage)
-        setPosts(prevState => [...prevState, ...validPosts])
-      }
+        setPosts(prevState => [...prevState, ...response.data])
     }
   }
 
