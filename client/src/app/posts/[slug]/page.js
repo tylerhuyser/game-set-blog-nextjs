@@ -123,7 +123,6 @@ export default async function PostDetail({ params }) {
   const { slug } = await params
 
   const postData = await getPostBySlug(slug)
-  console.log(postData.content.rendered)
 
   if (!postData) {
 		return notFound()
