@@ -123,6 +123,7 @@ export default async function PostDetail({ params }) {
   const { slug } = await params
 
   const postData = await getPostBySlug(slug)
+  console.log(postData.content.rendered)
 
   if (!postData) {
 		return notFound()
@@ -171,7 +172,7 @@ export default async function PostDetail({ params }) {
 
               <div className="article-content-container">
                 {postData.content?.rendered ? (
-                  parse(postData.content.rendered.toString().slice(postData.content.rendered.toString().indexOf("<p>")))
+                  parse(postData.content.rendered.toString().slice(Math.max(postData.content.rendered.toString().indexOf("<p"), 0)))
                 ) : (
                   <p>Content could not be loaded. Please try refreshing.</p>
                 )}
