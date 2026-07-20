@@ -9,4 +9,4 @@ clear_cache = true
 command = "npm run build"
 
 [images]
-  remote_images = ["https:\\/\\/admin\\.gamesetblog\\.com\\/.*"]
+  remote_images = ["https://admin\\.gamesetblog\\.com/wp-content/uploads/.*"]
