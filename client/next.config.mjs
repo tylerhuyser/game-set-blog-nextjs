@@ -21,8 +21,8 @@ const nextConfig = {
     ];
   },
   images: {
-    // loader: 'custom',
-    // loaderFile: './netlifyImageLoader.js',
+    loader: 'custom',
+    loaderFile: './netlifyImageLoader.js',
     remotePatterns: [
       {
         protocol: 'https',
